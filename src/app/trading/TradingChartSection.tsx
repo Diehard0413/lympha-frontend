@@ -8,7 +8,7 @@ type Props = {};
 
 const TradingChartSection = (props: Props) => {
   return (
-    <section className="flex-1">
+    <section className="w-full flex-1">
       <div className="flex-1 rounded-3xl bg-neutral-white flex flex-col items-start justify-start py-4 px-6 box-border relative gap-4 min-w-[520px] max-w-full">
         <div className="w-full flex items-center justify-between">
           <div className="w-max flex flex-col items-start justify-start gap-2">
@@ -33,10 +33,11 @@ const TradingChartSection = (props: Props) => {
           </button>
         </div>
 
-        <div className="w-full border">
+        <div className="w-full">
           <TradingChart />
         </div>
 
+        {/* Trading Footer */}
         <div className="self-stretch flex flex-row items-center justify-between gap-[20px] text-right text-sm mq450:flex-wrap">
           <div className="flex flex-row items-center justify-start py-1 px-0 gap-[16px]">
             <div className="relative tracking-[-0.02em] leading-[20px] inline-block min-w-[20px]">

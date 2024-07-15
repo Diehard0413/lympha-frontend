@@ -7,6 +7,9 @@ import Labels from "./Labels";
 import InputPair from "./InputPair";
 import ProjectCard from "./ProjectCard";
 import { IoIosArrowForward, IoMdArrowDropdown } from "react-icons/io";
+import Statistics from "./Statistics";
+import BuyOrders from "./BuyOrders";
+import SellOrders from "./SellOrders";
 
 type Props = {};
 
@@ -98,13 +101,13 @@ const TradingPage = (props: Props) => {
   return (
     <div className="w-full min-h-screen relative [background:linear-gradient(rgba(230,_232,_232,_0.4),_rgba(230,_232,_232,_0.4)),_#fcfdfd] overflow-hidden flex flex-col items-start justify-start font-proxima">
       <Navbar />
-      <main className="w-4/5 border border-red-500 mx-auto self-stretch flex flex-row items-start justify-center px-5 box-border max-w-full py-10">
+      <main className="w-4/5 mx-auto self-stretch flex flex-row items-start justify-center px-5 py-10">
         <section className="w-full flex flex-col items-start justify-start  gap-4 max-w-full text-left text-sm text-neutral-white">
           <div
-            className={`self-stretch flex flex-col items-start justify-start gap-[24px] shrink-0 max-w-full text-left text-13xl text-neutral-black-6 font-body-large-bold`}
+            className={`w-full flex flex-col items-start justify-start gap-6 shrink-0 max-w-full text-left text-13xl text-neutral-black-6`}
           >
             {/* Trading Header */}
-            <div className="self-stretch flex flex-row items-center justify-between max-w-full gap-2">
+            <div className="w-full flex flex-row items-center justify-between max-w-full gap-2">
               <div className="w-max flex flex-row items-center justify-start gap-4 max-w-full">
                 <img
                   className="size-20 relative object-cover"
@@ -153,73 +156,16 @@ const TradingPage = (props: Props) => {
             </div>
 
             {/* Trading Body */}
-            <div className="self-stretch flex flex-row flex-wrap items-start justify-start  gap-4 max-w-full ">
+            <div className="w-full flex flex-row items-start justify-start  gap-4 max-w-full ">
               <TradingChartSection />
-              <div className="h-[326px] w-[254px] rounded-3xl bg-neutral-white flex flex-col items-start justify-start py-6 px-4 box-border text-lg text-neutral-black-4">
-                <div className="self-stretch flex flex-col items-start justify-start gap-[16px]">
-                  <div className="self-stretch flex flex-col items-start justify-start py-0 pr-5 pl-0">
-                    <b className="relative tracking-[-0.02em] leading-[140%] inline-block min-w-[71px]">
-                      Statistics
-                    </b>
-                  </div>
-                  <img
-                    className="self-stretch h-px relative max-w-full overflow-hidden shrink-0"
-                    loading="lazy"
-                    alt=""
-                    src="/line-6.svg"
-                  />
-                  <div className="self-stretch flex flex-col items-start justify-start gap-[24px] text-xs text-neutral-black-3">
-                    <div className="self-stretch flex flex-row items-center justify-between gap-[20px]">
-                      <div className="relative tracking-[-0.02em] leading-[17px] inline-block min-w-[28px]">
-                        Slabs
-                      </div>
-                      <div className="w-[122px] relative tracking-[-0.02em] leading-[17px] text-right inline-block">
-                        Value
-                      </div>
-                    </div>
-                    <div className="self-stretch flex flex-col items-start justify-start gap-[16px] text-sm text-neutral-black-4">
-                      <div className="self-stretch flex flex-row items-center justify-between gap-[20px]">
-                        <div className="w-[68px] relative leading-[17px] uppercase inline-block shrink-0">
-                          24H
-                        </div>
-                        <div className="w-[42px] relative leading-[17px] uppercase text-right inline-block shrink-0">
-                          +2.4%
-                        </div>
-                      </div>
-                      <div className="self-stretch flex flex-row items-center justify-between gap-[20px]">
-                        <div className="relative leading-[17px] uppercase inline-block min-w-[68px]">
-                          24H High
-                        </div>
-                        <div className="w-[57px] relative leading-[17px] uppercase text-right inline-block shrink-0 min-w-[57px] whitespace-nowrap">
-                          $66,000
-                        </div>
-                      </div>
-                      <div className="self-stretch flex flex-row items-center justify-between gap-[20px]">
-                        <div className="relative leading-[17px] uppercase inline-block min-w-[68px]">
-                          24H Low
-                        </div>
-                        <div className="w-[94px] relative leading-[17px] uppercase text-right inline-block shrink-0 min-w-[94px] whitespace-nowrap">
-                          $62,350.0003
-                        </div>
-                      </div>
-                      <div className="self-stretch flex flex-row items-center justify-between gap-[20px]">
-                        <div className="relative leading-[17px] uppercase inline-block min-w-[92px]">
-                          24H Volume
-                        </div>
-                        <div className="w-[68px] relative leading-[17px] uppercase text-right inline-block shrink-0">
-                          0.0392
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <Statistics />
             </div>
           </div>
           <MyHoldings />
           <div className="w-full grid grid-cols-1 md:grid-cols-2 flex-row flex-wrap items-center justify-start gap-4 shrink-0 max-w-full">
-            <OrdersSection />
-            <OrdersSection />
+            <BuyOrders />
+            <SellOrders />
+            {/* <OrdersSection /> */}
           </div>
 
           {/* Trading Footer */}
