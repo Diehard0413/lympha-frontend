@@ -68,7 +68,9 @@ const Navbar = ({ className = "" }) => {
               pathname.includes("/list-projects") && " font-bold"
             )}
           >
-            <div className="relative whitespace-nowrap">List a Project</div>
+            <div className="relative whitespace-nowrap tracking-tighter">
+              List a Project
+            </div>
           </Link>
         </div>
       </div>

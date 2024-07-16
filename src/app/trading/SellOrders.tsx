@@ -47,7 +47,7 @@ const sellOrders: FunctionComponent<sellOrdersType> = ({ className = "" }) => {
           </div>
           <b className="flex-1 relative tracking-tight text-lg ">Sell Orders</b>
         </div>
-        <button className="cursor-pointer py-1.5 px-6 bg-lympha-primary uppercase shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] rounded-full transition-all duration-300 ease-in-out flex flex-row items-center justify-center whitespace-nowrap hover:bg-darkcyan-100">
+        <button className="cursor-pointer py-1.5 px-6 bg-state-error uppercase shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] rounded-full transition-all duration-300 ease-in-out flex flex-row items-center justify-center whitespace-nowrap hover:bg-darkcyan-100">
           <b className="relative text-sm tracking-tight text-neutral-white text-left min-w-24">
             New Sell Order
           </b>
@@ -81,7 +81,7 @@ const sellOrders: FunctionComponent<sellOrdersType> = ({ className = "" }) => {
                 </div>
                 <div className="flex items-center justify-end">
                   <button className="cursor-pointer w-max px-5 py-1.5 bg-neutral-white rounded-2xl flex flex-row items-center justify-end border border-neutral-black-2 hover:bg-lympha-disabled hover:box-border hover:border hover:border-transparent">
-                    <b className="relative text-xs  text-lympha-primary">Buy</b>
+                    <b className="relative text-xs  text-state-error">Sell</b>
                   </button>
                 </div>
               </div>

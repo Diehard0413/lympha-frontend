@@ -1,13 +1,19 @@
 import React from "react";
 import UploadModal from "../UploadModal";
+import { cn } from "@/app/helpers/utils";
 
 type Props = {};
+const radius = 49.5;
+const circumference = 2 * Math.PI * radius;
+
 
 const ProfileBanner = (props: Props) => {
-  const radius = 49.5;
-  const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (85 / 100) * circumference;
+  const [profileProgress, setProfileProgress] = React.useState(85);
   const [isUploadStatus, setIsUploadStatus] = React.useState(false);
+
+  const offset = circumference - (profileProgress / 100) * circumference;
+
+  const [progress, setProgress] = React.useState(10);
 
   return (
     <div className="w-full rounded-2xl bg-gray-500 text-neutral-white font-sans">
@@ -111,9 +117,19 @@ const ProfileBanner = (props: Props) => {
             <div className="self-stretch flex flex-row items-start justify-center">
               <div className="flex-1 flex flex-col items-start justify-start gap-2 max-w-full">
                 <div className="self-stretch flex flex-row items-center justify-between gap-[20px] mq725:flex-wrap">
-                  <b className="relative tracking-tight leading-[140%]">
-                    Project Title
-                  </b>
+                  <div className="flex flex-col items-start">
+                    <b className="relative tracking-tight leading-[140%]">
+                      Project Title
+                    </b>
+                    <b className="flex items-center">
+                      <span className=" text-sm font-normal leading-tight">
+                        $ 50,000{" "}
+                      </span>
+                      <span className=" text-sm font-normal leading-tight">
+                        raised out of $ 5,00,000
+                      </span>
+                    </b>
+                  </div>
 
                   <div className="rounded-xl bg-state-warning flex flex-col items-start justify-start py-0.5 px-2.5 whitespace-nowrap text-xs text-neutral-white">
                     <b className="relative tracking-tight leading-[17px] inline-block min-w-[69px]">
@@ -121,9 +137,20 @@ const ProfileBanner = (props: Props) => {
                     </b>
                   </div>
                 </div>
-                {!isUploadStatus && (
-                  <UploadModal />
-                )}
+                {!isUploadStatus && <UploadModal />}
+                <div className="flex w-full items-center gap-x-3">
+                  <div className="h-4 flex-1 bg-white rounded-full ">
+                    <div
+                      style={{ width: `${progress}%` }}
+                      className={cn("h-full rounded-full bg-lympha-primary")}
+                    />
+                  </div>
+                  <div>
+                    <b className="text-center text-neutral-black-5 text-base font-bold leading-snug">
+                      {progress}%
+                    </b>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

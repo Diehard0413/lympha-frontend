@@ -1,5 +1,5 @@
+import { FC } from "react";
 import Link from "next/link";
-import { FunctionComponent, useMemo, type CSSProperties } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 
 export type ProjectCardType = {
@@ -14,18 +14,14 @@ export type ProjectCardType = {
   };
 };
 
-const ProjectCard: FunctionComponent<ProjectCardType> = ({
-  className = "",
-  project,
-}) => {
+const ProjectCard: FC<ProjectCardType> = ({ className = "", project }) => {
   return (
-    <Link
-      href={`/invest/${project.id}`}
-      className={`shadow-[0px_0px_20px_rgba(0,_0,_0,_0.04)] rounded-2xl bg-neutral-white overflow-hidden flex flex-col items-start justify-start text-left text-lg text-neutral-black-6 font-body-large-bold ${className}`}
+    <div
+      className={`shadow-[0px_0px_20px_rgba(0,_0,_0,_0.04)] rounded-2xl bg-neutral-white overflow-hidden flex flex-col items-start justify-start text-left text-lg text-neutral-black-6  ${className} group`}
     >
-      <div className="self-stretch h-[140px] flex flex-col items-start justify-start">
+      <div className="self-stretch h-36 flex flex-col items-start justify-start group overflow-hidden">
         <img
-          className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover"
+          className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover group-hover:scale-125 transition-transform duration-300 ease-in-out"
           loading="lazy"
           alt=""
           src="/images/image-1.png"
@@ -56,17 +52,20 @@ const ProjectCard: FunctionComponent<ProjectCardType> = ({
               Tokens Offered: {project.tokensOffered}
             </div>
           </div>
-          <div className="w-[50px] flex flex-row items-start justify-start text-sm text-neutral-white">
+          <Link
+            href={`/invest/${project.id}`}
+            className="w-[50px] flex flex-row items-start justify-start text-sm text-neutral-white"
+          >
             <div className="flex-1 shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] rounded-13xl bg-lympha-primary flex flex-row items-center justify-center py-1.5 px-3.5 gap-[8px] border-[2px] border-solid border-darkslategray">
               <b className="self-stretch w-[52px] relative tracking-[-0.02em] leading-[130%] uppercase hidden">
                 get let
               </b>
               <IoIosArrowForward className="h-[18px] w-[18px] relative" />
             </div>
-          </div>
+          </Link>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

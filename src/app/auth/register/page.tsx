@@ -2,6 +2,7 @@
 
 import InputField from "@/components/InputField";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FunctionComponent } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -225,11 +226,14 @@ const Register: FunctionComponent = () => {
                   <div className="relative text-base tracking-[-0.02em] leading-[140%] font-body-large-bold text-neutral-black-5 text-left whitespace-nowrap">
                     Already have an account?
                   </div>
-                  <div className="rounded-13xl flex flex-row items-center justify-center">
+                  <Link
+                    href="/auth/signin"
+                    className="rounded-13xl flex flex-row items-center justify-center"
+                  >
                     <b className="relative text-base tracking-[-0.02em] leading-[140%] inline-block font-body-large-bold text-lympha-primary text-left min-w-[43px] whitespace-nowrap">
                       Log in
                     </b>
-                  </div>
+                  </Link>
                 </div>
               </div>
             </form>

@@ -45,17 +45,15 @@ const TradingPage = (props: Props) => {
             )}
             <button
               type="button"
-              className={`cursor-pointer [border:none] p-0 bg-[transparent] self-stretch flex flex-col items-start justify-start `}
+              className="shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] rounded-13xl bg-lympha-primary flex flex-row items-center justify-center py-4 px-10"
               onClick={() => {
                 navigator.push("/list-projects/step1");
               }}
             >
-              <div className="self-stretch shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] rounded-13xl bg-lympha-primary flex flex-row items-center justify-center py-[17px] pr-5 pl-7 gap-[8px] border-[2px] border-solid border-darkslategray">
-                <b className="relative text-mid tracking-[-0.02em] leading-[120%] inline-block font-body-large-bold text-neutral-white text-left min-w-[61px]">
-                  Get Started
-                </b>
-                <IoArrowForward className="h-5 w-5 relative min-h-[20px] text-white" />
-              </div>
+              <b className="relative text-mid tracking-[-0.02em] leading-[120%] inline-block font-body-large-bold text-neutral-white text-left min-w-[61px]">
+                Get Started
+              </b>
+              <IoArrowForward className="h-5 w-5 relative min-h-[20px] text-white" />
             </button>
           </form>
         </section>

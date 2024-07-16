@@ -11,6 +11,9 @@ const config: Config = {
       colors: {
         "lympha-primary": "#066e79",
         "lympha-disabled": "#e8f6fa",
+        "lympha-secondary": "#2b94a1",
+        "lympha-tertiary": "#30ba7a",
+        "lympha-dark": "#02181d",
         "neutral-white": "#fcfdfd",
         "neutral-black-1": "#e6e8e8",
         "neutral-black-2": "#c0c5c6",
