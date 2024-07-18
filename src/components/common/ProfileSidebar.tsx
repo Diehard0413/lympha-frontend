@@ -7,12 +7,17 @@ import {
   MdCampaign,
   MdOutlineAccountBalance,
   MdOutlineAccountBalanceWallet,
+  MdOutlinePassword,
   MdQuiz,
 } from "react-icons/md";
 import { RiSettings3Fill } from "react-icons/ri";
 import { useRouter } from "next/navigation";
 import { cn } from "@/app/helpers/utils";
-import LinkedBankAccountSidebar from "./LinkedBankAccountSidebar";
+import LinkedBankAccountSidebar from "../profile-sub-sections/LinkedBankAccountSidebar";
+import MyWalletSidebar from "../profile-sub-sections/MyWalletSidebar";
+import FeedbackSidebar from "../profile-sub-sections/FeedbackSidebar";
+import SupportSidebar from "../profile-sub-sections/SupportSidebar";
+import ChangePasswordSidebar from "../profile-sub-sections/ChangePasswordSidebar";
 
 type Props = {
   onClose: () => void;
@@ -26,6 +31,7 @@ const ProfileSidebar = (props: Props) => {
     | "my_wallet"
     | "feedback"
     | "support"
+    | "change_password"
     | "logout"
     | null
   >(null);
@@ -110,6 +116,21 @@ const ProfileSidebar = (props: Props) => {
         </div>
         <div className="self-stretch shadow-[0px_2px_20px_rgba(0,_0,_0,_0.07)] rounded-lg bg-neutral-white box-border flex flex-col items-start justify-start py-[17px] px-[19px] max-w-full border-[1px] border-solid border-darkcyan-300">
           <div className="self-stretch flex flex-row flex-wrap items-center justify-start gap-[10px] max-w-full">
+            <MdOutlinePassword className="h-4 w-4 relative overflow-hidden shrink-0" />
+            <div className="flex-1 relative tracking-[-0.02em] leading-[130%] font-semibold inline-block min-w-[38px] max-w-full">
+              Change Password
+            </div>
+            <button
+              onClick={() => {
+                setActiveSidebarOption("change_password");
+              }}
+            >
+              <IoIosArrowForward className="h-4 w-4 relative" />
+            </button>
+          </div>
+        </div>
+        <div className="self-stretch shadow-[0px_2px_20px_rgba(0,_0,_0,_0.07)] rounded-lg bg-neutral-white box-border flex flex-col items-start justify-start py-[17px] px-[19px] max-w-full border-[1px] border-solid border-darkcyan-300">
+          <div className="self-stretch flex flex-row flex-wrap items-center justify-start gap-[10px] max-w-full">
             <RiSettings3Fill className="h-4 w-4 relative overflow-hidden shrink-0" />
             <div className="flex-1 flex flex-row items-center justify-start min-w-[250px] max-w-full">
               <div className="w-[262px] relative tracking-[-0.02em] leading-[130%] font-semibold inline-block shrink-0">
@@ -149,9 +170,7 @@ const ProfileSidebar = (props: Props) => {
             "translate-x-0 shadow-[0px_0px_72px_rgba(2,_24,_29,_0.11)]"
         )}
       >
-        <LinkedBankAccountSidebar
-          onClose={() => setActiveSidebarOption(null)}
-        />
+        <MyWalletSidebar onClose={() => setActiveSidebarOption(null)} />
       </div>
 
       {/* Feedback */}
@@ -162,9 +181,7 @@ const ProfileSidebar = (props: Props) => {
             "translate-x-0 shadow-[0px_0px_72px_rgba(2,_24,_29,_0.11)]"
         )}
       >
-        <LinkedBankAccountSidebar
-          onClose={() => setActiveSidebarOption(null)}
-        />
+        <FeedbackSidebar onClose={() => setActiveSidebarOption(null)} />
       </div>
 
       {/* Supports */}
@@ -175,9 +192,18 @@ const ProfileSidebar = (props: Props) => {
             "translate-x-0 shadow-[0px_0px_72px_rgba(2,_24,_29,_0.11)]"
         )}
       >
-        <LinkedBankAccountSidebar
-          onClose={() => setActiveSidebarOption(null)}
-        />
+        <SupportSidebar onClose={() => setActiveSidebarOption(null)} />
+      </div>
+
+      {/* Supports */}
+      <div
+        className={cn(
+          "z-[51] fixed top-0 right-0 bottom-0 translate-x-full min-h-screen max-h-screen max-w-xl   backdrop-blur-2xl rounded-l-13xl bg-gray-300 overflow-hidden flex flex-col items-start justify-start py-10 px-10 gap-6 w-full  text-base text-neutral-black-3 transition-transform duration-500 ease-in-out",
+          activeSidebarOption === "change_password" &&
+            "translate-x-0 shadow-[0px_0px_72px_rgba(2,_24,_29,_0.11)]"
+        )}
+      >
+        <ChangePasswordSidebar onClose={() => setActiveSidebarOption(null)} />
       </div>
     </div>
   );

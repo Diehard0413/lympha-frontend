@@ -263,6 +263,8 @@ const UploadModal = (props: Props) => {
                 </div>
                 <div className="w-full flex items-center gap-x-5">
                   <button
+                    type="button"
+                    onClick={close}
                     className={`flex-1 cursor-pointer [border:none] p-0 bg-[transparent] self-stretch flex flex-col items-start justify-start `}
                   >
                     <div className="self-stretch rounded-full border border-lympha-primary flex flex-row items-center justify-center py-[17px] pr-5 pl-7 gap-[8px]">
