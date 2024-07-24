@@ -7,11 +7,13 @@ import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { resetPassword } from "@/actions/forgot-password";
 
 interface ResetFormDataType {
   email: string;
   password: string;
   confirmPassword: string;
+  resetPasswordToken: string;
 }
 
 const resetPasswordValidationSchema = Yup.object().shape({
@@ -22,6 +24,7 @@ const resetPasswordValidationSchema = Yup.object().shape({
     .min(8, "Password is too short - should be 8 chars minimum.")
     .matches(/[a-zA-Z]/, "Password can only contain Latin letters.")
     .oneOf([Yup.ref("password")], "Passwords must match"),
+  resetPasswordToken: Yup.string().required(),
 });
 
 const SignIn: FunctionComponent = () => {
@@ -41,19 +44,29 @@ const SignIn: FunctionComponent = () => {
   } = useForm<ResetFormDataType>({
     resolver: yupResolver(resetPasswordValidationSchema),
     defaultValues: {
-      email: "email@email.com",
+      email: localStorage.getItem("email") ?? "",
+      resetPasswordToken: localStorage.getItem("resetToken") ?? "",
     },
   });
 
   const onSubmit = async (data: ResetFormDataType) => {
     try {
-      console.log("the data is ", data);
-      await new Promise((resolve) =>
-        setTimeout(() => {
-          toast.success("Password reset successful, redirecting to login page");
-          router.push("/auth/signin");
-        }, 2000)
-      );
+      const response = await resetPassword({
+        email: data.email,
+        password: data.password,
+        confirmPassword: data.confirmPassword,
+        resetPasswordToken: data.resetPasswordToken,
+      });
+
+      if (response.error) {
+        setError("root.serverError", {
+          message: response.error,
+        });
+        return;
+      }
+
+      toast.success("Password reset successfully");
+      router.push("/auth/signin");
     } catch (error: any) {
       console.error("An unexpected error happened:", error);
       setError("root.serverError", {
@@ -194,9 +207,12 @@ const SignIn: FunctionComponent = () => {
                 </div>
               </div>
             </form>
-            <div className="self-stretch h-20 relative [text-decoration:underline] tracking-[-0.02em] leading-[140%] flex items-end justify-center shrink-0">
+            <Link
+              href="/terms-and-privacy"
+              className="self-stretch h-20 relative [text-decoration:underline] tracking-[-0.02em] leading-[140%] flex items-end justify-center shrink-0"
+            >
               Terms of Service & Privacy Policy
-            </div>
+            </Link>
           </div>
         </div>
       </div>

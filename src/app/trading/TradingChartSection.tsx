@@ -9,7 +9,7 @@ type Props = {};
 const TradingChartSection = (props: Props) => {
   return (
     <section className="w-full flex-1">
-      <div className="flex-1 rounded-3xl bg-neutral-white flex flex-col items-start justify-start py-4 px-6 box-border relative gap-4 min-w-[520px] max-w-full">
+      <div className="flex-1 rounded-3xl bg-neutral-white flex flex-col items-start justify-start py-4 px-6 box-border relative gap-4  max-w-full">
         <div className="w-full flex items-center justify-between">
           <div className="w-max flex flex-col items-start justify-start gap-2">
             <div className="flex flex-row items-end justify-start gap-4">

@@ -4,7 +4,7 @@ type Props = {};
 
 const Statistics = (props: Props) => {
   return (
-    <div className=" w-64 rounded-3xl bg-neutral-white flex flex-col items-start justify-start py-6 px-4 text-lg text-neutral-black-4">
+    <div className="w-full md:w-64 rounded-3xl bg-neutral-white flex flex-col items-start justify-start py-6 px-4 text-lg text-neutral-black-4">
       <div className="self-stretch flex flex-col items-start justify-start gap-y-1 divide-y divide-neutral-black-2">
         <div className="self-stretch flex flex-col items-start justify-start py-0 pr-5">
           <b className="">Statistics</b>

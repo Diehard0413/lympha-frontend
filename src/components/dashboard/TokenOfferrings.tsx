@@ -1,6 +1,7 @@
 import React from "react";
 import { IoArrowForward } from "react-icons/io5";
 import TokenCardDetails from "../TokenCardDetail";
+import Link from "next/link";
 
 type Props = {};
 
@@ -27,12 +28,15 @@ const TokenOfferrings = (props: Props) => {
             change="+$8,338.00"
           />
         </div>
-        <button className="w-full group flex text-lympha-primary border-lympha-primary hover:bg-lympha-primary transition-all duration-500 ease-in-out items-center h-12 py-2 bg-white rounded-3xl border border-stone-300/opacity-60 justify-center gap-2 ">
+        <Link
+          href="/trading"
+          className="w-full group flex text-lympha-primary border-lympha-primary hover:bg-lympha-primary transition-all duration-500 ease-in-out items-center h-12 py-2 bg-white rounded-3xl border border-stone-300/opacity-60 justify-center gap-2 "
+        >
           <div className="text-teal-700 text-base font-bold font-['Proxima Nova'] leading-tight group-hover:text-neutral-white">
             Get Started
           </div>
           <IoArrowForward className="text-teal-700 h-4 stroke-[1px] group-hover:text-neutral-white" />
-        </button>
+        </Link>
       </div>
     </div>
   );

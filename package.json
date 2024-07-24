@@ -6,15 +6,24 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "seed": "node prisma/seed.ts",
+    "prisma:seed": "npx tsx prisma/seed.ts"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.4.1",
     "@headlessui/react": "^2.1.2",
     "@hookform/resolvers": "^3.9.0",
+    "@prisma/client": "^5.17.0",
     "apexcharts": "^3.50.0",
+    "bcryptjs": "^2.4.3",
     "clsx": "^2.1.1",
     "framer-motion": "^11.3.2",
+    "mailgun.js": "^10.2.3",
     "next": "14.2.5",
+    "next-auth": "^5.0.0-beta.19",
     "react": "^18",
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18",
@@ -24,16 +33,19 @@
     "react-icons": "^5.2.1",
     "react-otp-input": "^3.1.1",
     "react-toastify": "^10.0.5",
+    "resend": "^3.4.0",
     "tailwind-merge": "^2.4.0",
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "postcss": "^8",
+    "prisma": "^5.17.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }

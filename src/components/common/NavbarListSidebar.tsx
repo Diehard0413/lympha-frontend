@@ -1,0 +1,96 @@
+"use client";
+
+import React from "react";
+import { IoIosArrowForward, IoMdClose } from "react-icons/io";
+import ProfileBanner from "./ProfileBanner";
+import {
+  MdCampaign,
+  MdOutlineAccountBalance,
+  MdOutlineAccountBalanceWallet,
+  MdOutlinePassword,
+  MdQuiz,
+} from "react-icons/md";
+import { RiSettings3Fill } from "react-icons/ri";
+import { usePathname, useRouter } from "next/navigation";
+import { cn } from "@/app/helpers/utils";
+import LinkedBankAccountSidebar from "../profile-sub-sections/LinkedBankAccountSidebar";
+import MyWalletSidebar from "../profile-sub-sections/MyWalletSidebar";
+import FeedbackSidebar from "../profile-sub-sections/FeedbackSidebar";
+import SupportSidebar from "../profile-sub-sections/SupportSidebar";
+import ChangePasswordSidebar from "../profile-sub-sections/ChangePasswordSidebar";
+import Link from "next/link";
+
+type Props = {
+  onClose: () => void;
+};
+
+const NavbarListSidebar = (props: Props) => {
+  const navigate = useRouter();
+  const pathname = usePathname();
+
+  const navItems = [
+    {
+      id: "1",
+      title: "Dashboard",
+      href: "/dashboard",
+    },
+    {
+      id: "2",
+      title: "Trading",
+      href: "/trading",
+    },
+    {
+      id: "3",
+      title: "Invest",
+      href: "/invest",
+    },
+    {
+      id: "4",
+      title: "List a Project",
+      href: "/list-projects",
+    },
+  ];
+
+  return (
+    <div className="w-full flex flex-col gap-y-5">
+      <div className="self-stretch flex flex-col items-start justify-start max-w-full">
+        <div className="self-stretch flex flex-row items-center justify-start gap-5 max-w-full">
+          <button onClick={props.onClose}>
+            <IoMdClose className="h-6 w-6 relative min-h-[24px]" />
+          </button>
+          <div className="flex-1 flex justify-center items-center">
+            <Link href="/" className="flex flex-row items-start justify-start">
+              <img
+                className="h-8 relative"
+                alt=""
+                src="/images/full-logo.svg"
+              />
+            </Link>
+          </div>
+        </div>
+      </div>
+      <div className="w-full flex flex-col items-start justify-start gap-[16px] max-w-full text-sm text-neutral-black-5">
+        <ul className="gap-y-4 w-full flex flex-col py-10 text-xl items-center justify-center">
+          {navItems.map((item) => (
+            <li
+              key={item.id}
+              className="flex flex-row items-center justify-start gap-4"
+            >
+              <Link
+                href={item.href}
+                className={cn(
+                  "flex flex-row items-center",
+                  pathname.includes(item.href) && "font-medium"
+                )}
+              >
+                <div className="relative inline-block">{item.title}</div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+export default NavbarListSidebar;

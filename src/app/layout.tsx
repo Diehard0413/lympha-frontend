@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { cn } from "./helpers/utils";
 import localFont from "next/font/local";
-import LoadingPage from "./loading/page";
 import { Toaster } from "react-hot-toast";
+import { SessionProvider } from "next-auth/react";
+import AuthWrapper from "./auth_wrapper";
 
 export const metadata: Metadata = {
   title: "Lympha - Invest in the future",
@@ -44,9 +45,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(proxima.variable, "text-neutral-black-5")}>
-        <Toaster />
-        <LoadingPage />
-        {children}
+        <Toaster
+          position="top-right"
+          gutter={16}
+          containerClassName="fixed z-[1000] top-0 right-0"
+        />
+        <AuthWrapper>
+          {/* <LoadingPage /> */}
+          {children}
+        </AuthWrapper>
       </body>
     </html>
   );

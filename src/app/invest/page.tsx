@@ -92,15 +92,15 @@ const InvestsPage = (props: Props) => {
   return (
     <div className="w-full min-h-screen relative [background:linear-gradient(rgba(230,_232,_232,_0.4),_rgba(230,_232,_232,_0.4)),_#fcfdfd] overflow-hidden flex flex-col items-start justify-start font-proxima">
       <Navbar />
-      <main className="w-4/5 mx-auto self-stretch flex flex-row items-start justify-center px-5 box-border max-w-full py-10">
+      <main className="w-11/12 sm:w-5/6 md:w-4/5 mx-auto self-stretch flex flex-row items-start justify-center md:px-5 box-border max-w-full py-10">
         <section className="w-full flex flex-col items-start justify-start  gap-4 max-w-full text-left text-sm text-neutral-white">
-          <div className="self-stretch flex flex-col items-start justify-start pt-6 px-0 pb-0 gap-4 shrink-0 text-2xl text-neutral-black-6">
+          <div className="self-stretch flex flex-col items-start justify-start pt-6 px-0 pb-0 gap-4 shrink-0 text-neutral-black-6">
             <div className="self-stretch flex flex-col items-start justify-start">
               <div className="self-stretch flex flex-col items-start justify-start">
-                <h1 className="m-0 self-stretch relative text-inherit tracking-[-0.02em] leading-[140%] font-bold font-inherit mq450:text-3xl mq450:leading-[31px]">
+                <h1 className="m-0 self-stretch relative text-xl md:text-2xl tracking-tight font-bold">
                   Invest your Lympha Carbon Tokens in Projects
                 </h1>
-                <h1 className="self-stretch relative font-normal font-inherit text-neutral-black-4">
+                <h1 className="self-stretch relative font-normal text-base md:text-xl font-inherit text-neutral-black-4">
                   Here are some of the projects you can choose to invest in.
                   Some copy on these lines.
                 </h1>
@@ -108,7 +108,7 @@ const InvestsPage = (props: Props) => {
             </div>
             <div className="self-stretch flex flex-col items-start justify-start py-10">
               <div className="self-stretch flex flex-col items-start justify-start">
-                <div className="self-stretch grid flex-row items-start justify-start gap-4 grid-cols-4">
+                <div className="self-stretch grid flex-row items-start justify-start gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                   {projects.map((project) => (
                     <ProjectCard key={project.id} project={project} />
                   ))}

@@ -1,29 +1,9 @@
-"use client";
-
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 
 type Props = {};
 
 const LoadingPage = (props: Props) => {
-  const [show, setShow] = useState(true);
-
-  useLayoutEffect(() => {
-    document.body.style.overflow = "hidden";
-
-    const timeoutId = setTimeout(() => {
-      setShow(false);
-      document.body.style.overflow = "auto";
-    }, 2000);
-
-    return () => {
-      document.body.style.overflow = "auto";
-      clearTimeout(timeoutId);
-    };
-  }, []);
-
-  if (!show) return null;
-
   return (
     <AnimatePresence mode="wait">
       <motion.div

@@ -23,14 +23,14 @@ const ProjectDetailPage = (props: Props) => {
   return (
     <div className="w-full min-h-screen relative [background:linear-gradient(rgba(230,_232,_232,_0.4),_rgba(230,_232,_232,_0.4)),_#fcfdfd] overflow-hidden flex flex-col items-start justify-start font-proxima">
       <Navbar />
-      <main className="w-2/3 mx-auto self-stretch flex flex-col items-start justify-center px-5 max-w-full py-10">
+      <main className="w-11/12 md:w-5/6 lg:w-3/4 xl:w-2/3 mx-auto self-stretch flex flex-col items-start justify-center md:px-5 max-w-full py-10">
         <button
           onClick={() => {
             navigate.back();
           }}
-          className="self-stretch flex flex-row flex-wrap items-center justify-start gap-2 shrink-0 max-w-full"
+          className="self-stretch flex flex-row items-center justify-start gap-2 shrink-0 max-w-full"
         >
-          <MdArrowBack className="h-6 w-6 relative min-h-6 text-neutral-black-6" />
+          <MdArrowBack className="h-6 w-6 relative min-h-6 text-neutral-black-6 shrink-0" />
           <div className="flex-1 flex flex-col items-start justify-start pt-px px-0 pb-0 box-border min-w-[499px] max-w-full mq750:min-w-full">
             <div className="self-stretch flex flex-row items-start justify-between gap-[20px] mq450:flex-wrap">
               <b className="relative tracking-tight inline-block text-neutral-black-6">
@@ -50,7 +50,7 @@ const ProjectDetailPage = (props: Props) => {
         <h2 className="pt-5 relative text-2xl tracking-wide leading-8 font-bold font-inherit text-neutral-black-6 shrink-0">
           {project.title}
         </h2>
-        <section className="self-stretch rounded-2xl flex flex-row items-start justify-start py-3 box-border gap-4 shrink-0 text-lg text-neutral-black-4">
+        <section className="self-stretch rounded-2xl flex flex-col md:flex-row items-start justify-start py-3 box-border gap-4 shrink-0 text-lg text-neutral-black-4">
           <article className="flex-1 rounded-11xl flex flex-col items-start justify-start gap-4 max-w-full">
             <div className="self-stretch h-72 rounded-3xl overflow-hidden shrink-0 flex flex-col items-start justify-start">
               <img
@@ -60,9 +60,9 @@ const ProjectDetailPage = (props: Props) => {
                 src="/images/image-1.png"
               />
             </div>
-            <div className="self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-10 box-border gap-[8px] max-w-full">
+            <div className="self-stretch flex flex-col items-start justify-start  box-border gap-2 max-w-full">
               <div className="self-stretch flex flex-row items-center justify-center max-w-full">
-                <b className="flex-1 relative tracking-tight  inline-block max-w-full">
+                <b className="flex-1 relative tracking-tight  inline-block max-w-full leading-5">
                   The Convertible project is providing new solutions to help
                   solve the automotive and freight transportation industry
                   problems! Through our unique proprietary hardware and software
@@ -70,8 +70,8 @@ const ProjectDetailPage = (props: Props) => {
                 </b>
               </div>
               <div className="self-stretch flex flex-row items-center justify-center max-w-full text-sm">
-                <div className="h-[360px] flex-1 relative tracking-tight  inline-block max-w-full">
-                  <p className="m-0">
+                <div className="flex-1 relative tracking-tight  inline-block max-w-full">
+                  <p className="">
                     Worldwide, the auto industry wastes more than $100B every
                     year on inefficient automotive transportation largely due
                     to SINGLE PURPOSE EQUIPMENT that is designed to only haul
@@ -84,8 +84,7 @@ const ProjectDetailPage = (props: Props) => {
                     diesel fuel globally and over 22 million tons of needless
                     CO2 emitted into the atmosphere every year.
                   </p>
-                  <p className="m-0"> </p>
-                  <p className="m-0">
+                  <p className="">
                     Our vision is to provide innovative solutions that will
                     transform the way that both the automotive and freight
                     industries operate, and goods are moved. Our goal is to
@@ -105,7 +104,7 @@ const ProjectDetailPage = (props: Props) => {
               </div>
             </div>
           </article>
-          <aside className="w-64 flex flex-col items-start justify-start gap-4 text-sm ">
+          <aside className="w-full md:w-64 flex flex-col items-start justify-start gap-4 text-sm ">
             <div className="self-stretch rounded-3xl bg-neutral-white flex flex-col items-start justify-start py-6 px-4 gap-6">
               <div className="self-stretch flex flex-col items-start justify-start gap-4">
                 <div className="self-stretch flex flex-col items-start justify-start py-0 pr-5 pl-0 gap-[8px] text-lg">

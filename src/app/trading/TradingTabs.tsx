@@ -37,7 +37,7 @@ const TradingTabs = (props: Props) => {
           key={tab.id}
           onClick={() => setActiveTab(tab.id)}
           className={cn(
-            "cursor-pointer py-2 px-5 bg-lympha-disabled w-max shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] rounded-full shrink-0 flex flex-row items-center justify-center border-[2px] border-solid border-darkslategray hover:bg-darkcyan-100 hover:box-border hover:border-[2px] hover:border-solid hover:border-teal transition-all duration-300 ease-in-out",
+            "cursor-pointer py-1.5 md:py-2 px-3 md:px-5 bg-lympha-disabled w-max shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] rounded-full shrink-0 flex flex-row items-center justify-center border-[2px] border-solid border-darkslategray hover:bg-darkcyan-100 hover:box-border hover:border-[2px] hover:border-solid hover:border-teal transition-all duration-300 ease-in-out",
             activeTab === tab.id
               ? "bg-lympha-primary text-neutral-white"
               : "bg-lympha-disabled text-lympha-primary hover:bg-darkcyan-100 hover:text-neutral-white"

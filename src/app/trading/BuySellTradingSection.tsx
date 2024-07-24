@@ -10,7 +10,7 @@ type Props = {};
 const BuySellTradingSection = (props: Props) => {
   return (
     <section className="self-stretch shadow-[0px_2px_36px_rgba(0,_0,_0,_0.08)] rounded-13xl bg-neutral-white flex flex-col items-start justify-start py-6 px-4 box-border gap-[24px] shrink-0 max-w-full mq450:pt-5 mq450:pb-5 mq450:box-border">
-      <div className="self-stretch flex flex-row items-start justify-between max-w-full gap-[20px] text-neutral-black-5 mq750:flex-wrap">
+      <div className="self-stretch flex flex-col md:flex-row items-start justify-between max-w-full gap-[20px] text-neutral-black-5 mq750:flex-wrap">
         <div className="flex flex-row items-start justify-start gap-[12px]">
           <div className="rounded-mid bg-neutral-black-1 flex flex-row items-start justify-start py-0.5 px-2">
             <b className="relative tracking-[-0.02em] leading-[23px] inline-block min-w-[34px]">
@@ -33,7 +33,7 @@ const BuySellTradingSection = (props: Props) => {
             </div>
           </div>
         </div>
-        <div className="flex flex-row items-start justify-start gap-[4px] max-w-full mq450:flex-wrap">
+        <div className="flex flex-row flex-wrap items-start justify-start gap-1 gap-y-4 max-w-full">
           <div className="flex flex-col items-start justify-start pt-[2.5px] pb-0 pr-2 pl-0">
             <div className="rounded-mid bg-neutral-black-1 flex flex-row items-start justify-start py-0.5 px-2">
               <b className="relative tracking-[-0.02em] leading-[23px] inline-block min-w-[57px]">
@@ -54,17 +54,17 @@ const BuySellTradingSection = (props: Props) => {
           <div className="h-[28.5px] flex flex-col items-start justify-start pt-[3.5px] pb-0 pr-[7px] pl-0 box-border">
             <div className="w-px h-[26px] relative box-border border-r-[1px] border-solid border-neutral-black-1" />
           </div>
-          <div className="flex flex-col items-start justify-start pt-[4.5px] px-0 pb-0">
-            <div className="relative tracking-tight leading-6">{`Buy with `}</div>
-          </div>
-          <div className="w-20 rounded-full bg-neutral-white1 box-border flex flex-row items-center justify-center py-1 px-3 border border-neutral-black-1">
-            <b className="relative  min-w-7">USD</b>
-            <IoIosArrowForward className="w-3.5 h-3.5 relative" />
+          <div className="flex flex-row items-center justify-start px-0 pb-0">
+            <div className="relative tracking-tight leading-6">Buy with</div>
+            <div className="w-20 rounded-full bg-neutral-white1 box-border flex flex-row items-center justify-center py-1 px-3 border border-neutral-black-1">
+              <b className="relative  min-w-7">USD</b>
+              <IoIosArrowForward className="w-3.5 h-3.5 relative" />
+            </div>
           </div>
         </div>
       </div>
-      <div className="relative self-stretch flex flex-row items-start justify-start py-0 px-2 box-border max-w-full text-neutral-black-2">
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 flex-col items-start justify-start gap-10 max-w-full gap-x-20">
+      <div className="relative self-stretch flex flex-row items-start justify-start py-0 px-2 max-w-full text-neutral-black-2">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 flex-col items-start justify-start  gap-20 gap-y-20  md:gap-20 max-w-full gap-x-20">
           <div className="self-stretch flex flex-col justify-start gap-5">
             <div
               className={`w-full flex-1 gap-4 max-w-full text-left text-sm text-neutral-black-5`}
@@ -131,7 +131,7 @@ const BuySellTradingSection = (props: Props) => {
 
           <button
             onClick={() => {}}
-            className="h-12 w-12 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 rounded-13xl bg-neutral-white box-border overflow-hidden shrink-0 flex flex-row items-center justify-center py-3 px-[11px] border-[1px] border-solid border-neutral-black-2"
+            className="h-12 w-12 rotate-90 md:rotate-0 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 rounded-13xl bg-neutral-white box-border overflow-hidden shrink-0 flex flex-row items-center justify-center py-3 px-[11px] border-[1px] border-solid border-neutral-black-2"
           >
             <IoSwapHorizontal className="h-6 w-6 relative min-h-[24px] text-ketto-primary" />
           </button>

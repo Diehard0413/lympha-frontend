@@ -18,6 +18,7 @@ import MyWalletSidebar from "../profile-sub-sections/MyWalletSidebar";
 import FeedbackSidebar from "../profile-sub-sections/FeedbackSidebar";
 import SupportSidebar from "../profile-sub-sections/SupportSidebar";
 import ChangePasswordSidebar from "../profile-sub-sections/ChangePasswordSidebar";
+import { logout } from "@/actions/logout";
 
 type Props = {
   onClose: () => void;
@@ -138,8 +139,9 @@ const ProfileSidebar = (props: Props) => {
               </div>
             </div>
             <button
-              onClick={() => {
-                navigate.push("/auth/signin");
+              onClick={async() => {
+                await logout();
+                navigate.push("/auth/login");
               }}
               className=""
             >

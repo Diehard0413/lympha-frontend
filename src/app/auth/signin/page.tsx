@@ -1,16 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import {
-  forwardRef,
-  FunctionComponent,
-  InputHTMLAttributes,
-  useState,
-} from "react";
+import { FunctionComponent, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 interface LoginFormDataType {
   email: string;
@@ -44,13 +40,31 @@ const SignIn: FunctionComponent = () => {
   const onSubmit = async (data: LoginFormDataType) => {
     try {
       console.log("the data is ", data);
-      // mock api call, with promise resolve
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // const res = await login(data, "/dashboard");
+      const res = await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        redirect: false,
+      });
+      console.log("res", res);
+      if (res?.error) {
+        setError("root.serverError", {
+          message: "Invalid email or password",
+        });
+        setTimeout(() => {
+          clearErrors();
+        }, 2000);
+        return;
+      }
+      router.push("/dashboard");
     } catch (error: any) {
       console.error("An unexpected error happened:", error);
       setError("root.serverError", {
         message: "An unexpected error happened",
       });
+      setTimeout(() => {
+        clearErrors();
+      }, 2000);
     }
     setTimeout(() => {
       clearErrors();
@@ -73,7 +87,7 @@ const SignIn: FunctionComponent = () => {
             <form
               onSubmit={handleSubmit(onSubmit)}
               method="post"
-              className="m-0 self-stretch flex flex-col items-start justify-start gap-10"
+              className="m-0 self-stretch flex flex-col items-start justify-start gap-5"
             >
               <div className="self-stretch flex flex-col items-start justify-start">
                 <h1 className="m-0 self-stretch text-lg text-left tracking-tight leading-10 font-bold text-neutral-black-6">
@@ -143,6 +157,11 @@ const SignIn: FunctionComponent = () => {
                     Forgot Password?
                   </Link>
                 </div>
+                {errors.root?.serverError?.message && (
+                  <div className="relative text-sm tracking-tight text-state-error ">
+                    {errors.root?.serverError?.message}
+                  </div>
+                )}
               </div>
               <div
                 className={
@@ -193,9 +212,12 @@ const SignIn: FunctionComponent = () => {
                 </div>
               </div>
             </form>
-            <div className="self-stretch h-20 relative [text-decoration:underline] tracking-[-0.02em] leading-[140%] flex items-end justify-center shrink-0">
+            <Link
+              href="/terms-and-privacy"
+              className="self-stretch h-20 relative [text-decoration:underline] tracking-[-0.02em] leading-[140%] flex items-end justify-center shrink-0"
+            >
               Terms of Service & Privacy Policy
-            </div>
+            </Link>
           </div>
         </div>
       </div>

@@ -89,13 +89,13 @@ const SampleProjectTokens = (props: Props) => {
   ];
 
   return (
-    <div className="self-stretch flex flex-col items-start justify-start pt-6 px-0 pb-0 gap-4 shrink-0 text-2xl text-neutral-black-6">
+    <div className="self-stretch flex flex-col items-start justify-start pt-6 px-0 pb-0 gap-4 shrink-0 text-neutral-black-6">
       <div className="self-stretch flex flex-col items-start justify-start">
         <div className="self-stretch flex flex-col items-start justify-start">
-          <h1 className="m-0 self-stretch relative text-inherit tracking-[-0.02em] leading-[140%] font-bold font-inherit mq450:text-3xl mq450:leading-[31px]">
+          <h1 className="self-stretch relative text-xl md:text-2xl tracking-tight font-bold font-inherit">
             Invest your Lympha Carbon Tokens in Projects
           </h1>
-          <h1 className="m-0 self-stretch relative text-inherit tracking-[-0.02em] leading-[140%] font-normal font-inherit text-neutral-black-4 mq450:text-3xl mq450:leading-[31px]">
+          <h1 className="m-0 self-stretch relative text-base md:text-lg tracking-tight font-normal font-inherit text-neutral-black-4">
             Here are some of the projects you can choose to invest in. Some copy
             on these lines.
           </h1>
@@ -103,7 +103,7 @@ const SampleProjectTokens = (props: Props) => {
       </div>
       <div className="self-stretch flex flex-col items-start justify-start">
         <div className="self-stretch flex flex-col items-start justify-start">
-          <div className="self-stretch grid flex-row items-start justify-start gap-4 grid-cols-4">
+          <div className="self-stretch grid flex-row items-start justify-start gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             {projects.slice(0, 4).map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}

@@ -2,22 +2,28 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
 import * as Yup from "yup";
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent } from "react";
 import OtpInput from "react-otp-input";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
+import { verifyPasswordResetRequestOtpCode } from "@/actions/forgot-password";
+import { verifyEmailVerificationOtpCode } from "@/actions/register";
 
 interface forgotFormDataType {
   email: string;
-  otp: string;
+  otpCode: string;
 }
 
 const forgotValidationSchema = Yup.object().shape({
   email: Yup.string().email().required(),
-  otp: Yup.string().required(),
+  otpCode: Yup.string().required(),
 });
 
 const SignIn: FunctionComponent = () => {
   const router = useRouter();
+  // get requestType from query params
+  const searchParams = useSearchParams();
+  const requestType = searchParams.get("requestType") ?? "forgot";
 
   const {
     register,
@@ -32,28 +38,59 @@ const SignIn: FunctionComponent = () => {
   } = useForm<forgotFormDataType>({
     resolver: yupResolver(forgotValidationSchema),
     defaultValues: {
-      email: "email@email.com",
+      // get the email from local storage
+      email: localStorage.getItem("email") ?? "",
     },
   });
 
   const onSubmit = async (data: forgotFormDataType) => {
     try {
-      console.log("the data is ", data);
-      // mock api call, with promise resolve
-      await new Promise((resolve) =>
-        setTimeout(() => {
+
+      if (requestType === "forgot") {
+        // mock api call, with promise resolve
+        const response = await verifyPasswordResetRequestOtpCode(data);
+        console.log("the response is ");
+        if (response?.error) {
+          setError("otpCode", {
+            message: response.error,
+          });
+          return;
+        } else if (response?.resetToken) {
+          localStorage.setItem("resetToken", response.resetToken);
           router.push("/auth/reset");
-        }, 2000)
-      );
+        } else {
+          router.push("/auth/signin");
+        }
+      } else {
+        // mock api call, with promise resolve
+        const response = await verifyEmailVerificationOtpCode(data);
+        console.log("the response is ", response);
+        if (response.error) {
+          setError("otpCode", {
+            message: response.error,
+          });
+
+          setTimeout(() => {
+            clearErrors();
+          }, 2000);
+
+          return;
+        }
+
+        router.push("/auth/signin");
+      }
     } catch (error: any) {
       console.error("An unexpected error happened:", error);
       setError("root.serverError", {
         message: "An unexpected error happened",
       });
+      setTimeout(() => {
+        clearErrors();
+      }, 2000);
     }
     setTimeout(() => {
       clearErrors();
-    }, 3000);
+    }, 2000);
   };
 
   return (
@@ -91,7 +128,7 @@ const SignIn: FunctionComponent = () => {
                       Verification Code
                     </b>
                     <Controller
-                      name="otp"
+                      name="otpCode"
                       control={control}
                       render={({ field }) => (
                         <OtpInput
@@ -122,6 +159,11 @@ const SignIn: FunctionComponent = () => {
                         />
                       )}
                     />
+                    {errors.otpCode && (
+                      <div className="relative text-sm tracking-tight text-state-error">
+                        {errors.otpCode.message}
+                      </div>
+                    )}
 
                     <div className="h-7 flex flex-row items-center justify-start pt-[7px] px-0 pb-0 box-border gap-[8px] text-neutral-black-6">
                       <div className="relative tracking-[-0.02em] leading-[140%]">
@@ -144,6 +186,11 @@ const SignIn: FunctionComponent = () => {
                       </div>
                     </div>
                   </div>
+                  {errors.root?.serverError && (
+                    <div className="self-stretch flex flex-col items-start justify-start gap-2 text-base text-red-500">
+                      <span>{errors.root.serverError.message}</span>
+                    </div>
+                  )}
                 </div>
                 <button className="cursor-pointer py-[15px] px-5 bg-lympha-primary self-stretch shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] rounded-13xl flex flex-row items-start justify-center border-[2px] border-solid border-darkslategray hover:bg-darkcyan-100 hover:box-border hover:border-[2px] hover:border-solid hover:border-teal text-white font-semibold">
                   {isSubmitting && (
@@ -173,9 +220,12 @@ const SignIn: FunctionComponent = () => {
                 </button>
               </div>
             </form>
-            <div className="self-stretch h-20 relative [text-decoration:underline] tracking-[-0.02em] leading-[140%] flex items-end justify-center shrink-0">
+            <Link
+              href="/terms-and-privacy"
+              className="self-stretch h-20 relative [text-decoration:underline] tracking-[-0.02em] leading-[140%] flex items-end justify-center shrink-0"
+            >
               Terms of Service & Privacy Policy
-            </div>
+            </Link>
           </div>
         </div>
       </div>

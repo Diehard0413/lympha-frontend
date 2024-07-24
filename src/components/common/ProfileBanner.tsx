@@ -1,18 +1,18 @@
 import React from "react";
 import UploadModal from "../UploadModal";
 import { cn } from "@/app/helpers/utils";
+import { useSession } from "next-auth/react";
 
 type Props = {};
 const radius = 49.5;
 const circumference = 2 * Math.PI * radius;
 
-
 const ProfileBanner = (props: Props) => {
   const [profileProgress, setProfileProgress] = React.useState(85);
   const [isUploadStatus, setIsUploadStatus] = React.useState(false);
-
   const offset = circumference - (profileProgress / 100) * circumference;
-
+  const session = useSession();
+  const user = session.data?.user;
   const [progress, setProgress] = React.useState(10);
 
   return (
@@ -20,18 +20,18 @@ const ProfileBanner = (props: Props) => {
       <div className="self-stretch rounded-2xl flex flex-col items-start justify-start p-4 w-full divide-y divide-neutral-black-2 gap-y-3">
         <div className="flex-1 flex flex-row items-center justify-start gap-6 ">
           <div className="flex flex-row items-center justify-between relative ">
-            <div className="flex flex-row items-cente justify-center size-28 p-1.5">
+            <div className="flex flex-row items-cente justify-center size-20 md:size-24 lg:size-28 p-1.5">
               <div className=" size-full [filter:drop-shadow(0px_4px_4px_rgba(0,_0,_0,_0.09)_inset)] rounded-full border-gainsboro-400">
                 <div className="size-full flex items-center justify-center rounded-full bg-cadetblue mix-blend-normal z-[2]">
                   <h1 className="relative text-white m-auto text-inherit tracking-tight font-bold text-2xl">
-                    A
+                    {user?.name?.charAt(0).toUpperCase()}
                   </h1>
                 </div>
               </div>
             </div>
 
             <svg
-              className="size-28 shrink-0 absolute inset-0"
+              className="size-20 md:size-24 lg:size-28 shrink-0 absolute inset-0"
               viewBox="0 0 114 114"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -101,19 +101,19 @@ const ProfileBanner = (props: Props) => {
               </defs>
             </svg>
           </div>
-          <div className=" flex flex-row items-start justify-start py-0 px-0 box-border text-2xl text-neutral-black-5 font-proxima">
+          <div className=" flex flex-row items-start justify-start py-0 px-0 box-border text-xl md:text-2xl text-neutral-black-5 font-proxima">
             <div className="flex flex-col items-start justify-start gap-1 shrink-0">
               <h2 className="relative text-inherit tracking-tight leading-7 font-bold">
-                Arushi Parasrampuria
+                {session.data?.user?.name}
               </h2>
-              <div className="relative text-base tracking-tight leading-5 text-neutral-black-3 whitespace-nowrap">
-                arushi.parasrampuria@gmail.com
+              <div className="relative text-sm md:text-base tracking-tight leading-5 text-neutral-black-3 whitespace-nowrap">
+                {user?.email || ""}
               </div>
             </div>
           </div>
         </div>
-        <div className="self-stretch relative text-lg text-neutral-black-5 font-proxima">
-          <div className="rounded-lg w-full flex flex-col items-center justify-center py-4 px-5 gap-2 max-w-full h-full">
+        <div className="self-stretch relative md:text-lg text-neutral-black-5 font-proxima">
+          <div className="rounded-lg w-full flex flex-col items-center justify-center py-4 md:px-5 gap-2 max-w-full h-full">
             <div className="self-stretch flex flex-row items-start justify-center">
               <div className="flex-1 flex flex-col items-start justify-start gap-2 max-w-full">
                 <div className="self-stretch flex flex-row items-center justify-between gap-[20px] mq725:flex-wrap">

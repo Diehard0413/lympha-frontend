@@ -1,16 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import {
-  forwardRef,
-  FunctionComponent,
-  InputHTMLAttributes,
-  useState,
-} from "react";
+import { FunctionComponent } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { useRouter } from "next/navigation";
+import { forgotPassword } from "@/actions/forgot-password";
 
 interface forgotFormDataType {
   email: string;
@@ -42,11 +38,17 @@ const SignIn: FunctionComponent = () => {
     try {
       console.log("the data is ", data);
       // mock api call, with promise resolve
-      await new Promise((resolve) =>
-        setTimeout(() => {
-          router.push("/auth/verify");
-        }, 2000)
-      );
+      const response = await forgotPassword(data);
+      console.log("the response is ", response);
+      if (response.error) {
+        setError("email", {
+          message: response.error,
+        });
+        return;
+      }
+
+      localStorage.setItem("email", data.email);
+      router.push("/auth/verify?requestType=forgot");
     } catch (error: any) {
       console.error("An unexpected error happened:", error);
       setError("root.serverError", {
@@ -159,9 +161,12 @@ const SignIn: FunctionComponent = () => {
                 </div>
               </div>
             </form>
-            <div className="self-stretch h-20 relative [text-decoration:underline] tracking-[-0.02em] leading-[140%] flex items-end justify-center shrink-0">
+            <Link
+              href="/terms-and-privacy"
+              className="self-stretch h-20 relative [text-decoration:underline] tracking-[-0.02em] leading-[140%] flex items-end justify-center shrink-0"
+            >
               Terms of Service & Privacy Policy
-            </div>
+            </Link>
           </div>
         </div>
       </div>

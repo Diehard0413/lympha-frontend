@@ -77,7 +77,6 @@ const CustomSlider = (props: Props) => {
           step={25}
           min={0}
           max={100}
-          defaultValue={0}
           // className="w-full relative size-5 appearance-none bg-transparent custom-range-slider z-10 transition-all duration-100 ease-in-out"
           className="w-full relative size-5 custom-range-slider"
           onChange={handleChange}

@@ -1,5 +1,6 @@
 "use client";
 
+import { registerNewUser } from "@/actions/register";
 import InputField from "@/components/InputField";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
@@ -46,22 +47,39 @@ const Register: FunctionComponent = () => {
 
   const onSubmit = async (data: RegisterFormDataType) => {
     try {
-      console.log("the data is ", data);
-      // mock api call, with promise resolve
-      await new Promise((resolve) =>
+      const response = await registerNewUser({
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        confirmPassword: data.confirmPassword,
+      });
+      if (response.error) {
+        setError("root.serverError", {
+          message: response.error,
+        });
+
         setTimeout(() => {
-          router.push("/auth/signin");
-        }, 2000)
-      );
+          clearErrors();
+        }, 2000);
+
+        return;
+      }
+      reset();
+      localStorage.setItem("email", data.email);
+      router.push("/auth/verify?requestType=register");
     } catch (error: any) {
       console.error("An unexpected error happened:", error);
       setError("root.serverError", {
         message: "An unexpected error happened",
       });
+
+      setTimeout(() => {
+        clearErrors();
+      }, 2000);
     }
     setTimeout(() => {
       clearErrors();
-    }, 3000);
+    }, 2000);
   };
 
   return (
@@ -195,6 +213,11 @@ const Register: FunctionComponent = () => {
                   )}
                 </div>
               </div>
+              {errors.root?.serverError && (
+                <div className="relative text-sm tracking-tight text-state-error pb-5">
+                  {errors.root.serverError.message}
+                </div>
+              )}
               <div className="self-stretch flex flex-col items-start justify-start gap-[20px]">
                 <button className="cursor-pointer py-4 px-5 bg-lympha-primary self-stretch shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] rounded-13xl flex flex-row items-center justify-center border-[2px] border-solid border-darkslategray hover:bg-darkcyan-100 hover:box-border hover:border-[2px]  hover:border-teal text-neutral-white font-semibold">
                   {isSubmitting && (
@@ -237,9 +260,12 @@ const Register: FunctionComponent = () => {
                 </div>
               </div>
             </form>
-            <div className="self-stretch h-20 relative [text-decoration:underline] tracking-[-0.02em] leading-[140%] flex items-end justify-center shrink-0">
+            <Link
+              href="/terms-and-privacy"
+              className="self-stretch h-20 relative [text-decoration:underline] tracking-[-0.02em] leading-[140%] flex items-end justify-center shrink-0"
+            >
               Terms of Service & Privacy Policy
-            </div>
+            </Link>
           </div>
         </div>
       </div>

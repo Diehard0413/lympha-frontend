@@ -1,0 +1,93 @@
+"use server";
+
+import bcrypt from "bcryptjs";
+import prisma from "../lib/prisma";
+import { getUserByEmail } from "@/lib/data/user";
+import {
+  getEmailVerificationOtpCodeByEmail,
+  sendVerificationEmail,
+} from "@/lib/data/verification-otp";
+
+export const registerNewUser = async (values: any) => {
+  const { name, email, password, confirmPassword } = values;
+
+  if (password !== confirmPassword) {
+    return {
+      error: "Passwords do not match",
+    };
+  }
+  try {
+    const existingUser = await prisma.user.findUnique({
+      where: { email: email },
+    });
+
+    if (existingUser) {
+      return {
+        error: "Email already taken!",
+      };
+    }
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    await prisma.user.create({
+      data: {
+        name,
+        email,
+        password: hashedPassword,
+      },
+    });
+
+    await sendVerificationEmail(email);
+    console.log("Email sent successfully!");
+    return {
+      success: "User successfully created!",
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      error: "Failed to create user!",
+    };
+  }
+};
+
+export const verifyEmailVerificationOtpCode = async ({
+  otpCode,
+  email,
+}: {
+  otpCode: string;
+  email: string;
+}) => {
+  const existingUser = await getUserByEmail(email);
+
+  if (!existingUser) {
+    return { error: "User email not found!" };
+  }
+
+  const existingOtpCode = await getEmailVerificationOtpCodeByEmail({
+    email,
+    otpCode,
+  });
+
+  if (!existingOtpCode) {
+    return { error: "Invalid otpCode!" };
+  }
+
+  const hasExpired = new Date(existingOtpCode.expires) < new Date();
+
+  if (hasExpired) {
+    return { error: "OtpCode has expired!" };
+  }
+
+  await prisma.user.update({
+    where: { id: existingUser.id },
+    data: {
+      emailVerified: new Date(),
+      email: existingOtpCode.email,
+    },
+  });
+
+  await prisma.emailVerificationOtpCode.delete({
+    where: { id: existingOtpCode.id },
+  });
+
+  return { success: "Email is verified" };
+};
