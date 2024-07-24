@@ -11,4 +11,3 @@ export const getAccountByUserId = async (userId: string) => {
     return null;
   }
 };
-

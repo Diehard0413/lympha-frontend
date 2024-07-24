@@ -17,7 +17,7 @@ export const generateEmailVerificationOtpCode = async (email: string) => {
 };
 
 export const generatePasswordResetRequestVerificationOtpCode = async (
-  email: string
+  email: string,
 ) => {
   const otpCode = crypto.randomInt(100000, 999999);
   const expires = new Date(new Date().getTime() + 3600 * 1000);

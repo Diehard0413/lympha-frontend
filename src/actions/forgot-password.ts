@@ -1,6 +1,8 @@
 "use server";
 
-import bcrypt from "bcryptjs";
+// import bcrypt from "bcryptjs";
+const bcrypt = require("bcryptjs");
+
 import { getUserByEmail } from "@/lib/data/user";
 import { getPasswordResetRequestOtpCode } from "@/lib/data/verification-otp";
 import { sendEmail } from "@/lib/mail";
@@ -22,9 +24,8 @@ export const forgotPassword = async (values: { email: string }) => {
     return { error: "User email not found!" };
   }
 
-  const generateOTP = await generatePasswordResetRequestVerificationOtpCode(
-    email
-  );
+  const generateOTP =
+    await generatePasswordResetRequestVerificationOtpCode(email);
 
   await sendEmail({
     to: email,

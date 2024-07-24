@@ -52,16 +52,16 @@ const NavbarListSidebar = (props: Props) => {
   ];
 
   return (
-    <div className="w-full flex flex-col gap-y-5">
-      <div className="self-stretch flex flex-col items-start justify-start max-w-full">
-        <div className="self-stretch flex flex-row items-center justify-start gap-5 max-w-full">
+    <div className="flex w-full flex-col gap-y-5">
+      <div className="flex max-w-full flex-col items-start justify-start self-stretch">
+        <div className="flex max-w-full flex-row items-center justify-start gap-5 self-stretch">
           <button onClick={props.onClose}>
-            <IoMdClose className="h-6 w-6 relative min-h-[24px]" />
+            <IoMdClose className="relative h-6 min-h-[24px] w-6" />
           </button>
-          <div className="flex-1 flex justify-center items-center">
+          <div className="flex flex-1 items-center justify-center">
             <Link href="/" className="flex flex-row items-start justify-start">
               <img
-                className="h-8 relative"
+                className="relative h-8"
                 alt=""
                 src="/images/full-logo.svg"
               />
@@ -69,8 +69,8 @@ const NavbarListSidebar = (props: Props) => {
           </div>
         </div>
       </div>
-      <div className="w-full flex flex-col items-start justify-start gap-[16px] max-w-full text-sm text-neutral-black-5">
-        <ul className="gap-y-4 w-full flex flex-col py-10 text-xl items-center justify-center">
+      <div className="flex w-full max-w-full flex-col items-start justify-start gap-[16px] text-sm text-neutral-black-5">
+        <ul className="flex w-full flex-col items-center justify-center gap-y-4 py-10 text-xl">
           {navItems.map((item) => (
             <li
               key={item.id}
@@ -80,7 +80,7 @@ const NavbarListSidebar = (props: Props) => {
                 href={item.href}
                 className={cn(
                   "flex flex-row items-center",
-                  pathname.includes(item.href) && "font-medium"
+                  pathname.includes(item.href) && "font-medium",
                 )}
               >
                 <div className="relative inline-block">{item.title}</div>

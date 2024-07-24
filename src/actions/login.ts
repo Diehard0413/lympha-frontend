@@ -5,7 +5,7 @@ import { signIn } from "../auth";
 
 export const login = async (
   values: { email: string; password: string },
-  callbackUrl?: string | null
+  callbackUrl?: string | null,
 ) => {
   const { email, password } = values;
 

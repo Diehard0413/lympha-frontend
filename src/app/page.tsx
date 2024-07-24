@@ -1,7 +1,7 @@
 "use client";
 
+import LoadingPage from "@/components/common/LoadingPage";
 import { useSession } from "next-auth/react";
-import LoadingPage from "./loading/page";
 import { useRouter } from "next/navigation";
 
 export default function Home() {

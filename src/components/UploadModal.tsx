@@ -28,7 +28,7 @@ const imageUploadValidationSchema = Yup.object().shape(
         otherwise: (schema) => schema.notRequired(),
       }),
   },
-  [["image", "imageUrl"]]
+  [["image", "imageUrl"]],
 );
 const UploadModal = (props: Props) => {
   const navigator = useRouter();
@@ -61,7 +61,7 @@ const UploadModal = (props: Props) => {
       await new Promise((resolve) =>
         setTimeout(() => {
           navigator.push("/list-projects/complete");
-        }, 2000)
+        }, 2000),
       );
     } catch (error: any) {
       console.error("An unexpected error happened:", error);
@@ -84,7 +84,7 @@ const UploadModal = (props: Props) => {
         setPreview(URL.createObjectURL(file));
       }
     },
-    [setValue]
+    [setValue],
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -101,7 +101,7 @@ const UploadModal = (props: Props) => {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="text-lympha-primary font-medium"
+        className="font-medium text-lympha-primary"
       >
         Upload missing documents
       </button>
@@ -116,14 +116,14 @@ const UploadModal = (props: Props) => {
           <div className="flex min-h-full items-center justify-center p-4">
             <DialogPanel
               transition
-              className="w-full max-w-xl flex flex-col p-10 gap-y-5  bg-neutral-white backdrop-blur-2xl shadow-[0px_2px_36px_rgba(0,_0,_0,_0.08)] rounded-13xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0 text-3xl text-neutral-black-5 font-proxima"
+              className="data-[closed]:transform-[scale(95%)] flex w-full max-w-xl flex-col gap-y-5 rounded-13xl bg-neutral-white p-10 font-proxima text-3xl text-neutral-black-5 shadow-[0px_2px_36px_rgba(0,_0,_0,_0.08)] backdrop-blur-2xl duration-300 ease-out data-[closed]:opacity-0"
             >
-              <div className="self-stretch overflow-hidden flex items-center justify-between">
-                <div className="self-stretch flex flex-col items-center justify-start">
-                  <h1 className="m-0 self-stretch relative text-inherit   font-bold">
+              <div className="flex items-center justify-between self-stretch overflow-hidden">
+                <div className="flex flex-col items-center justify-start self-stretch">
+                  <h1 className="relative m-0 self-stretch font-bold text-inherit">
                     Unsuccessful Verification
                   </h1>
-                  <b className="flex-1 relative text-sm text-neutral-black-4 font-normal">
+                  <b className="relative flex-1 text-sm font-normal text-neutral-black-4">
                     Project could not be verified due to lack of XYZ. Please
                     Submit XYZ below
                   </b>
@@ -131,19 +131,19 @@ const UploadModal = (props: Props) => {
 
                 <Button
                   onClick={close}
-                  className="h-12 w-12 rounded-13xl bg-neutral-white box-border overflow-hidden shrink-0 flex flex-row items-center justify-center py-3 px-[11px] border-[1px] border-solid border-neutral-black-2"
+                  className="box-border flex h-12 w-12 shrink-0 flex-row items-center justify-center overflow-hidden rounded-13xl border-[1px] border-solid border-neutral-black-2 bg-neutral-white px-[11px] py-3"
                 >
-                  <IoMdClose className="h-6 w-6 relative min-h-[24px] text-ketto-primary" />
+                  <IoMdClose className="relative h-6 min-h-[24px] w-6 text-ketto-primary" />
                 </Button>
               </div>
 
               <form
                 method="post"
-                className="self-stretch flex flex-col items-start justify-start  gap-4 text-sm text-neutral-black-4 font-proxima"
+                className="flex flex-col items-start justify-start gap-4 self-stretch font-proxima text-sm text-neutral-black-4"
                 onSubmit={handleSubmit(onSubmit)}
               >
                 <div
-                  className={`self-stretch flex flex-col items-start justify-start max-w-full text-left text-base text-neutral-black-5 font-proxima`}
+                  className={`flex max-w-full flex-col items-start justify-start self-stretch text-left font-proxima text-base text-neutral-black-5`}
                 >
                   {/* <div className="self-stretch flex flex-col items-start justify-start gap-[4px] max-w-full">
                     <b className="relative tracking-[-0.02em] leading-[140%]">
@@ -176,47 +176,47 @@ const UploadModal = (props: Props) => {
                       </div>
                     </div>
                   </div> */}
-                  <div className="self-stretch flex flex-col items-start justify-start gap-[24px] max-w-full text-base text-neutral-black-5">
+                  <div className="flex max-w-full flex-col items-start justify-start gap-[24px] self-stretch text-base text-neutral-black-5">
                     <div
                       className={cn(
-                        "self-stretch flex flex-col items-start justify-start max-w-full text-left text-base text-neutral-black-5 gap-y-2"
+                        "flex max-w-full flex-col items-start justify-start gap-y-2 self-stretch text-left text-base text-neutral-black-5",
                       )}
                     >
                       <label
                         htmlFor="file-upload"
-                        className="relative tracking-[-0.02em] leading-[140%] font-bold"
+                        className="relative font-bold leading-[140%] tracking-[-0.02em]"
                       >
                         Upload PDD
                       </label>
                       <div
                         {...getRootProps()}
                         className={cn(
-                          "w-full border-2 border-dashed rounded-lg cursor-pointer",
-                          isDragActive ? "border-blue-500 " : "border-gray-300"
+                          "w-full cursor-pointer rounded-lg border-2 border-dashed",
+                          isDragActive ? "border-blue-500" : "border-gray-300",
                         )}
                       >
                         <input id="file-upload" {...getInputProps()} />
                         {isDragActive ? (
-                          <div className="self-stretch flex flex-col items-start justify-start gap-[4px] max-w-full">
-                            <div className="self-stretch flex flex-col items-start justify-start gap-[24px] max-w-full text-neutral-black-3">
-                              <div className="self-stretch rounded-lg bg-gainsboro-600 flex flex-col items-center justify-center py-[46px] pr-5 pl-7 gap-[4px] border-[1px] border-dashed border-neutral-black-2">
-                                <FiUpload className="w-6 h-6 relative overflow-hidden shrink-0" />
-                                <b className="relative tracking-[-0.02em] leading-[140%]">
+                          <div className="flex max-w-full flex-col items-start justify-start gap-[4px] self-stretch">
+                            <div className="text-neutral-black-3 flex max-w-full flex-col items-start justify-start gap-[24px] self-stretch">
+                              <div className="bg-gainsboro-600 flex flex-col items-center justify-center gap-[4px] self-stretch rounded-lg border-[1px] border-dashed border-neutral-black-2 py-[46px] pl-7 pr-5">
+                                <FiUpload className="relative h-6 w-6 shrink-0 overflow-hidden" />
+                                <b className="relative leading-[140%] tracking-[-0.02em]">
                                   You can drop the file now ...
                                 </b>
-                                <div className="relative text-sm tracking-[-0.02em] leading-[20px]"></div>
+                                <div className="relative text-sm leading-[20px] tracking-[-0.02em]"></div>
                               </div>
                             </div>
                           </div>
                         ) : (
-                          <div className="self-stretch flex flex-col items-start justify-start gap-[4px] max-w-full">
-                            <div className="self-stretch flex flex-col items-start justify-start gap-[24px] max-w-full text-neutral-black-3">
-                              <div className="self-stretch rounded-lg bg-gainsboro-600 flex flex-col items-center justify-center py-[46px] pr-5 pl-7 gap-[4px] border-[1px] border-dashed border-neutral-black-2">
-                                <FiUpload className="w-6 h-6 relative overflow-hidden shrink-0" />
-                                <b className="relative tracking-[-0.02em] leading-[140%]">
+                          <div className="flex max-w-full flex-col items-start justify-start gap-[4px] self-stretch">
+                            <div className="text-neutral-black-3 flex max-w-full flex-col items-start justify-start gap-[24px] self-stretch">
+                              <div className="bg-gainsboro-600 flex flex-col items-center justify-center gap-[4px] self-stretch rounded-lg border-[1px] border-dashed border-neutral-black-2 py-[46px] pl-7 pr-5">
+                                <FiUpload className="relative h-6 w-6 shrink-0 overflow-hidden" />
+                                <b className="relative leading-[140%] tracking-[-0.02em]">
                                   Select a file to upload
                                 </b>
-                                <div className="relative text-sm tracking-[-0.02em] leading-[20px]">
+                                <div className="relative text-sm leading-[20px] tracking-[-0.02em]">
                                   or drag and drop it here
                                 </div>
                               </div>
@@ -230,24 +230,24 @@ const UploadModal = (props: Props) => {
                             <img
                               src={preview}
                               alt="Preview"
-                              className="size-full object-cover rounded-lg shadow-md"
+                              className="size-full rounded-lg object-cover shadow-md"
                             />
                           </div>
                         </div>
                       )}
-                      <div className="self-stretch flex flex-col items-start justify-start gap-[4px] max-w-full text-neutral-black-5">
-                        <div className="self-stretch rounded-lg bg-neutral-white box-border flex flex-row flex-wrap items-center justify-start py-3 pr-[11px] pl-[19px] gap-[12px] max-w-full text-neutral-black-4 border-[0.5px] border-solid border-neutral-black-2">
+                      <div className="flex max-w-full flex-col items-start justify-start gap-[4px] self-stretch text-neutral-black-5">
+                        <div className="box-border flex max-w-full flex-row flex-wrap items-center justify-start gap-[12px] self-stretch rounded-lg border-[0.5px] border-solid border-neutral-black-2 bg-neutral-white py-3 pl-[19px] pr-[11px] text-neutral-black-4">
                           <input
                             {...register("imageUrl")}
                             type="url"
                             placeholder="Or paste URL"
-                            className="flex-1 relative py-2 inline-block  max-w-full border-none outline-none placeholder-neutral-black-4"
+                            className="relative inline-block max-w-full flex-1 border-none py-2 placeholder-neutral-black-4 outline-none"
                           />
                           <button
                             type="button"
-                            className="cursor-pointer [border:none] py-2 px-4 bg-lympha-disabled rounded-13xl flex flex-row items-center justify-center hover:bg-gainsboro-200"
+                            className="hover:bg-gainsboro-200 flex cursor-pointer flex-row items-center justify-center rounded-13xl bg-lympha-disabled px-4 py-2 [border:none]"
                           >
-                            <b className="relative text-3xs leading-[130%] uppercase inline-block font-body-large-bold text-lympha-primary text-left min-w-[40px]">
+                            <b className="text-3xs font-body-large-bold relative inline-block min-w-[40px] text-left uppercase leading-[130%] text-lympha-primary">
                               upload
                             </b>
                           </button>
@@ -261,27 +261,27 @@ const UploadModal = (props: Props) => {
                     </div>
                   </div>
                 </div>
-                <div className="w-full flex items-center gap-x-5">
+                <div className="flex w-full items-center gap-x-5">
                   <button
                     type="button"
                     onClick={close}
-                    className={`flex-1 cursor-pointer [border:none] p-0 bg-[transparent] self-stretch flex flex-col items-start justify-start `}
+                    className={`flex flex-1 cursor-pointer flex-col items-start justify-start self-stretch bg-[transparent] p-0 [border:none]`}
                   >
-                    <div className="self-stretch rounded-full border border-lympha-primary flex flex-row items-center justify-center py-[17px] pr-5 pl-7 gap-[8px]">
-                      <b className="relative  inline-block font-body-large-bold text-lympha-primary text-center">
+                    <div className="flex flex-row items-center justify-center gap-[8px] self-stretch rounded-full border border-lympha-primary py-[17px] pl-7 pr-5">
+                      <b className="font-body-large-bold relative inline-block text-center text-lympha-primary">
                         I&apos;ll do it later
                       </b>
-                      <IoArrowForward className="h-5 w-5 relative min-h-[20px] text-white" />
+                      <IoArrowForward className="relative h-5 min-h-[20px] w-5 text-white" />
                     </div>
                   </button>
                   <button
                     type="submit"
-                    className={`flex-1 cursor-pointer [border:none] p-0 bg-[transparent] self-stretch flex flex-col items-start justify-start `}
+                    className={`flex flex-1 cursor-pointer flex-col items-start justify-start self-stretch bg-[transparent] p-0 [border:none]`}
                   >
-                    <div className="self-stretch rounded-full bg-lympha-primary flex flex-row items-center justify-center py-[17px] pr-5 pl-7 gap-[8px] border-[2px] border-solid border-darkslategray">
+                    <div className="flex flex-row items-center justify-center gap-[8px] self-stretch rounded-full border-[2px] border-solid border-darkslategray bg-lympha-primary py-[17px] pl-7 pr-5">
                       {isSubmitting && (
                         <svg
-                          className="animate-spin -ml-1 mr-2 h-5 w-5 text-white"
+                          className="-ml-1 mr-2 h-5 w-5 animate-spin text-white"
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"
@@ -301,11 +301,11 @@ const UploadModal = (props: Props) => {
                           ></path>
                         </svg>
                       )}
-                      <b className="relative text-mid tracking-[-0.02em] leading-[120%] inline-block font-body-large-bold text-neutral-white text-left min-w-[61px]">
+                      <b className="text-mid font-body-large-bold relative inline-block min-w-[61px] text-left leading-[120%] tracking-[-0.02em] text-neutral-white">
                         {isSubmitting ? "Loading" : "Submit"}
                       </b>
                       {!isSubmitting && (
-                        <IoArrowForward className="h-5 w-5 relative min-h-[20px] text-white" />
+                        <IoArrowForward className="relative h-5 min-h-[20px] w-5 text-white" />
                       )}
                     </div>
                   </button>

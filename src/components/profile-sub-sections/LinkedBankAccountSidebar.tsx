@@ -32,15 +32,15 @@ const LinkedBankAccountSidebar = (props: Props) => {
   ]);
 
   return (
-    <div className="w-full flex flex-col gap-y-5 h-full">
-      <div className="self-stretch flex flex-col items-start justify-start max-w-full">
-        <div className="self-stretch flex flex-row flex-wrap items-start justify-start gap-2 max-w-full">
+    <div className="flex h-full w-full flex-col gap-y-5">
+      <div className="flex max-w-full flex-col items-start justify-start self-stretch">
+        <div className="flex max-w-full flex-row flex-wrap items-start justify-start gap-2 self-stretch">
           <button onClick={props.onClose}>
-            <FaArrowLeft className="h-6 w-6 relative min-h-[24px]" />
+            <FaArrowLeft className="relative h-6 min-h-[24px] w-6" />
           </button>
-          <div className="flex-1 flex flex-col items-start justify-start pt-px px-0 pb-0 box-border min-w-[289px] max-w-full">
-            <div className="self-stretch flex flex-row items-start justify-between gap-[20px] mq450:flex-wrap">
-              <b className="relative tracking-[-0.02em] leading-[140%] inline-block min-w-[46px]">
+          <div className="box-border flex min-w-[289px] max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-px">
+            <div className="mq450:flex-wrap flex flex-row items-start justify-between gap-[20px] self-stretch">
+              <b className="relative inline-block min-w-[46px] leading-[140%] tracking-[-0.02em]">
                 Linked Bank Accounts
               </b>
             </div>
@@ -53,19 +53,17 @@ const LinkedBankAccountSidebar = (props: Props) => {
           .map((linkedBankAccount, index) => (
             <section
               key={index}
-              className={
-                cn(
-                  "self-stretch flex flex-col items-start justify-start text-left text-sm text-neutral-black-4 ",
-                  linkedBankAccount.primaryBank
-                    ? "border-lympha-primary border-2 rounded-2xl "
-                    : " "
-                )
-              }
+              className={cn(
+                "flex flex-col items-start justify-start self-stretch text-left text-sm text-neutral-black-4",
+                linkedBankAccount.primaryBank
+                  ? "rounded-2xl border-2 border-lympha-primary"
+                  : " ",
+              )}
             >
-              <div className="self-stretch rounded-2xl bg-white  flex flex-col items-start justify-start p-4">
-                <div className="self-stretch flex flex-col items-start justify-start gap-[16px]">
-                  <div className="self-stretch flex flex-col items-start justify-start py-0 pr-5 pl-0 gap-[8px] text-lg">
-                    <b className="relative tracking-[-0.02em] leading-[140%] inline-block min-w-[92px]">
+              <div className="flex flex-col items-start justify-start self-stretch rounded-2xl bg-white p-4">
+                <div className="flex flex-col items-start justify-start gap-[16px] self-stretch">
+                  <div className="flex flex-col items-start justify-start gap-[8px] self-stretch py-0 pl-0 pr-5 text-lg">
+                    <b className="relative inline-block min-w-[92px] leading-[140%] tracking-[-0.02em]">
                       {linkedBankAccount.primaryBank ? "Primary Bank" : "Bank"}
                     </b>
                     {!linkedBankAccount.primaryBank && (
@@ -88,52 +86,52 @@ const LinkedBankAccountSidebar = (props: Props) => {
                           setLinkedBankAccounts(updatedLinkedBankAccounts);
                         }}
                         className={cn(
-                          "rounded-lg text-lympha-primary py-2",
+                          "rounded-lg py-2 text-lympha-primary",
                           linkedBankAccount.primaryBank
-                            ? "opacity-50 cursor-not-allowed"
-                            : "cursor-pointer"
+                            ? "cursor-not-allowed opacity-50"
+                            : "cursor-pointer",
                         )}
                       >
-                        <b className="w-[171px] relative text-sm tracking-[-0.02em] leading-[20px] inline-block text-lympha-primary">
+                        <b className="relative inline-block w-[171px] text-sm leading-[20px] tracking-[-0.02em] text-lympha-primary">
                           make primary bank
                         </b>
                       </button>
                     )}
 
-                    <div className="relative tracking-[-0.02em] leading-[140%] inline-block min-w-[105px]">
+                    <div className="relative inline-block min-w-[105px] leading-[140%] tracking-[-0.02em]">
                       {linkedBankAccount.bankName}
                     </div>
                   </div>
 
-                  <div className="self-stretch flex flex-row items-center justify-between gap-[20px] mq450:flex-wrap">
-                    <div className="relative tracking-[-0.02em] leading-5 font-medium inline-block shrink-0">
+                  <div className="mq450:flex-wrap flex flex-row items-center justify-between gap-[20px] self-stretch">
+                    <div className="relative inline-block shrink-0 font-medium leading-5 tracking-[-0.02em]">
                       Status
                     </div>
-                    <div className="relative tracking-tight leading-5 text-right shrink-0 whitespace-nowrap">
+                    <div className="relative shrink-0 whitespace-nowrap text-right leading-5 tracking-tight">
                       {linkedBankAccount.verified ? "Verified" : "Not Verified"}
                     </div>
                   </div>
-                  <div className="self-stretch flex flex-row items-center justify-between gap-5">
-                    <div className="relative tracking-tight leading-5 font-medium">
+                  <div className="flex flex-row items-center justify-between gap-5 self-stretch">
+                    <div className="relative font-medium leading-5 tracking-tight">
                       Account Number
                     </div>
-                    <div className="w-[178px] relative tracking-[-0.02em] leading-[20px] text-right inline-block shrink-0">
+                    <div className="relative inline-block w-[178px] shrink-0 text-right leading-[20px] tracking-[-0.02em]">
                       {linkedBankAccount.accountNumber}
                     </div>
                   </div>
-                  <div className="self-stretch flex flex-row items-center justify-between gap-[20px] mq450:flex-wrap">
-                    <div className="relative tracking-tight leading-5 inline-block font-medium">
+                  <div className="mq450:flex-wrap flex flex-row items-center justify-between gap-[20px] self-stretch">
+                    <div className="relative inline-block font-medium leading-5 tracking-tight">
                       Code
                     </div>
-                    <div className="w-[94px] relative tracking-[-0.02em] leading-[20px] text-right inline-block shrink-0">
+                    <div className="relative inline-block w-[94px] shrink-0 text-right leading-[20px] tracking-[-0.02em]">
                       {linkedBankAccount.code}
                     </div>
                   </div>
-                  <div className="self-stretch flex flex-row items-center justify-between gap-[20px] mq450:flex-wrap">
-                    <div className="relative tracking-tight leading-5 inline-block font-medium">
+                  <div className="mq450:flex-wrap flex flex-row items-center justify-between gap-[20px] self-stretch">
+                    <div className="relative inline-block font-medium leading-5 tracking-tight">
                       Branch Name
                     </div>
-                    <div className="w-[153px] relative tracking-[-0.02em] leading-[20px] text-right inline-block shrink-0">
+                    <div className="relative inline-block w-[153px] shrink-0 text-right leading-[20px] tracking-[-0.02em]">
                       {linkedBankAccount.branchName}
                     </div>
                   </div>

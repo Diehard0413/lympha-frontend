@@ -83,9 +83,8 @@ export const sendVerificationEmail = async (email: string) => {
 
 export const sendPasswordResetRequestEmail = async (email: string) => {
   try {
-    const generateOTP = await generatePasswordResetRequestVerificationOtpCode(
-      email
-    );
+    const generateOTP =
+      await generatePasswordResetRequestVerificationOtpCode(email);
 
     await sendEmail({
       to: email,

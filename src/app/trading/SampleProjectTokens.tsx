@@ -89,21 +89,21 @@ const SampleProjectTokens = (props: Props) => {
   ];
 
   return (
-    <div className="self-stretch flex flex-col items-start justify-start pt-6 px-0 pb-0 gap-4 shrink-0 text-neutral-black-6">
-      <div className="self-stretch flex flex-col items-start justify-start">
-        <div className="self-stretch flex flex-col items-start justify-start">
-          <h1 className="self-stretch relative text-xl md:text-2xl tracking-tight font-bold font-inherit">
+    <div className="flex shrink-0 flex-col items-start justify-start gap-4 self-stretch px-0 pb-0 pt-6 text-neutral-black-6">
+      <div className="flex flex-col items-start justify-start self-stretch">
+        <div className="flex flex-col items-start justify-start self-stretch">
+          <h1 className="font-inherit relative self-stretch text-xl font-bold tracking-tight md:text-2xl">
             Invest your Lympha Carbon Tokens in Projects
           </h1>
-          <h1 className="m-0 self-stretch relative text-base md:text-lg tracking-tight font-normal font-inherit text-neutral-black-4">
+          <h1 className="font-inherit relative m-0 self-stretch text-base font-normal tracking-tight text-neutral-black-4 md:text-lg">
             Here are some of the projects you can choose to invest in. Some copy
             on these lines.
           </h1>
         </div>
       </div>
-      <div className="self-stretch flex flex-col items-start justify-start">
-        <div className="self-stretch flex flex-col items-start justify-start">
-          <div className="self-stretch grid flex-row items-start justify-start gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="flex flex-col items-start justify-start self-stretch">
+        <div className="flex flex-col items-start justify-start self-stretch">
+          <div className="grid grid-cols-1 flex-row items-start justify-start gap-4 self-stretch sm:grid-cols-2 lg:grid-cols-4">
             {projects.slice(0, 4).map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}

@@ -56,7 +56,7 @@ const LinkedBankAccountSidebar = (props: Props) => {
       await new Promise((resolve) =>
         setTimeout(() => {
           navigate.push("/auth/signin");
-        }, 2000)
+        }, 2000),
       );
     } catch (error: any) {
       console.error("An unexpected error happened:", error);
@@ -70,15 +70,15 @@ const LinkedBankAccountSidebar = (props: Props) => {
   };
 
   return (
-    <div className="w-full flex flex-col gap-y-5">
-      <div className="self-stretch flex flex-col items-start justify-start max-w-full">
-        <div className="self-stretch flex flex-row flex-wrap items-start justify-start gap-2 max-w-full">
+    <div className="flex w-full flex-col gap-y-5">
+      <div className="flex max-w-full flex-col items-start justify-start self-stretch">
+        <div className="flex max-w-full flex-row flex-wrap items-start justify-start gap-2 self-stretch">
           <button onClick={props.onClose}>
-            <FaArrowLeft className="h-6 w-6 relative min-h-[24px]" />
+            <FaArrowLeft className="relative h-6 min-h-[24px] w-6" />
           </button>
-          <div className="flex-1 flex flex-col items-start justify-start pt-px px-0 pb-0 box-border min-w-[289px] max-w-full">
-            <div className="self-stretch flex flex-row items-start justify-between gap-[20px] mq450:flex-wrap">
-              <b className="relative tracking-[-0.02em] leading-[140%] inline-block min-w-[46px]">
+          <div className="box-border flex min-w-[289px] max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-px">
+            <div className="mq450:flex-wrap flex flex-row items-start justify-between gap-[20px] self-stretch">
+              <b className="relative inline-block min-w-[46px] leading-[140%] tracking-[-0.02em]">
                 Feedback
               </b>
             </div>
@@ -90,15 +90,15 @@ const LinkedBankAccountSidebar = (props: Props) => {
         method="post"
         className="flex flex-col gap-y-4 py-5"
       >
-        <div className="self-stretch flex flex-col items-start justify-start text-lg text-neutral-black-5">
-          <b className="relative tracking-[-0.02em] leading-[140%]">
+        <div className="flex flex-col items-start justify-start self-stretch text-lg text-neutral-black-5">
+          <b className="relative leading-[140%] tracking-[-0.02em]">
             We value your feedback.{" "}
           </b>
-          <div className="self-stretch relative tracking-[-0.02em] leading-[140%]">
+          <div className="relative self-stretch leading-[140%] tracking-[-0.02em]">
             Please share your thoughts and suggestions.
           </div>
           <textarea
-            className="bg-neutral-white w-auto [outline:none] self-stretch rounded-lg box-border flex flex-col items-start justify-start p-5 font-body-large-bold text-base border-[0.5px] border-solid border-neutral-black-2 text-neutral-black-5 placeholder:text-neutral-black-4"
+            className="font-body-large-bold box-border flex w-auto flex-col items-start justify-start self-stretch rounded-lg border-[0.5px] border-solid border-neutral-black-2 bg-neutral-white p-5 text-base text-neutral-black-5 [outline:none] placeholder:text-neutral-black-4"
             placeholder="Explain what you need help with"
             {...register("message")}
             rows={5}
@@ -110,11 +110,11 @@ const LinkedBankAccountSidebar = (props: Props) => {
           )}
         </div>
 
-        <button className="w-max cursor-pointer py-3 px-5  bg-lympha-primary shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] rounded-13xl flex flex-row items-center justify-center gap-2 whitespace-nowrap border-[2px]  border-darkslategray hover:bg-darkcyan-100 hover:box-border hover:border-[2px] hover:border-solid hover:border-teal">
-          <b className="relative text-sm tracking-right text-neutral-white text-left w-max flex items-center gap-x-1">
+        <button className="flex w-max cursor-pointer flex-row items-center justify-center gap-2 whitespace-nowrap rounded-13xl border-[2px] border-darkslategray bg-lympha-primary px-5 py-3 shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] hover:box-border hover:border-[2px] hover:border-solid hover:border-teal hover:bg-darkcyan-100">
+          <b className="tracking-right relative flex w-max items-center gap-x-1 text-left text-sm text-neutral-white">
             {isSubmitting && (
               <svg
-                className="animate-spin -ml-1 mr-2 h-5 w-5 text-white"
+                className="-ml-1 mr-2 h-5 w-5 animate-spin text-white"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -138,7 +138,7 @@ const LinkedBankAccountSidebar = (props: Props) => {
             {isSubmitting ? "Submitting Feedback..." : "Submit Feedback"}
           </b>
           {!isSubmitting && (
-            <IoArrowForward className="h-5 w-5 relative min-h-[20px] text-white" />
+            <IoArrowForward className="relative h-5 min-h-[20px] w-5 text-white" />
           )}
         </button>
       </form>

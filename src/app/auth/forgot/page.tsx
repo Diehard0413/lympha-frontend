@@ -61,13 +61,13 @@ const SignIn: FunctionComponent = () => {
   };
 
   return (
-    <div className="h-screen w-full relative overflow-hidden flex flex-row items-start justify-start bg-[url('/images/auth-bg.png')] bg-cover bg-no-repeat bg-bottom text-center text-sm text-neutral-black-6 font-proxima">
-      <div className="h-screen w-full flex flex-col items-end justify-start max-w-xl">
-        <div className="h-full self-stretch flex flex-row items-start justify-end py-0 pr-7 pl-0 box-border max-w-full">
-          <div className="h-full flex-1 shadow-[0px_0px_72px_rgba(2,_24,_29,_0.11)]  backdrop-blur-2xl rounded-r-13xl bg-gray-400 overflow-hidden flex flex-col items-start justify-between py-20 px-24">
+    <div className="relative flex h-screen w-full flex-row items-start justify-start overflow-hidden bg-[url('/images/auth-bg.png')] bg-cover bg-bottom bg-no-repeat text-center font-proxima text-sm text-neutral-black-6">
+      <div className="flex h-screen w-full max-w-xl flex-col items-end justify-start">
+        <div className="box-border flex h-full max-w-full flex-row items-start justify-end self-stretch py-0 pl-0 pr-7">
+          <div className="flex h-full flex-1 flex-col items-start justify-between overflow-hidden rounded-r-13xl bg-gray-400 px-24 py-20 shadow-[0px_0px_72px_rgba(2,_24,_29,_0.11)] backdrop-blur-2xl">
             <div className="flex flex-row items-center justify-start gap-3">
               <img
-                className="h-10 relative object-cover"
+                className="relative h-10 object-cover"
                 loading="lazy"
                 alt=""
                 src="/images/full-logo.svg"
@@ -76,30 +76,30 @@ const SignIn: FunctionComponent = () => {
             <form
               onSubmit={handleSubmit(onSubmit)}
               method="post"
-              className="m-0 self-stretch flex flex-col items-start justify-start gap-10"
+              className="m-0 flex flex-col items-start justify-start gap-10 self-stretch"
             >
-              <div className="self-stretch flex flex-col items-start justify-start">
-                <h1 className="m-0 self-stretch text-lg text-left tracking-tight leading-10 font-bold text-neutral-black-6">
+              <div className="flex flex-col items-start justify-start self-stretch">
+                <h1 className="m-0 self-stretch text-left text-lg font-bold leading-10 tracking-tight text-neutral-black-6">
                   Forgot Password
                 </h1>
-                <div className="self-stretch relative text-lg tracking-[-0.02em] leading-[140%] font-body-large-bold text-neutral-black-6 text-left">
+                <div className="font-body-large-bold relative self-stretch text-left text-lg leading-[140%] tracking-[-0.02em] text-neutral-black-6">
                   Enter your email to reset your password
                 </div>
               </div>
-              <div className="self-stretch flex flex-col items-start justify-start gap-[24px] max-w-full">
+              <div className="flex max-w-full flex-col items-start justify-start gap-[24px] self-stretch">
                 <div
-                  className={`self-stretch flex flex-col items-start justify-start gap-[4px] max-w-full text-left text-base text-neutral-black-5`}
+                  className={`flex max-w-full flex-col items-start justify-start gap-[4px] self-stretch text-left text-base text-neutral-black-5`}
                 >
                   <label
                     htmlFor="email"
-                    className="relative tracking-[-0.02em] leading-[140%] inline-block min-w-[58px]"
+                    className="relative inline-block min-w-[58px] leading-[140%] tracking-[-0.02em]"
                   >
                     Email ID
                   </label>
-                  <div className="self-stretch rounded-lg bg-neutral-white box-border flex flex-row items-center justify-start max-w-full border-[0.5px] border-solid border-neutral-black-2">
+                  <div className="box-border flex max-w-full flex-row items-center justify-start self-stretch rounded-lg border-[0.5px] border-solid border-neutral-black-2 bg-neutral-white">
                     <input
                       id="email"
-                      className="w-full border-none outline-none text-base bg-transparent py-3 pr-3 pl-5  flex-1 relative tracking-tight text-left inline-block  whitespace-nowrap max-w-full text-neutral-black-5 placeholder-neutral-black-4 align-middle"
+                      className="relative inline-block w-full max-w-full flex-1 whitespace-nowrap border-none bg-transparent py-3 pl-5 pr-3 text-left align-middle text-base tracking-tight text-neutral-black-5 placeholder-neutral-black-4 outline-none"
                       placeholder="arushi.parasrampuria@gmail.com"
                       type="email"
                       {...register("email")}
@@ -114,16 +114,16 @@ const SignIn: FunctionComponent = () => {
               </div>
               <div
                 className={
-                  "self-stretch flex flex-col items-cneter  justify-center gap-5 text-left text-base text-neutral-black-5 font-body-large-bold"
+                  "items-cneter font-body-large-bold flex flex-col justify-center gap-5 self-stretch text-left text-base text-neutral-black-5"
                 }
               >
                 <button
                   type="submit"
-                  className="cursor-pointer py-[15px] px-5 bg-lympha-primary self-stretch shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] rounded-13xl flex flex-row items-center justify-center whitespace-nowrap border-[2px] border-solid border-darkslategray hover:bg-darkcyan-100 hover:box-border hover:border-[2px] hover:border-solid hover:border-teal text-neutral-white font-semibold"
+                  className="flex cursor-pointer flex-row items-center justify-center self-stretch whitespace-nowrap rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-5 py-[15px] font-semibold text-neutral-white shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] hover:box-border hover:border-[2px] hover:border-solid hover:border-teal hover:bg-darkcyan-100"
                 >
                   {isSubmitting && (
                     <svg
-                      className="animate-spin -ml-1 mr-2 h-5 w-5 text-white"
+                      className="-ml-1 mr-2 h-5 w-5 animate-spin text-white"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
@@ -146,15 +146,15 @@ const SignIn: FunctionComponent = () => {
 
                   {isSubmitting ? "Submitting..." : "Submit"}
                 </button>
-                <div className="flex flex-row items-start justify-center gap-[8px] ">
+                <div className="flex flex-row items-start justify-center gap-[8px]">
                   <div className="relative whitespace-nowrap">
                     Dont have an account?
                   </div>
                   <Link
                     href="/auth/register"
-                    className="rounded-13xl flex flex-row items-center justify-center cursor-pointer text-lympha-primary"
+                    className="flex cursor-pointer flex-row items-center justify-center rounded-13xl text-lympha-primary"
                   >
-                    <b className="relative tracking-[-0.02em] leading-[140%] inline-block min-w-[96px]">
+                    <b className="relative inline-block min-w-[96px] leading-[140%] tracking-[-0.02em]">
                       Register Here
                     </b>
                   </Link>
@@ -163,7 +163,7 @@ const SignIn: FunctionComponent = () => {
             </form>
             <Link
               href="/terms-and-privacy"
-              className="self-stretch h-20 relative [text-decoration:underline] tracking-[-0.02em] leading-[140%] flex items-end justify-center shrink-0"
+              className="relative flex h-20 shrink-0 items-end justify-center self-stretch leading-[140%] tracking-[-0.02em] [text-decoration:underline]"
             >
               Terms of Service & Privacy Policy
             </Link>

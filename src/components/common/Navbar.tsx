@@ -26,41 +26,41 @@ const Navbar = ({ className = "" }) => {
   return (
     <header
       className={
-        "flex items-center self-stretch shadow-[0px_2px_24px_rgba(0,_0,_0,_0.04)] bg-gray-300  justify-between px-5 md:px-10 h-20 gap-5 font-normal font-proxima z-40"
+        "z-40 flex h-20 items-center justify-between gap-5 self-stretch bg-gray-300 px-5 font-proxima font-normal shadow-[0px_2px_24px_rgba(0,_0,_0,_0.04)] md:px-10"
       }
     >
       <Link href="/" className="flex flex-row items-start justify-start">
-        <img className="h-8 relative" alt="" src="/images/logo-icon.svg" />
+        <img className="relative h-8" alt="" src="/images/logo-icon.svg" />
       </Link>
-      <div className="hidden md:flex flex-col items-start justify-start gap-x-10">
-        <div className="self-stretch flex flex-row items-start justify-between gap-5 gap-x-10">
+      <div className="hidden flex-col items-start justify-start gap-x-10 md:flex">
+        <div className="flex flex-row items-start justify-between gap-5 gap-x-10 self-stretch">
           <Link
             href="/"
             className={cn(
               "flex flex-row items-center justify-start",
               (pathname.includes("/dashboard") || pathname == "/") &&
-                "font-bold"
+                "font-bold",
             )}
           >
-            <div className="relative tracking-wide inline-block">Dashboard</div>
+            <div className="relative inline-block tracking-wide">Dashboard</div>
           </Link>
           <Link
             href="/trading"
             className={cn(
               "flex flex-row items-center justify-center",
-              pathname.includes("/trading") && " font-bold"
+              pathname.includes("/trading") && "font-bold",
             )}
           >
             <div className="flex flex-col items-start justify-start">
               Trading
             </div>
-            <IoMdArrowDropdown className="h-6 w-6 relative min-h-[24px]" />
+            <IoMdArrowDropdown className="relative h-6 min-h-[24px] w-6" />
           </Link>
           <Link
             href="/invest"
             className={cn(
               "flex flex-row items-center justify-center",
-              pathname.includes("/invest") && " font-bold"
+              pathname.includes("/invest") && "font-bold",
             )}
           >
             <div className="flex flex-row items-start justify-start">
@@ -71,7 +71,7 @@ const Navbar = ({ className = "" }) => {
             href="/list-projects"
             className={cn(
               "flex flex-row items-center justify-center",
-              pathname.includes("/list-projects") && " font-bold"
+              pathname.includes("/list-projects") && "font-bold",
             )}
           >
             <div className="relative whitespace-nowrap tracking-tighter">
@@ -83,32 +83,32 @@ const Navbar = ({ className = "" }) => {
       <div className="flex items-center gap-x-5">
         <button
           onClick={() => setIsOpen(true)}
-          className="size-8 flex items-center justify-center rounded-full bg-darkcyan-200 t p-[5px] text-lg text-neutral-white"
+          className="t flex size-8 items-center justify-center rounded-full bg-darkcyan-200 p-[5px] text-lg text-neutral-white"
         >
-          <b className="relative leading-[22px] inline-block min-w-[13px] whitespace-nowrap">
+          <b className="relative inline-block min-w-[13px] whitespace-nowrap leading-[22px]">
             {user?.name?.charAt(0).toUpperCase()}
           </b>
         </button>
         <button
           onClick={() => setIsNavbarMenuOpen(true)}
-          className="size-8 flex items-center justify-center rounded-full  text-black md:hidden"
+          className="flex size-8 items-center justify-center rounded-full text-black md:hidden"
         >
           <CiMenuFries className="size-7" />
         </button>
       </div>
       <div
         className={cn(
-          "z-50 fixed top-0 right-0 bottom-0 translate-x-full min-h-screen max-h-screen max-w-xl   backdrop-blur-2xl rounded-l-13xl bg-gray-300 overflow-hidden flex flex-col items-start justify-start p-5 md:p-8 lg:p-10 gap-6 w-full  text-base text-neutral-black-3 transition-transform duration-500 ease-in-out",
-          isOpen && "translate-x-0 shadow-[0px_0px_72px_rgba(2,_24,_29,_0.11)]"
+          "text-neutral-black-3 fixed bottom-0 right-0 top-0 z-50 flex max-h-screen min-h-screen w-full max-w-xl translate-x-full flex-col items-start justify-start gap-6 overflow-hidden rounded-l-13xl bg-gray-300 p-5 text-base backdrop-blur-2xl transition-transform duration-500 ease-in-out md:p-8 lg:p-10",
+          isOpen && "translate-x-0 shadow-[0px_0px_72px_rgba(2,_24,_29,_0.11)]",
         )}
       >
         <ProfileSidebar onClose={() => setIsOpen(false)} />
       </div>
       <div
         className={cn(
-          "z-50 fixed top-0 right-0 bottom-0 translate-x-full min-h-screen max-h-screen max-w-xl  backdrop-blur-2xl rounded-l-13xl bg-gray-300 overflow-hidden flex flex-col items-start justify-start p-5 md:p-8 lg:p-10 gap-6 w-full  text-base text-neutral-black-3 transition-transform duration-500 ease-in-out",
+          "text-neutral-black-3 fixed bottom-0 right-0 top-0 z-50 flex max-h-screen min-h-screen w-full max-w-xl translate-x-full flex-col items-start justify-start gap-6 overflow-hidden rounded-l-13xl bg-gray-300 p-5 text-base backdrop-blur-2xl transition-transform duration-500 ease-in-out md:p-8 lg:p-10",
           isNavbarMenuOpen &&
-            "translate-x-0 shadow-[0px_0px_72px_rgba(2,_24,_29,_0.11)]"
+            "translate-x-0 shadow-[0px_0px_72px_rgba(2,_24,_29,_0.11)]",
         )}
       >
         <NavbarListSidebar onClose={() => setIsNavbarMenuOpen(false)} />

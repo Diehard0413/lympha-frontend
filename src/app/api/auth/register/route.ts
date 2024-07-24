@@ -21,7 +21,7 @@ export async function POST(req: Request) {
       },
       {
         status: 400,
-      }
+      },
     );
   }
 
@@ -33,14 +33,13 @@ export async function POST(req: Request) {
     },
   });
 
-//   const verificationToken = await generateVerificationToken(email);
-//   await sendVerificationEmail(verificationToken.email, verificationToken.token);
-
+  //   const verificationToken = await generateVerificationToken(email);
+  //   await sendVerificationEmail(verificationToken.email, verificationToken.token);
 
   return Response.json(
     { user },
     {
       status: 201,
-    }
+    },
   );
 }

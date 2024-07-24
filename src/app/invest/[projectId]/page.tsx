@@ -21,56 +21,56 @@ const ProjectDetailPage = (props: Props) => {
 
   const navigate = useRouter();
   return (
-    <div className="w-full min-h-screen relative [background:linear-gradient(rgba(230,_232,_232,_0.4),_rgba(230,_232,_232,_0.4)),_#fcfdfd] overflow-hidden flex flex-col items-start justify-start font-proxima">
+    <div className="relative flex min-h-screen w-full flex-col items-start justify-start overflow-hidden font-proxima [background:linear-gradient(rgba(230,_232,_232,_0.4),_rgba(230,_232,_232,_0.4)),_#fcfdfd]">
       <Navbar />
-      <main className="w-11/12 md:w-5/6 lg:w-3/4 xl:w-2/3 mx-auto self-stretch flex flex-col items-start justify-center md:px-5 max-w-full py-10">
+      <main className="mx-auto flex w-11/12 max-w-full flex-col items-start justify-center self-stretch py-10 md:w-5/6 md:px-5 lg:w-3/4 xl:w-2/3">
         <button
           onClick={() => {
             navigate.back();
           }}
-          className="self-stretch flex flex-row items-center justify-start gap-2 shrink-0 max-w-full"
+          className="flex max-w-full shrink-0 flex-row items-center justify-start gap-2 self-stretch"
         >
-          <MdArrowBack className="h-6 w-6 relative min-h-6 text-neutral-black-6 shrink-0" />
-          <div className="flex-1 flex flex-col items-start justify-start pt-px px-0 pb-0 box-border min-w-[499px] max-w-full mq750:min-w-full">
-            <div className="self-stretch flex flex-row items-start justify-between gap-[20px] mq450:flex-wrap">
-              <b className="relative tracking-tight inline-block text-neutral-black-6">
+          <MdArrowBack className="relative h-6 min-h-6 w-6 shrink-0 text-neutral-black-6" />
+          <div className="mq750:min-w-full box-border flex min-w-[499px] max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-px">
+            <div className="mq450:flex-wrap flex flex-row items-start justify-between gap-[20px] self-stretch">
+              <b className="relative inline-block tracking-tight text-neutral-black-6">
                 Back to profile
               </b>
             </div>
           </div>
         </button>
-        <div className="w-full rounded-2xl bg-orange box-border flex flex-row items-center justify-center py-3 px-6 shrink-0 max-w-full border border-state-warning my-3">
-          <div className="flex-1 flex flex-row  items-center justify-start gap-2">
-            <FaInfoCircle className="h-6 w-6 relative text-neutral-black-6" />
-            <p className="w-full bg-transparent h-7 overflow-hidden text-lg font-light text-neutral-black-5">
+        <div className="my-3 box-border flex w-full max-w-full shrink-0 flex-row items-center justify-center rounded-2xl border border-state-warning bg-orange px-6 py-3">
+          <div className="flex flex-1 flex-row items-center justify-start gap-2">
+            <FaInfoCircle className="relative h-6 w-6 text-neutral-black-6" />
+            <p className="h-7 w-full overflow-hidden bg-transparent text-lg font-light text-neutral-black-5">
               This project is under review.
             </p>
           </div>
         </div>
-        <h2 className="pt-5 relative text-2xl tracking-wide leading-8 font-bold font-inherit text-neutral-black-6 shrink-0">
+        <h2 className="font-inherit relative shrink-0 pt-5 text-2xl font-bold leading-8 tracking-wide text-neutral-black-6">
           {project.title}
         </h2>
-        <section className="self-stretch rounded-2xl flex flex-col md:flex-row items-start justify-start py-3 box-border gap-4 shrink-0 text-lg text-neutral-black-4">
-          <article className="flex-1 rounded-11xl flex flex-col items-start justify-start gap-4 max-w-full">
-            <div className="self-stretch h-72 rounded-3xl overflow-hidden shrink-0 flex flex-col items-start justify-start">
+        <section className="box-border flex shrink-0 flex-col items-start justify-start gap-4 self-stretch rounded-2xl py-3 text-lg text-neutral-black-4 md:flex-row">
+          <article className="flex max-w-full flex-1 flex-col items-start justify-start gap-4 rounded-11xl">
+            <div className="flex h-72 shrink-0 flex-col items-start justify-start self-stretch overflow-hidden rounded-3xl">
               <img
-                className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover"
+                className="relative max-h-full max-w-full flex-1 self-stretch overflow-hidden object-cover"
                 loading="lazy"
                 alt=""
                 src="/images/image-1.png"
               />
             </div>
-            <div className="self-stretch flex flex-col items-start justify-start  box-border gap-2 max-w-full">
-              <div className="self-stretch flex flex-row items-center justify-center max-w-full">
-                <b className="flex-1 relative tracking-tight  inline-block max-w-full leading-5">
+            <div className="box-border flex max-w-full flex-col items-start justify-start gap-2 self-stretch">
+              <div className="flex max-w-full flex-row items-center justify-center self-stretch">
+                <b className="relative inline-block max-w-full flex-1 leading-5 tracking-tight">
                   The Convertible project is providing new solutions to help
                   solve the automotive and freight transportation industry
                   problems! Through our unique proprietary hardware and software
                   innovations.
                 </b>
               </div>
-              <div className="self-stretch flex flex-row items-center justify-center max-w-full text-sm">
-                <div className="flex-1 relative tracking-tight  inline-block max-w-full">
+              <div className="flex max-w-full flex-row items-center justify-center self-stretch text-sm">
+                <div className="relative inline-block max-w-full flex-1 tracking-tight">
                   <p className="">
                     Worldwide, the auto industry wastes more than $100B every
                     year on inefficient automotive transportation largely due
@@ -104,85 +104,85 @@ const ProjectDetailPage = (props: Props) => {
               </div>
             </div>
           </article>
-          <aside className="w-full md:w-64 flex flex-col items-start justify-start gap-4 text-sm ">
-            <div className="self-stretch rounded-3xl bg-neutral-white flex flex-col items-start justify-start py-6 px-4 gap-6">
-              <div className="self-stretch flex flex-col items-start justify-start gap-4">
-                <div className="self-stretch flex flex-col items-start justify-start py-0 pr-5 pl-0 gap-[8px] text-lg">
-                  <b className="relative tracking-tight ">{`Conservation Method: `}</b>
-                  <div className="relative tracking-tight  inline-block">
+          <aside className="flex w-full flex-col items-start justify-start gap-4 text-sm md:w-64">
+            <div className="flex flex-col items-start justify-start gap-6 self-stretch rounded-3xl bg-neutral-white px-4 py-6">
+              <div className="flex flex-col items-start justify-start gap-4 self-stretch">
+                <div className="flex flex-col items-start justify-start gap-[8px] self-stretch py-0 pl-0 pr-5 text-lg">
+                  <b className="relative tracking-tight">{`Conservation Method: `}</b>
+                  <div className="relative inline-block tracking-tight">
                     Method xyz
                   </div>
                 </div>
-                <div className="self-stretch h-px relative box-border border-t-[1px] border-solid border-neutral-black-1" />
+                <div className="relative box-border h-px self-stretch border-t-[1px] border-solid border-neutral-black-1" />
 
-                <div className="self-stretch flex flex-row items-center justify-between gap-[20px]">
-                  <div className="relative tracking-tight leading-[20px] inline-block min-w-[68px]">
+                <div className="flex flex-row items-center justify-between gap-[20px] self-stretch">
+                  <div className="relative inline-block min-w-[68px] leading-[20px] tracking-tight">
                     Min invest
                   </div>
-                  <div className="w-12 relative tracking-tight leading-[20px] text-right inline-block shrink-0 whitespace-nowrap">
+                  <div className="relative inline-block w-12 shrink-0 whitespace-nowrap text-right leading-[20px] tracking-tight">
                     $2000
                   </div>
                 </div>
-                <div className="self-stretch flex flex-row items-center justify-between gap-[20px]">
-                  <div className="relative tracking-tight leading-[20px] inline-block min-w-[89px]">
+                <div className="flex flex-row items-center justify-between gap-[20px] self-stretch">
+                  <div className="relative inline-block min-w-[89px] leading-[20px] tracking-tight">
                     Tokens offered
                   </div>
-                  <div className="w-[94px] relative tracking-tight leading-[20px] text-right inline-block shrink-0">
+                  <div className="relative inline-block w-[94px] shrink-0 text-right leading-[20px] tracking-tight">
                     47,333,834
                   </div>
                 </div>
-                <div className="self-stretch flex flex-row items-center justify-between gap-[17px]">
-                  <div className="relative tracking-tight leading-[20px] inline-block min-w-[111px]">
+                <div className="flex flex-row items-center justify-between gap-[17px] self-stretch">
+                  <div className="relative inline-block min-w-[111px] leading-[20px] tracking-tight">
                     Total Token Supply
                   </div>
-                  <div className="w-[94px] relative tracking-tight leading-[20px] text-right inline-block shrink-0">
+                  <div className="relative inline-block w-[94px] shrink-0 text-right leading-[20px] tracking-tight">
                     200,000,000
                   </div>
                 </div>
               </div>
-              <button className="cursor-pointer py-[9px] px-5 bg-lympha-primary self-stretch shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] rounded-13xl flex flex-row items-center justify-center opacity-[0.4] border-[2px] border-solid border-darkslategray hover:bg-darkcyan-100 hover:box-border hover:border-[2px] hover:border-solid hover:border-teal">
-                <b className="relative text-base tracking-[0.15px] leading-6 inline-block font-body-large-bold text-neutral-white text-left min-w-[45px]">
+              <button className="flex cursor-pointer flex-row items-center justify-center self-stretch rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-5 py-[9px] opacity-[0.4] shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] hover:box-border hover:border-[2px] hover:border-solid hover:border-teal hover:bg-darkcyan-100">
+                <b className="font-body-large-bold relative inline-block min-w-[45px] text-left text-base leading-6 tracking-[0.15px] text-neutral-white">
                   Invest
                 </b>
               </button>
             </div>
-            <div className="self-stretch rounded-3xl bg-neutral-white flex flex-row items-start justify-start py-6 px-4">
-              <div className="flex-1 flex flex-col items-start justify-start gap-[15.8px]">
-                <b className="w-[139px] relative text-base tracking-tight  inline-block">
+            <div className="flex flex-row items-start justify-start self-stretch rounded-3xl bg-neutral-white px-4 py-6">
+              <div className="flex flex-1 flex-col items-start justify-start gap-[15.8px]">
+                <b className="relative inline-block w-[139px] text-base tracking-tight">
                   View Documents
                 </b>
-                <div className="self-stretch h-px relative box-border border-t-[1px] border-solid border-neutral-black-1" />
-                <div className="self-stretch flex flex-row items-center justify-between">
-                  <div className="w-[68px] flex flex-col items-start justify-start pt-0.5 px-0 pb-0 box-border">
-                    <div className="self-stretch relative tracking-tight leading-[20px]">
+                <div className="relative box-border h-px self-stretch border-t-[1px] border-solid border-neutral-black-1" />
+                <div className="flex flex-row items-center justify-between self-stretch">
+                  <div className="box-border flex w-[68px] flex-col items-start justify-start px-0 pb-0 pt-0.5">
+                    <div className="relative self-stretch leading-[20px] tracking-tight">
                       PDD
                     </div>
                   </div>
                   <MdOutlineFileDownload
                     onClick={() => {}}
-                    className="cursor-pointer h-6 w-6 relative overflow-hidden shrink-0 min-h-6"
+                    className="relative h-6 min-h-6 w-6 shrink-0 cursor-pointer overflow-hidden"
                   />
                 </div>
-                <div className="self-stretch flex flex-row items-center justify-between">
-                  <div className="flex flex-col items-start justify-start pt-0.5 px-0 pb-0">
-                    <div className="relative tracking-tight leading-[20px]">
+                <div className="flex flex-row items-center justify-between self-stretch">
+                  <div className="flex flex-col items-start justify-start px-0 pb-0 pt-0.5">
+                    <div className="relative leading-[20px] tracking-tight">
                       Subscription Agreement
                     </div>
                   </div>
                   <MdOutlineFileDownload
                     onClick={() => {}}
-                    className="cursor-pointer h-6 w-6 relative overflow-hidden shrink-0 min-h-6"
+                    className="relative h-6 min-h-6 w-6 shrink-0 cursor-pointer overflow-hidden"
                   />{" "}
                 </div>
-                <div className="self-stretch flex flex-row items-center justify-between">
-                  <div className="flex flex-col items-start justify-start pt-0.5 px-0 pb-0">
-                    <div className="relative tracking-tight leading-[20px]">
+                <div className="flex flex-row items-center justify-between self-stretch">
+                  <div className="flex flex-col items-start justify-start px-0 pb-0 pt-0.5">
+                    <div className="relative leading-[20px] tracking-tight">
                       Disclosures and Assertations
                     </div>
                   </div>
                   <MdOutlineFileDownload
                     onClick={() => {}}
-                    className="cursor-pointer h-6 w-6 relative overflow-hidden shrink-0 min-h-6"
+                    className="relative h-6 min-h-6 w-6 shrink-0 cursor-pointer overflow-hidden"
                   />{" "}
                 </div>
               </div>

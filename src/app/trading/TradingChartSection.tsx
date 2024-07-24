@@ -9,27 +9,27 @@ type Props = {};
 const TradingChartSection = (props: Props) => {
   return (
     <section className="w-full flex-1">
-      <div className="flex-1 rounded-3xl bg-neutral-white flex flex-col items-start justify-start py-4 px-6 box-border relative gap-4  max-w-full">
-        <div className="w-full flex items-center justify-between">
-          <div className="w-max flex flex-col items-start justify-start gap-2">
+      <div className="relative box-border flex max-w-full flex-1 flex-col items-start justify-start gap-4 rounded-3xl bg-neutral-white px-6 py-4">
+        <div className="flex w-full items-center justify-between">
+          <div className="flex w-max flex-col items-start justify-start gap-2">
             <div className="flex flex-row items-end justify-start gap-4">
               <div className="flex flex-row items-start justify-start">
                 <div className="flex flex-col items-start justify-start">
-                  <div className="relative leading-10 font-semibold inline-block text-3xl">
+                  <div className="relative inline-block text-3xl font-semibold leading-10">
                     794,674
                   </div>
                 </div>
               </div>
-              <b className="relative text-xl leading-[120%] inline-block text-state-success min-w-[55px] mq450:text-base mq450:leading-[19px]">
+              <b className="mq450:text-base mq450:leading-[19px] relative inline-block min-w-[55px] text-xl leading-[120%] text-state-success">
                 +2.4%
               </b>
             </div>
-            <div className="self-stretch relative text-sm tracking-[-0.02em] leading-[20px] text-neutral-black-5">
+            <div className="relative self-stretch text-sm leading-[20px] tracking-[-0.02em] text-neutral-black-5">
               Date
             </div>
           </div>
           <button>
-            <GrExpand className="h-5 w-5 relative overflow-hidden shrink-0" />
+            <GrExpand className="relative h-5 w-5 shrink-0 overflow-hidden" />
           </button>
         </div>
 
@@ -38,31 +38,31 @@ const TradingChartSection = (props: Props) => {
         </div>
 
         {/* Trading Footer */}
-        <div className="self-stretch flex flex-row items-center justify-between gap-[20px] text-right text-sm mq450:flex-wrap">
-          <div className="flex flex-row items-center justify-start py-1 px-0 gap-[16px]">
-            <div className="relative tracking-[-0.02em] leading-[20px] inline-block min-w-[20px]">
+        <div className="mq450:flex-wrap flex flex-row items-center justify-between gap-[20px] self-stretch text-right text-sm">
+          <div className="flex flex-row items-center justify-start gap-[16px] px-0 py-1">
+            <div className="relative inline-block min-w-[20px] leading-[20px] tracking-[-0.02em]">
               5m
             </div>
-            <div className="relative tracking-[-0.02em] leading-[20px] inline-block min-w-[24px]">
+            <div className="relative inline-block min-w-[24px] leading-[20px] tracking-[-0.02em]">
               15m
             </div>
-            <div className="w-7 relative tracking-[-0.02em] leading-[20px] inline-block min-w-[28px]">
+            <div className="relative inline-block w-7 min-w-[28px] leading-[20px] tracking-[-0.02em]">
               30m
             </div>
-            <div className="w-[13px] relative tracking-[-0.02em] leading-[20px] inline-block min-w-[13px]">
+            <div className="relative inline-block w-[13px] min-w-[13px] leading-[20px] tracking-[-0.02em]">
               1h
             </div>
-            <div className="relative tracking-[-0.02em] leading-[20px] inline-block min-w-[12px]">
+            <div className="relative inline-block min-w-[12px] leading-[20px] tracking-[-0.02em]">
               M
             </div>
-            <FaChevronDown className="h-5 w-5 relative overflow-hidden shrink-0 min-h-5" />
+            <FaChevronDown className="relative h-5 min-h-5 w-5 shrink-0 overflow-hidden" />
           </div>
-          <div className="h-[25px] flex flex-row items-center justify-start py-0 px-0 box-border gap-[4px]">
-            <div className="h-[26px] w-px relative box-border border-r-[1px] border-solid border-neutral-black-1" />
-            <MdOutlineShowChart className="h-5 w-5 relative overflow-hidden shrink-0" />
-            <div className="h-[26px] w-px relative box-border border-r-[1px] border-solid border-neutral-black-1" />
-            <MdOutlineCandlestickChart className="h-5 w-5 relative overflow-hidden shrink-0" />
-            <div className="h-[26px] w-px relative box-border border-r-[1px] border-solid border-neutral-black-1" />
+          <div className="box-border flex h-[25px] flex-row items-center justify-start gap-[4px] px-0 py-0">
+            <div className="relative box-border h-[26px] w-px border-r-[1px] border-solid border-neutral-black-1" />
+            <MdOutlineShowChart className="relative h-5 w-5 shrink-0 overflow-hidden" />
+            <div className="relative box-border h-[26px] w-px border-r-[1px] border-solid border-neutral-black-1" />
+            <MdOutlineCandlestickChart className="relative h-5 w-5 shrink-0 overflow-hidden" />
+            <div className="relative box-border h-[26px] w-px border-r-[1px] border-solid border-neutral-black-1" />
           </div>
         </div>
       </div>

@@ -75,7 +75,7 @@ const TradingChart = (props: Props) => {
     },
   };
   return (
-    <div className="w-full h-[300px] md:h-[400px]">
+    <div className="h-[300px] w-full md:h-[400px]">
       <ApexChart
         options={chartData}
         series={[

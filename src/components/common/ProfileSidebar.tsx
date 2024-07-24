@@ -38,15 +38,15 @@ const ProfileSidebar = (props: Props) => {
   >(null);
 
   return (
-    <div className="w-full flex flex-col gap-y-5">
-      <div className="self-stretch flex flex-col items-start justify-start max-w-full">
-        <div className="self-stretch flex flex-row flex-wrap items-start justify-start gap-2 max-w-full">
+    <div className="flex w-full flex-col gap-y-5">
+      <div className="flex max-w-full flex-col items-start justify-start self-stretch">
+        <div className="flex max-w-full flex-row flex-wrap items-start justify-start gap-2 self-stretch">
           <button onClick={props.onClose}>
-            <IoMdClose className="h-6 w-6 relative min-h-[24px]" />
+            <IoMdClose className="relative h-6 min-h-[24px] w-6" />
           </button>
-          <div className="flex-1 flex flex-col items-start justify-start pt-px px-0 pb-0 box-border min-w-[289px] max-w-full">
-            <div className="self-stretch flex flex-row items-start justify-between gap-[20px] mq450:flex-wrap">
-              <b className="relative tracking-[-0.02em] leading-[140%] inline-block min-w-[46px]">
+          <div className="box-border flex min-w-[289px] max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-px">
+            <div className="mq450:flex-wrap flex flex-row items-start justify-between gap-[20px] self-stretch">
+              <b className="relative inline-block min-w-[46px] leading-[140%] tracking-[-0.02em]">
                 Profile
               </b>
             </div>
@@ -54,11 +54,11 @@ const ProfileSidebar = (props: Props) => {
         </div>
       </div>
       <ProfileBanner />
-      <div className="w-full flex flex-col items-start justify-start gap-[16px] max-w-full text-sm text-neutral-black-5">
-        <div className="self-stretch shadow-[0px_2px_20px_rgba(0,_0,_0,_0.07)] rounded-lg bg-neutral-white box-border flex flex-col items-start justify-start py-[17px] px-[19px] max-w-full border-[1px] border-solid border-darkcyan-300">
-          <div className="self-stretch flex flex-row flex-wrap items-center justify-start gap-[10px] max-w-full">
-            <MdOutlineAccountBalance className="h-4 w-4 relative overflow-hidden shrink-0" />
-            <div className="flex-1 relative tracking-[-0.02em] leading-[130%] font-semibold inline-block min-w-[106px] max-w-full">
+      <div className="flex w-full max-w-full flex-col items-start justify-start gap-[16px] text-sm text-neutral-black-5">
+        <div className="box-border flex max-w-full flex-col items-start justify-start self-stretch rounded-lg border-[1px] border-solid border-darkcyan-300 bg-neutral-white px-[19px] py-[17px] shadow-[0px_2px_20px_rgba(0,_0,_0,_0.07)]">
+          <div className="flex max-w-full flex-row flex-wrap items-center justify-start gap-[10px] self-stretch">
+            <MdOutlineAccountBalance className="relative h-4 w-4 shrink-0 overflow-hidden" />
+            <div className="relative inline-block min-w-[106px] max-w-full flex-1 font-semibold leading-[130%] tracking-[-0.02em]">
               Linked Bank Accounts
             </div>
             <button
@@ -66,14 +66,14 @@ const ProfileSidebar = (props: Props) => {
                 setActiveSidebarOption("linked_bank_accounts");
               }}
             >
-              <IoIosArrowForward className="h-4 w-4 relative cursor-pointer" />
+              <IoIosArrowForward className="relative h-4 w-4 cursor-pointer" />
             </button>
           </div>
         </div>
-        <div className="self-stretch shadow-[0px_2px_20px_rgba(0,_0,_0,_0.07)] rounded-lg bg-neutral-white box-border flex flex-col items-start justify-start py-[17px] px-[19px] max-w-full border-[1px] border-solid border-darkcyan-300">
-          <div className="self-stretch flex flex-row flex-wrap items-center justify-start gap-[10px] max-w-full">
-            <MdOutlineAccountBalanceWallet className="h-4 w-4 relative overflow-hidden shrink-0" />
-            <div className="flex-1 relative tracking-[-0.02em] leading-[130%] font-semibold inline-block min-w-[79px] max-w-full">
+        <div className="box-border flex max-w-full flex-col items-start justify-start self-stretch rounded-lg border-[1px] border-solid border-darkcyan-300 bg-neutral-white px-[19px] py-[17px] shadow-[0px_2px_20px_rgba(0,_0,_0,_0.07)]">
+          <div className="flex max-w-full flex-row flex-wrap items-center justify-start gap-[10px] self-stretch">
+            <MdOutlineAccountBalanceWallet className="relative h-4 w-4 shrink-0 overflow-hidden" />
+            <div className="relative inline-block min-w-[79px] max-w-full flex-1 font-semibold leading-[130%] tracking-[-0.02em]">
               My wallet details
             </div>
             <button
@@ -81,14 +81,14 @@ const ProfileSidebar = (props: Props) => {
                 setActiveSidebarOption("my_wallet");
               }}
             >
-              <IoIosArrowForward className="h-4 w-4 relative" />
+              <IoIosArrowForward className="relative h-4 w-4" />
             </button>
           </div>
         </div>
-        <div className="self-stretch shadow-[0px_2px_20px_rgba(0,_0,_0,_0.07)] rounded-lg bg-neutral-white box-border flex flex-col items-start justify-start py-[17px] px-[19px] max-w-full border-[1px] border-solid border-darkcyan-300">
-          <div className="self-stretch flex flex-row flex-wrap items-center justify-start gap-[10px] max-w-full">
-            <MdCampaign className="h-4 w-4 relative overflow-hidden shrink-0" />
-            <div className="flex-1 relative tracking-[-0.02em] leading-[130%] font-semibold inline-block min-w-[47px] max-w-full">
+        <div className="box-border flex max-w-full flex-col items-start justify-start self-stretch rounded-lg border-[1px] border-solid border-darkcyan-300 bg-neutral-white px-[19px] py-[17px] shadow-[0px_2px_20px_rgba(0,_0,_0,_0.07)]">
+          <div className="flex max-w-full flex-row flex-wrap items-center justify-start gap-[10px] self-stretch">
+            <MdCampaign className="relative h-4 w-4 shrink-0 overflow-hidden" />
+            <div className="relative inline-block min-w-[47px] max-w-full flex-1 font-semibold leading-[130%] tracking-[-0.02em]">
               Feedback
             </div>
             <button
@@ -96,14 +96,14 @@ const ProfileSidebar = (props: Props) => {
                 setActiveSidebarOption("feedback");
               }}
             >
-              <IoIosArrowForward className="h-4 w-4 relative" />
+              <IoIosArrowForward className="relative h-4 w-4" />
             </button>
           </div>
         </div>
-        <div className="self-stretch shadow-[0px_2px_20px_rgba(0,_0,_0,_0.07)] rounded-lg bg-neutral-white box-border flex flex-col items-start justify-start py-[17px] px-[19px] max-w-full border-[1px] border-solid border-darkcyan-300">
-          <div className="self-stretch flex flex-row flex-wrap items-center justify-start gap-[10px] max-w-full">
-            <MdQuiz className="h-4 w-4 relative overflow-hidden shrink-0" />
-            <div className="flex-1 relative tracking-[-0.02em] leading-[130%] font-semibold inline-block min-w-[38px] max-w-full">
+        <div className="box-border flex max-w-full flex-col items-start justify-start self-stretch rounded-lg border-[1px] border-solid border-darkcyan-300 bg-neutral-white px-[19px] py-[17px] shadow-[0px_2px_20px_rgba(0,_0,_0,_0.07)]">
+          <div className="flex max-w-full flex-row flex-wrap items-center justify-start gap-[10px] self-stretch">
+            <MdQuiz className="relative h-4 w-4 shrink-0 overflow-hidden" />
+            <div className="relative inline-block min-w-[38px] max-w-full flex-1 font-semibold leading-[130%] tracking-[-0.02em]">
               Support
             </div>
             <button
@@ -111,14 +111,14 @@ const ProfileSidebar = (props: Props) => {
                 setActiveSidebarOption("support");
               }}
             >
-              <IoIosArrowForward className="h-4 w-4 relative" />
+              <IoIosArrowForward className="relative h-4 w-4" />
             </button>
           </div>
         </div>
-        <div className="self-stretch shadow-[0px_2px_20px_rgba(0,_0,_0,_0.07)] rounded-lg bg-neutral-white box-border flex flex-col items-start justify-start py-[17px] px-[19px] max-w-full border-[1px] border-solid border-darkcyan-300">
-          <div className="self-stretch flex flex-row flex-wrap items-center justify-start gap-[10px] max-w-full">
-            <MdOutlinePassword className="h-4 w-4 relative overflow-hidden shrink-0" />
-            <div className="flex-1 relative tracking-[-0.02em] leading-[130%] font-semibold inline-block min-w-[38px] max-w-full">
+        <div className="box-border flex max-w-full flex-col items-start justify-start self-stretch rounded-lg border-[1px] border-solid border-darkcyan-300 bg-neutral-white px-[19px] py-[17px] shadow-[0px_2px_20px_rgba(0,_0,_0,_0.07)]">
+          <div className="flex max-w-full flex-row flex-wrap items-center justify-start gap-[10px] self-stretch">
+            <MdOutlinePassword className="relative h-4 w-4 shrink-0 overflow-hidden" />
+            <div className="relative inline-block min-w-[38px] max-w-full flex-1 font-semibold leading-[130%] tracking-[-0.02em]">
               Change Password
             </div>
             <button
@@ -126,26 +126,26 @@ const ProfileSidebar = (props: Props) => {
                 setActiveSidebarOption("change_password");
               }}
             >
-              <IoIosArrowForward className="h-4 w-4 relative" />
+              <IoIosArrowForward className="relative h-4 w-4" />
             </button>
           </div>
         </div>
-        <div className="self-stretch shadow-[0px_2px_20px_rgba(0,_0,_0,_0.07)] rounded-lg bg-neutral-white box-border flex flex-col items-start justify-start py-[17px] px-[19px] max-w-full border-[1px] border-solid border-darkcyan-300">
-          <div className="self-stretch flex flex-row flex-wrap items-center justify-start gap-[10px] max-w-full">
-            <RiSettings3Fill className="h-4 w-4 relative overflow-hidden shrink-0" />
-            <div className="flex-1 flex flex-row items-center justify-start min-w-[250px] max-w-full">
-              <div className="w-[262px] relative tracking-[-0.02em] leading-[130%] font-semibold inline-block shrink-0">
+        <div className="box-border flex max-w-full flex-col items-start justify-start self-stretch rounded-lg border-[1px] border-solid border-darkcyan-300 bg-neutral-white px-[19px] py-[17px] shadow-[0px_2px_20px_rgba(0,_0,_0,_0.07)]">
+          <div className="flex max-w-full flex-row flex-wrap items-center justify-start gap-[10px] self-stretch">
+            <RiSettings3Fill className="relative h-4 w-4 shrink-0 overflow-hidden" />
+            <div className="flex min-w-[250px] max-w-full flex-1 flex-row items-center justify-start">
+              <div className="relative inline-block w-[262px] shrink-0 font-semibold leading-[130%] tracking-[-0.02em]">
                 Log out
               </div>
             </div>
             <button
-              onClick={async() => {
+              onClick={async () => {
                 await logout();
                 navigate.push("/auth/login");
               }}
               className=""
             >
-              <IoIosArrowForward className="h-4 w-4 relative" />
+              <IoIosArrowForward className="relative h-4 w-4" />
             </button>
           </div>
         </div>
@@ -154,9 +154,9 @@ const ProfileSidebar = (props: Props) => {
       {/* Linked bank accounts */}
       <div
         className={cn(
-          "z-[51] fixed top-0 right-0 bottom-0 translate-x-full min-h-screen max-h-screen max-w-xl backdrop-blur-2xl rounded-l-13xl bg-gray-300 overflow-hidden flex flex-col items-start justify-start py-10 px-10 gap-6 w-full  text-base text-neutral-black-3 transition-transform duration-500 ease-in-out",
+          "text-neutral-black-3 fixed bottom-0 right-0 top-0 z-[51] flex max-h-screen min-h-screen w-full max-w-xl translate-x-full flex-col items-start justify-start gap-6 overflow-hidden rounded-l-13xl bg-gray-300 px-10 py-10 text-base backdrop-blur-2xl transition-transform duration-500 ease-in-out",
           activeSidebarOption === "linked_bank_accounts" &&
-            "translate-x-0 shadow-[0px_0px_72px_rgba(2,_24,_29,_0.11)]"
+            "translate-x-0 shadow-[0px_0px_72px_rgba(2,_24,_29,_0.11)]",
         )}
       >
         <LinkedBankAccountSidebar
@@ -167,9 +167,9 @@ const ProfileSidebar = (props: Props) => {
       {/* Wallets */}
       <div
         className={cn(
-          "z-[51] fixed top-0 right-0 bottom-0 translate-x-full min-h-screen max-h-screen max-w-xl   backdrop-blur-2xl rounded-l-13xl bg-gray-300 overflow-hidden flex flex-col items-start justify-start py-10 px-10 gap-6 w-full  text-base text-neutral-black-3 transition-transform duration-500 ease-in-out",
+          "text-neutral-black-3 fixed bottom-0 right-0 top-0 z-[51] flex max-h-screen min-h-screen w-full max-w-xl translate-x-full flex-col items-start justify-start gap-6 overflow-hidden rounded-l-13xl bg-gray-300 px-10 py-10 text-base backdrop-blur-2xl transition-transform duration-500 ease-in-out",
           activeSidebarOption === "my_wallet" &&
-            "translate-x-0 shadow-[0px_0px_72px_rgba(2,_24,_29,_0.11)]"
+            "translate-x-0 shadow-[0px_0px_72px_rgba(2,_24,_29,_0.11)]",
         )}
       >
         <MyWalletSidebar onClose={() => setActiveSidebarOption(null)} />
@@ -178,9 +178,9 @@ const ProfileSidebar = (props: Props) => {
       {/* Feedback */}
       <div
         className={cn(
-          "z-[51] fixed top-0 right-0 bottom-0 translate-x-full min-h-screen max-h-screen max-w-xl   backdrop-blur-2xl rounded-l-13xl bg-gray-300 overflow-hidden flex flex-col items-start justify-start py-10 px-10 gap-6 w-full  text-base text-neutral-black-3 transition-transform duration-500 ease-in-out",
+          "text-neutral-black-3 fixed bottom-0 right-0 top-0 z-[51] flex max-h-screen min-h-screen w-full max-w-xl translate-x-full flex-col items-start justify-start gap-6 overflow-hidden rounded-l-13xl bg-gray-300 px-10 py-10 text-base backdrop-blur-2xl transition-transform duration-500 ease-in-out",
           activeSidebarOption === "feedback" &&
-            "translate-x-0 shadow-[0px_0px_72px_rgba(2,_24,_29,_0.11)]"
+            "translate-x-0 shadow-[0px_0px_72px_rgba(2,_24,_29,_0.11)]",
         )}
       >
         <FeedbackSidebar onClose={() => setActiveSidebarOption(null)} />
@@ -189,9 +189,9 @@ const ProfileSidebar = (props: Props) => {
       {/* Supports */}
       <div
         className={cn(
-          "z-[51] fixed top-0 right-0 bottom-0 translate-x-full min-h-screen max-h-screen max-w-xl   backdrop-blur-2xl rounded-l-13xl bg-gray-300 overflow-hidden flex flex-col items-start justify-start py-10 px-10 gap-6 w-full  text-base text-neutral-black-3 transition-transform duration-500 ease-in-out",
+          "text-neutral-black-3 fixed bottom-0 right-0 top-0 z-[51] flex max-h-screen min-h-screen w-full max-w-xl translate-x-full flex-col items-start justify-start gap-6 overflow-hidden rounded-l-13xl bg-gray-300 px-10 py-10 text-base backdrop-blur-2xl transition-transform duration-500 ease-in-out",
           activeSidebarOption === "support" &&
-            "translate-x-0 shadow-[0px_0px_72px_rgba(2,_24,_29,_0.11)]"
+            "translate-x-0 shadow-[0px_0px_72px_rgba(2,_24,_29,_0.11)]",
         )}
       >
         <SupportSidebar onClose={() => setActiveSidebarOption(null)} />
@@ -200,9 +200,9 @@ const ProfileSidebar = (props: Props) => {
       {/* Supports */}
       <div
         className={cn(
-          "z-[51] fixed top-0 right-0 bottom-0 translate-x-full min-h-screen max-h-screen max-w-xl   backdrop-blur-2xl rounded-l-13xl bg-gray-300 overflow-hidden flex flex-col items-start justify-start py-10 px-10 gap-6 w-full  text-base text-neutral-black-3 transition-transform duration-500 ease-in-out",
+          "text-neutral-black-3 fixed bottom-0 right-0 top-0 z-[51] flex max-h-screen min-h-screen w-full max-w-xl translate-x-full flex-col items-start justify-start gap-6 overflow-hidden rounded-l-13xl bg-gray-300 px-10 py-10 text-base backdrop-blur-2xl transition-transform duration-500 ease-in-out",
           activeSidebarOption === "change_password" &&
-            "translate-x-0 shadow-[0px_0px_72px_rgba(2,_24,_29,_0.11)]"
+            "translate-x-0 shadow-[0px_0px_72px_rgba(2,_24,_29,_0.11)]",
         )}
       >
         <ChangePasswordSidebar onClose={() => setActiveSidebarOption(null)} />

@@ -15,7 +15,7 @@ const SwapModal = (props: Props) => {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="text-lympha-primary font-medium"
+        className="font-medium text-lympha-primary"
       >
         SWAP
       </button>
@@ -30,14 +30,14 @@ const SwapModal = (props: Props) => {
           <div className="flex min-h-full items-center justify-center p-4">
             <DialogPanel
               transition
-              className="w-full max-w-xl flex flex-col p-10 gap-y-5  bg-neutral-white backdrop-blur-2xl shadow-[0px_2px_36px_rgba(0,_0,_0,_0.08)] rounded-13xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0 text-3xl text-neutral-black-5 font-proxima"
+              className="data-[closed]:transform-[scale(95%)] flex w-full max-w-xl flex-col gap-y-5 rounded-13xl bg-neutral-white p-10 font-proxima text-3xl text-neutral-black-5 shadow-[0px_2px_36px_rgba(0,_0,_0,_0.08)] backdrop-blur-2xl duration-300 ease-out data-[closed]:opacity-0"
             >
-              <div className="self-stretch overflow-hidden flex items-center justify-between">
-                <div className="self-stretch flex flex-col items-center justify-start">
-                  <h1 className="m-0 self-stretch relative text-inherit   font-bold">
+              <div className="flex items-center justify-between self-stretch overflow-hidden">
+                <div className="flex flex-col items-center justify-start self-stretch">
+                  <h1 className="relative m-0 self-stretch font-bold text-inherit">
                     Unsuccessful Verification
                   </h1>
-                  <b className="flex-1 relative text-sm text-neutral-black-4 font-normal">
+                  <b className="relative flex-1 text-sm font-normal text-neutral-black-4">
                     Project could not be verified due to lack of XYZ. Please
                     Submit XYZ below
                   </b>
@@ -45,48 +45,48 @@ const SwapModal = (props: Props) => {
 
                 <Button
                   onClick={close}
-                  className="h-12 w-12 rounded-13xl bg-neutral-white box-border overflow-hidden shrink-0 flex flex-row items-center justify-center py-3 px-[11px] border-[1px] border-solid border-neutral-black-2"
+                  className="box-border flex h-12 w-12 shrink-0 flex-row items-center justify-center overflow-hidden rounded-13xl border-[1px] border-solid border-neutral-black-2 bg-neutral-white px-[11px] py-3"
                 >
-                  <IoMdClose className="h-6 w-6 relative min-h-[24px] text-ketto-primary" />
+                  <IoMdClose className="relative h-6 min-h-[24px] w-6 text-ketto-primary" />
                 </Button>
               </div>
 
-              <section className="self-stretch flex flex-col items-start justify-start py-0 px-8 gap-[16px] text-left text-sm text-neutral-black-4 font-body-large-bold">
-                <div className="self-stretch flex flex-row items-center justify-between gap-[20px] mq450:flex-wrap">
-                  <div className="relative leading-[17px] uppercase inline-block min-w-[90px]">
+              <section className="font-body-large-bold flex flex-col items-start justify-start gap-[16px] self-stretch px-8 py-0 text-left text-sm text-neutral-black-4">
+                <div className="mq450:flex-wrap flex flex-row items-center justify-between gap-[20px] self-stretch">
+                  <div className="relative inline-block min-w-[90px] uppercase leading-[17px]">
                     Price Impact
                   </div>
-                  <div className="w-[42px] relative leading-[17px] uppercase text-right inline-block shrink-0">
+                  <div className="relative inline-block w-[42px] shrink-0 text-right uppercase leading-[17px]">
                     -2.4%
                   </div>
                 </div>
-                <div className="self-stretch flex flex-row items-center justify-between gap-[20px] mq450:flex-wrap">
-                  <div className="relative leading-[17px] uppercase inline-block min-w-[68px]">
+                <div className="mq450:flex-wrap flex flex-row items-center justify-between gap-[20px] self-stretch">
+                  <div className="relative inline-block min-w-[68px] uppercase leading-[17px]">
                     Slippage
                   </div>
-                  <div className="w-[57px] relative leading-[17px] uppercase text-right inline-block shrink-0">
+                  <div className="relative inline-block w-[57px] shrink-0 text-right uppercase leading-[17px]">
                     0.10%
                   </div>
                 </div>
-                <div className="self-stretch flex flex-row items-center justify-between gap-[20px] mq450:flex-wrap">
-                  <div className="relative leading-[17px] uppercase inline-block min-w-[110px]">
+                <div className="mq450:flex-wrap flex flex-row items-center justify-between gap-[20px] self-stretch">
+                  <div className="relative inline-block min-w-[110px] uppercase leading-[17px]">
                     Exchange rate
                   </div>
-                  <div className="relative leading-[17px] uppercase text-right inline-block min-w-[96px]">{`1 LCT ~ 100 LET `}</div>
+                  <div className="relative inline-block min-w-[96px] text-right uppercase leading-[17px]">{`1 LCT ~ 100 LET `}</div>
                 </div>
-                <div className="self-stretch flex flex-row items-center justify-between gap-[20px] mq450:flex-wrap">
-                  <div className="w-[92px] relative leading-[17px] uppercase inline-block shrink-0">
+                <div className="mq450:flex-wrap flex flex-row items-center justify-between gap-[20px] self-stretch">
+                  <div className="relative inline-block w-[92px] shrink-0 uppercase leading-[17px]">
                     FEE
                   </div>
-                  <div className="relative leading-[17px] uppercase text-right inline-block min-w-[71px]">
+                  <div className="relative inline-block min-w-[71px] text-right uppercase leading-[17px]">
                     0.0392 LET
                   </div>
                 </div>
-                <div className="self-stretch flex flex-row items-center justify-between gap-[20px] mq450:flex-wrap">
-                  <div className="relative leading-[17px] uppercase inline-block min-w-[129px]">
+                <div className="mq450:flex-wrap flex flex-row items-center justify-between gap-[20px] self-stretch">
+                  <div className="relative inline-block min-w-[129px] uppercase leading-[17px]">
                     Minimum received
                   </div>
-                  <div className="relative leading-[17px] uppercase text-right inline-block min-w-[71px]">
+                  <div className="relative inline-block min-w-[71px] text-right uppercase leading-[17px]">
                     0.0392 LET
                   </div>
                 </div>

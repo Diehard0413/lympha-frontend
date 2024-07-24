@@ -46,7 +46,7 @@ const LinkedBankAccountSidebar = (props: Props) => {
       await new Promise((resolve) =>
         setTimeout(() => {
           navigate.push("/auth/signin");
-        }, 2000)
+        }, 2000),
       );
     } catch (error: any) {
       console.error("An unexpected error happened:", error);
@@ -156,66 +156,66 @@ const LinkedBankAccountSidebar = (props: Props) => {
     // </div>
     // </div>
 
-    <div className="w-full flex flex-col gap-y-5">
-      <div className="self-stretch flex flex-col items-start justify-start max-w-full">
-        <div className="self-stretch flex flex-row flex-wrap items-start justify-start gap-2 max-w-full">
+    <div className="flex w-full flex-col gap-y-5">
+      <div className="flex max-w-full flex-col items-start justify-start self-stretch">
+        <div className="flex max-w-full flex-row flex-wrap items-start justify-start gap-2 self-stretch">
           <button onClick={props.onClose}>
-            <FaArrowLeft className="h-6 w-6 relative min-h-6" />
+            <FaArrowLeft className="relative h-6 min-h-6 w-6" />
           </button>
-          <div className="flex-1 flex flex-col items-start justify-start max-w-full">
-            <div className="self-stretch flex flex-row items-start justify-between gap-5">
-              <b className="relative tracking-tight inline-block">My wallet</b>
+          <div className="flex max-w-full flex-1 flex-col items-start justify-start">
+            <div className="flex flex-row items-start justify-between gap-5 self-stretch">
+              <b className="relative inline-block tracking-tight">My wallet</b>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="self-stretch flex flex-col items-start justify-start text-sm text-neutral-black-4">
-        <div className="self-stretch rounded-2xl bg-neutral-white flex flex-col items-start justify-start p-4 gap-[24px]">
-          <div className="self-stretch flex flex-col items-start justify-start">
-            <div className="self-stretch flex flex-row items-start justify-between gap-[20px] mq450:flex-wrap">
-              <div className="relative tracking-tight leading-5 font-medium">
+      <div className="flex flex-col items-start justify-start self-stretch text-sm text-neutral-black-4">
+        <div className="flex flex-col items-start justify-start gap-[24px] self-stretch rounded-2xl bg-neutral-white p-4">
+          <div className="flex flex-col items-start justify-start self-stretch">
+            <div className="mq450:flex-wrap flex flex-row items-start justify-between gap-[20px] self-stretch">
+              <div className="relative font-medium leading-5 tracking-tight">
                 Spot Wallet
               </div>
               <div className="flex flex-col items-start justify-center gap-[13px] text-right">
                 <div className="flex flex-row items-center justify-start gap-[8px]">
-                  <MdContentCopy className="m-0 h-4 w-4 relative overflow-hidden shrink-0" />
-                  <div className="relative tracking-[-0.02em] leading-[20px]">
+                  <MdContentCopy className="relative m-0 h-4 w-4 shrink-0 overflow-hidden" />
+                  <div className="relative leading-[20px] tracking-[-0.02em]">
                     XXXX XXXX XXXX XXXX
                   </div>
                 </div>
                 <div className="flex flex-row items-center justify-start gap-[8px]">
-                  <MdContentCopy className="m-0 h-4 w-4 relative overflow-hidden shrink-0" />
+                  <MdContentCopy className="relative m-0 h-4 w-4 shrink-0 overflow-hidden" />
 
-                  <div className="relative tracking-[-0.02em] leading-[20px]">
+                  <div className="relative leading-[20px] tracking-[-0.02em]">
                     XXXX XXXX XXXX XXXX
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="self-stretch flex flex-col items-start justify-start">
-            <div className="self-stretch flex flex-row items-center justify-between gap-[20px] mq450:flex-wrap">
-              <div className="relative tracking-tight leading-5 font-medium">
+          <div className="flex flex-col items-start justify-start self-stretch">
+            <div className="mq450:flex-wrap flex flex-row items-center justify-between gap-[20px] self-stretch">
+              <div className="relative font-medium leading-5 tracking-tight">
                 Trading Wallet
               </div>
               <div className="flex flex-row items-center justify-start gap-[8px] text-right">
-                <MdContentCopy className="m-0 h-4 w-4 relative overflow-hidden shrink-0" />
+                <MdContentCopy className="relative m-0 h-4 w-4 shrink-0 overflow-hidden" />
 
-                <div className="relative tracking-[-0.02em] leading-[20px]">
+                <div className="relative leading-[20px] tracking-[-0.02em]">
                   XXXX XXXX XXXX XXXX
                 </div>
               </div>
             </div>
           </div>
-          <div className="self-stretch flex flex-col items-start justify-start">
-            <div className="self-stretch flex flex-row items-center justify-between gap-[20px] mq450:flex-wrap">
-              <div className="relative tracking-tight leading-5 font-medium">
+          <div className="flex flex-col items-start justify-start self-stretch">
+            <div className="mq450:flex-wrap flex flex-row items-center justify-between gap-[20px] self-stretch">
+              <div className="relative font-medium leading-5 tracking-tight">
                 Etc Details
               </div>
               <div className="flex flex-row items-center justify-start gap-[8px] text-right">
-                <MdContentCopy className="m-0 h-4 w-4 relative overflow-hidden shrink-0" />
-                <div className="relative tracking-[-0.02em] leading-[20px]">
+                <MdContentCopy className="relative m-0 h-4 w-4 shrink-0 overflow-hidden" />
+                <div className="relative leading-[20px] tracking-[-0.02em]">
                   XXXX XXXX XXXX XXXX
                 </div>
               </div>

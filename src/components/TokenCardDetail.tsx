@@ -17,27 +17,25 @@ const TokenCardDetails = ({
 }: TokenCardDetailsType) => {
   return (
     <div
-      className={`flex-1 rounded-2xl bg-neutral-white box-border flex flex-col items-start justify-start py-[22px] px-[23px] gap-[24px] min-w-[325px] max-w-full text-left text-2xl text-neutral-black-6 font-body-large-bold border-[1px] border-solid border-silver ${className}`}
+      className={`font-body-large-bold border-silver box-border flex min-w-[325px] max-w-full flex-1 flex-col items-start justify-start gap-[24px] rounded-2xl border-[1px] border-solid bg-neutral-white px-[23px] py-[22px] text-left text-2xl text-neutral-black-6 ${className}`}
     >
-      <div className="self-stretch flex flex-col items-start justify-start gap-[8px]">
+      <div className="flex flex-col items-start justify-start gap-[8px] self-stretch">
         <img
-          className="w-[59.1px] h-[60px] relative object-contain"
+          className="relative h-[60px] w-[59.1px] object-contain"
           loading="lazy"
           alt=""
           src={icon}
         />
-        <div className="self-stretch flex flex-col items-start justify-start">
+        <div className="flex flex-col items-start justify-start self-stretch">
           <div className="flex flex-col items-start justify-start">
-            <b className="relative leading-8">
-              {title}
-            </b>
+            <b className="relative leading-8">{title}</b>
           </div>
         </div>
       </div>
-      <div className="self-stretch flex flex-col items-start justify-start gap-[8px] text-neutral-black-5">
-        <div className="self-stretch flex flex-row items-center justify-start py-0 pr-6 pl-0">
-          <div className="flex-1 flex flex-col items-start justify-start">
-            <div className="self-stretch relative tracking-[-0.02em] leading-[34px] whitespace-nowrap mq450:text-lgi mq450:leading-[27px]">
+      <div className="flex flex-col items-start justify-start gap-[8px] self-stretch text-neutral-black-5">
+        <div className="flex flex-row items-center justify-start self-stretch py-0 pl-0 pr-6">
+          <div className="flex flex-1 flex-col items-start justify-start">
+            <div className="mq450:text-lgi mq450:leading-[27px] relative self-stretch whitespace-nowrap leading-[34px] tracking-[-0.02em]">
               ${amount}
             </div>
           </div>
@@ -45,10 +43,10 @@ const TokenCardDetails = ({
         <div
           className={cn(
             "flex flex-row items-start justify-start text-lg text-state-success",
-            change.includes("-") && "text-state-error"
+            change.includes("-") && "text-state-error",
           )}
         >
-          <b className="relative tracking-[-0.02em] leading-[140%] inline-block min-w-[91px]">
+          <b className="relative inline-block min-w-[91px] leading-[140%] tracking-[-0.02em]">
             {change}
           </b>
         </div>

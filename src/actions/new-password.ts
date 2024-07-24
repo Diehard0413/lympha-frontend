@@ -1,6 +1,8 @@
 "use server";
 
-import bcrypt from "bcryptjs";
+// import bcrypt from "bcryptjs";
+const bcrypt = require("bcryptjs");
+
 import { getUserByEmail } from "../lib/data/user";
 import { updatePassword } from "@/lib/data/password-reset-token";
 
@@ -19,7 +21,7 @@ export const newPassword = async (values: {
 
   const isPasswordValid = await bcrypt.compare(
     oldPassword,
-    existingUser.password
+    existingUser.password,
   );
 
   if (!isPasswordValid) {

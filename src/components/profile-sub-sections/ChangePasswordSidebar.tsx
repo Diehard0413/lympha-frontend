@@ -54,7 +54,7 @@ const LinkedBankAccountSidebar = (props: Props) => {
       await new Promise((resolve) =>
         setTimeout(() => {
           router.push("/auth/signin");
-        }, 2000)
+        }, 2000),
       );
     } catch (error: any) {
       console.error("An unexpected error happened:", error);
@@ -68,15 +68,15 @@ const LinkedBankAccountSidebar = (props: Props) => {
   };
 
   return (
-    <div className="w-full flex flex-col gap-y-5">
-      <div className="self-stretch flex flex-col items-start justify-start max-w-full">
-        <div className="self-stretch flex flex-row flex-wrap items-start justify-start gap-2 max-w-full">
+    <div className="flex w-full flex-col gap-y-5">
+      <div className="flex max-w-full flex-col items-start justify-start self-stretch">
+        <div className="flex max-w-full flex-row flex-wrap items-start justify-start gap-2 self-stretch">
           <button onClick={props.onClose}>
-            <FaArrowLeft className="h-6 w-6 relative min-h-[24px]" />
+            <FaArrowLeft className="relative h-6 min-h-[24px] w-6" />
           </button>
-          <div className="flex-1 flex flex-col items-start justify-start pt-px px-0 pb-0 box-border min-w-[289px] max-w-full">
-            <div className="self-stretch flex flex-row items-start justify-between gap-[20px] mq450:flex-wrap">
-              <b className="relative tracking-[-0.02em] leading-[140%] inline-block min-w-[46px]">
+          <div className="box-border flex min-w-[289px] max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-px">
+            <div className="mq450:flex-wrap flex flex-row items-start justify-between gap-[20px] self-stretch">
+              <b className="relative inline-block min-w-[46px] leading-[140%] tracking-[-0.02em]">
                 Change Password
               </b>
             </div>
@@ -87,25 +87,25 @@ const LinkedBankAccountSidebar = (props: Props) => {
         onSubmit={handleSubmit(onSubmit)}
         method="post"
         className={
-          "m-0 self-stretch flex flex-col items-start justify-start  max-w-full shrink-0 "
+          "m-0 flex max-w-full shrink-0 flex-col items-start justify-start self-stretch"
         }
       >
-        <div className="self-stretch flex flex-col items-start justify-start gap-4 py-5">
+        <div className="flex flex-col items-start justify-start gap-4 self-stretch py-5">
           <div
             className={
-              "self-stretch flex flex-col items-start justify-start gap-1 max-w-full text-left text-base text-neutral-black-5"
+              "flex max-w-full flex-col items-start justify-start gap-1 self-stretch text-left text-base text-neutral-black-5"
             }
           >
             <label
               htmlFor="current_password"
-              className="relative tracking-[-0.02em] leading-[140%] inline-block min-w-[58px]"
+              className="relative inline-block min-w-[58px] leading-[140%] tracking-[-0.02em]"
             >
               Current Password
             </label>
-            <div className="self-stretch rounded-lg bg-neutral-white box-border flex flex-row items-center justify-start max-w-full border-[0.5px] border-solid border-neutral-black-2">
+            <div className="box-border flex max-w-full flex-row items-center justify-start self-stretch rounded-lg border-[0.5px] border-solid border-neutral-black-2 bg-neutral-white">
               <input
                 id="current_password"
-                className="w-full border-none outline-none text-base bg-transparent py-3 pr-3 pl-5  flex-1 relative tracking-[-0.02em] text-left inline-block  whitespace-nowrap max-w-full text-neutral-black-5 placeholder-neutral-black-4 align-middle"
+                className="relative inline-block w-full max-w-full flex-1 whitespace-nowrap border-none bg-transparent py-3 pl-5 pr-3 text-left align-middle text-base tracking-[-0.02em] text-neutral-black-5 placeholder-neutral-black-4 outline-none"
                 type="password"
                 placeholder="*********"
                 {...register("currentPassword")}
@@ -119,19 +119,19 @@ const LinkedBankAccountSidebar = (props: Props) => {
           </div>
           <div
             className={
-              "self-stretch flex flex-col items-start justify-start gap-1 max-w-full text-left text-base text-neutral-black-5"
+              "flex max-w-full flex-col items-start justify-start gap-1 self-stretch text-left text-base text-neutral-black-5"
             }
           >
             <label
               htmlFor="newPassword"
-              className="relative tracking-[-0.02em] leading-[140%] inline-block min-w-[58px]"
+              className="relative inline-block min-w-[58px] leading-[140%] tracking-[-0.02em]"
             >
               New Password
             </label>
-            <div className="self-stretch rounded-lg bg-neutral-white box-border flex flex-row items-center justify-start max-w-full border-[0.5px] border-solid border-neutral-black-2">
+            <div className="box-border flex max-w-full flex-row items-center justify-start self-stretch rounded-lg border-[0.5px] border-solid border-neutral-black-2 bg-neutral-white">
               <input
                 id="newPassword"
-                className="w-full border-none outline-none text-base bg-transparent py-3 pr-3 pl-5  flex-1 relative tracking-[-0.02em] text-left inline-block  whitespace-nowrap max-w-full text-neutral-black-5 placeholder-neutral-black-4 align-middle"
+                className="relative inline-block w-full max-w-full flex-1 whitespace-nowrap border-none bg-transparent py-3 pl-5 pr-3 text-left align-middle text-base tracking-[-0.02em] text-neutral-black-5 placeholder-neutral-black-4 outline-none"
                 type="password"
                 placeholder="*********"
                 {...register("newPassword")}
@@ -145,19 +145,19 @@ const LinkedBankAccountSidebar = (props: Props) => {
           </div>
           <div
             className={
-              "self-stretch flex flex-col items-start justify-start gap-1 max-w-full text-left text-base text-neutral-black-5"
+              "flex max-w-full flex-col items-start justify-start gap-1 self-stretch text-left text-base text-neutral-black-5"
             }
           >
             <label
               htmlFor="confirmPassword"
-              className="relative tracking-[-0.02em] leading-[140%] inline-block min-w-[58px]"
+              className="relative inline-block min-w-[58px] leading-[140%] tracking-[-0.02em]"
             >
               Confirm Password
             </label>
-            <div className="self-stretch rounded-lg bg-neutral-white box-border flex flex-row items-center justify-start max-w-full border-[0.5px] border-solid border-neutral-black-2">
+            <div className="box-border flex max-w-full flex-row items-center justify-start self-stretch rounded-lg border-[0.5px] border-solid border-neutral-black-2 bg-neutral-white">
               <input
                 id="confirmPassword"
-                className="w-full border-none outline-none text-base bg-transparent py-3 pr-3 pl-5  flex-1 relative tracking-[-0.02em] text-left inline-block  whitespace-nowrap max-w-full text-neutral-black-5 placeholder-neutral-black-4 align-middle"
+                className="relative inline-block w-full max-w-full flex-1 whitespace-nowrap border-none bg-transparent py-3 pl-5 pr-3 text-left align-middle text-base tracking-[-0.02em] text-neutral-black-5 placeholder-neutral-black-4 outline-none"
                 type="password"
                 placeholder="*********"
                 {...register("confirmPassword")}
@@ -170,11 +170,11 @@ const LinkedBankAccountSidebar = (props: Props) => {
             )}
           </div>
         </div>
-        <div className="self-stretch flex flex-col items-start justify-start gap-[20px]">
-          <button className="w-max cursor-pointer py-3 px-5 bg-lympha-primary self-stretch shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] rounded-13xl flex flex-row items-center justify-center border-[2px] border-solid border-darkslategray hover:bg-darkcyan-100 hover:box-border hover:border-[2px]  hover:border-teal text-neutral-white font-semibold">
+        <div className="flex flex-col items-start justify-start gap-[20px] self-stretch">
+          <button className="flex w-max cursor-pointer flex-row items-center justify-center self-stretch rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-5 py-3 font-semibold text-neutral-white shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] hover:box-border hover:border-[2px] hover:border-teal hover:bg-darkcyan-100">
             {isSubmitting && (
               <svg
-                className="animate-spin -ml-1 mr-2 h-5 w-5 text-white"
+                className="-ml-1 mr-2 h-5 w-5 animate-spin text-white"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"

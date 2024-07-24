@@ -38,50 +38,50 @@ const BuyOrders: FunctionComponent<BuyOrdersType> = ({ className = "" }) => {
 
   return (
     <div
-      className={`flex-1 rounded-3xl bg-neutral-white flex flex-col items-center justify-start p-4  gap-5 max-w-full text-left  text-neutral-black-4 divide-y divide-neutral-black-1 ${className}`}
+      className={`flex max-w-full flex-1 flex-col items-center justify-start gap-5 divide-y divide-neutral-black-1 rounded-3xl bg-neutral-white p-4 text-left text-neutral-black-4 ${className}`}
     >
-      <div className="self-stretch flex flex-row items-center justify-between gap-[20px] mq450:flex-wrap">
+      <div className="mq450:flex-wrap flex flex-row items-center justify-between gap-[20px] self-stretch">
         <div className="flex flex-row items-center justify-start gap-3">
-          <div className="size-10 rounded-3xl bg-neutral-black-1 overflow-hidden shrink-0 flex flex-row items-center justify-center">
-            <GoArrowDownLeft className="size-5 relative " />
+          <div className="flex size-10 shrink-0 flex-row items-center justify-center overflow-hidden rounded-3xl bg-neutral-black-1">
+            <GoArrowDownLeft className="relative size-5" />
           </div>
-          <b className="flex-1 relative tracking-tight text-lg ">Buy Orders</b>
+          <b className="relative flex-1 text-lg tracking-tight">Buy Orders</b>
         </div>
-        <button className="cursor-pointer py-1.5 px-6 bg-lympha-primary uppercase shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] rounded-full transition-all duration-300 ease-in-out flex flex-row items-center justify-center whitespace-nowrap hover:bg-darkcyan-100">
-          <b className="relative text-sm tracking-tight text-neutral-white text-left min-w-24">
+        <button className="flex cursor-pointer flex-row items-center justify-center whitespace-nowrap rounded-full bg-lympha-primary px-6 py-1.5 uppercase shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] transition-all duration-300 ease-in-out hover:bg-darkcyan-100">
+          <b className="relative min-w-24 text-left text-sm tracking-tight text-neutral-white">
             New Buy Order
           </b>
         </button>
       </div>
 
-      <div className="self-stretch flex flex-row items-end justify-between pt-4 px-2 box-border max-w-full gap-5 text-sm ">
-        <div className="w-full flex flex-col py-1.5 gap-5">
-          <div className="flex-1 grid grid-cols-4 items-center justify-between gap-8 min-w-[75px]">
-            <b className="tracking-tight leading-5">Price</b>
-            <b className="tracking-tight leading-5 text-center">Quantity</b>
-            <b className="tracking-tight leading-5 text-right">Total</b>
-            <div className=" relative tracking-[-0.02em] leading-[20px] shrink-0"></div>
+      <div className="box-border flex max-w-full flex-row items-end justify-between gap-5 self-stretch px-2 pt-4 text-sm">
+        <div className="flex w-full flex-col gap-5 py-1.5">
+          <div className="grid min-w-[75px] flex-1 grid-cols-4 items-center justify-between gap-8">
+            <b className="leading-5 tracking-tight">Price</b>
+            <b className="text-center leading-5 tracking-tight">Quantity</b>
+            <b className="text-right leading-5 tracking-tight">Total</b>
+            <div className="relative shrink-0 leading-[20px] tracking-[-0.02em]"></div>
           </div>
 
           <div className="flex flex-col gap-y-3">
             {orderData.map((order, index) => (
               <div
                 key={index}
-                className="flex-1 grid grid-cols-4 items-center gap-8 font-normal text-left"
+                className="grid flex-1 grid-cols-4 items-center gap-8 text-left font-normal"
               >
-                <div className="text-left tracking-tight leading-5">
+                <div className="text-left leading-5 tracking-tight">
                   {order.price}
                 </div>
-                <div className="tracking-tight leading-5 text-center">
+                <div className="text-center leading-5 tracking-tight">
                   {order.quantity}
                 </div>
 
-                <div className="tracking-tight leading-5 text-right ">
+                <div className="text-right leading-5 tracking-tight">
                   {order.total}
                 </div>
                 <div className="flex items-center justify-end">
-                  <button className="cursor-pointer w-max px-5 py-1.5 bg-neutral-white rounded-2xl flex flex-row items-center justify-end border border-neutral-black-2 hover:bg-lympha-disabled hover:box-border hover:border hover:border-transparent">
-                    <b className="relative text-xs  text-lympha-primary">Buy</b>
+                  <button className="flex w-max cursor-pointer flex-row items-center justify-end rounded-2xl border border-neutral-black-2 bg-neutral-white px-5 py-1.5 hover:box-border hover:border hover:border-transparent hover:bg-lympha-disabled">
+                    <b className="relative text-xs text-lympha-primary">Buy</b>
                   </button>
                 </div>
               </div>

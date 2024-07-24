@@ -1,23 +1,22 @@
 "use client";
 
-import { registerNewUser } from "@/actions/register";
-import InputField from "@/components/InputField";
-import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { FunctionComponent } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { FunctionComponent, useState } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 import * as Yup from "yup";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import { resetPassword } from "@/actions/forgot-password";
 
-interface RegisterFormDataType {
-  name: string;
+interface ResetFormDataType {
   email: string;
   password: string;
   confirmPassword: string;
+  resetPasswordToken: string;
 }
 
-const registerValidationSchema = Yup.object().shape({
-  name: Yup.string().required(),
+const resetPasswordValidationSchema = Yup.object().shape({
   email: Yup.string().email().required(),
   password: Yup.string().required(),
   confirmPassword: Yup.string()
@@ -25,10 +24,12 @@ const registerValidationSchema = Yup.object().shape({
     .min(8, "Password is too short - should be 8 chars minimum.")
     .matches(/[a-zA-Z]/, "Password can only contain Latin letters.")
     .oneOf([Yup.ref("password")], "Passwords must match"),
+  resetPasswordToken: Yup.string().required(),
 });
 
-const Register: FunctionComponent = () => {
+const ResetPassword: FunctionComponent = () => {
   const router = useRouter();
+  //   const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -40,46 +41,41 @@ const Register: FunctionComponent = () => {
     watch,
     setError,
     clearErrors,
-  } = useForm<RegisterFormDataType>({
-    resolver: yupResolver(registerValidationSchema),
-    defaultValues: {},
+  } = useForm<ResetFormDataType>({
+    resolver: yupResolver(resetPasswordValidationSchema),
+    defaultValues: {
+      email: "email@email.com",
+      resetPasswordToken: "token",
+    },
   });
 
-  const onSubmit = async (data: RegisterFormDataType) => {
+  const onSubmit = async (data: ResetFormDataType) => {
     try {
-      const response = await registerNewUser({
-        name: data.name,
-        email: data.email,
+      const response = await resetPassword({
+        email: localStorage?.getItem("email") ?? "",
         password: data.password,
         confirmPassword: data.confirmPassword,
+        resetPasswordToken: localStorage?.getItem("resetPasswordToken") ?? "",
       });
+
       if (response.error) {
         setError("root.serverError", {
           message: response.error,
         });
-
-        setTimeout(() => {
-          clearErrors();
-        }, 2000);
-
         return;
       }
-      reset();
-      localStorage.setItem("email", data.email);
-      router.push("/auth/verify?requestType=register");
+
+      toast.success("Password reset successfully");
+      router.push("/auth/signin");
     } catch (error: any) {
       console.error("An unexpected error happened:", error);
       setError("root.serverError", {
         message: "An unexpected error happened",
       });
-
-      setTimeout(() => {
-        clearErrors();
-      }, 2000);
     }
     setTimeout(() => {
       clearErrors();
-    }, 2000);
+    }, 3000);
   };
 
   return (
@@ -98,68 +94,17 @@ const Register: FunctionComponent = () => {
             <form
               onSubmit={handleSubmit(onSubmit)}
               method="post"
-              className={
-                "m-0 flex max-w-full shrink-0 flex-col items-start justify-start self-stretch"
-              }
+              className="m-0 flex flex-col items-start justify-start gap-10 self-stretch"
             >
               <div className="flex flex-col items-start justify-start self-stretch">
-                <h1 className="text-13xl relative m-0 self-stretch text-left text-xl font-bold leading-10 tracking-[-0.02em] text-neutral-black-6">
-                  Create Your Account
+                <h1 className="m-0 self-stretch text-left text-lg font-bold leading-10 tracking-tight text-neutral-black-6">
+                  Reset Password
                 </h1>
                 <div className="font-body-large-bold relative self-stretch text-left text-lg leading-[140%] tracking-[-0.02em] text-neutral-black-6">
-                  Sign up to access the Lympha platform and start trading carbon
-                  credits.
+                  Reset your Lympha account password.
                 </div>
               </div>
-              <div className="flex flex-col items-start justify-start gap-4 self-stretch py-5">
-                <div
-                  className={`flex max-w-full flex-col items-start justify-start gap-1 self-stretch text-left text-base text-neutral-black-5`}
-                >
-                  <label
-                    htmlFor="name"
-                    className="relative inline-block min-w-[58px] leading-[140%] tracking-[-0.02em]"
-                  >
-                    Name
-                  </label>
-                  <div className="box-border flex max-w-full flex-row items-center justify-start self-stretch rounded-lg border-[0.5px] border-solid border-neutral-black-2 bg-neutral-white">
-                    <input
-                      id="name"
-                      className="relative inline-block w-full max-w-full flex-1 whitespace-nowrap border-none bg-transparent py-3 pl-5 pr-3 text-left align-middle text-base tracking-tight text-neutral-black-5 placeholder-neutral-black-4 outline-none"
-                      placeholder="john doe"
-                      type="name"
-                      {...register("name")}
-                    />
-                  </div>
-                  {errors.name && (
-                    <div className="relative text-sm tracking-tight text-state-error">
-                      {errors.name.message}
-                    </div>
-                  )}
-                </div>
-                <div
-                  className={`flex max-w-full flex-col items-start justify-start gap-[4px] self-stretch text-left text-base text-neutral-black-5`}
-                >
-                  <label
-                    htmlFor="email"
-                    className="relative inline-block min-w-[58px] leading-[140%] tracking-[-0.02em]"
-                  >
-                    Email ID
-                  </label>
-                  <div className="box-border flex max-w-full flex-row items-center justify-start self-stretch rounded-lg border-[0.5px] border-solid border-neutral-black-2 bg-neutral-white">
-                    <input
-                      id="email"
-                      className="relative inline-block w-full max-w-full flex-1 whitespace-nowrap border-none bg-transparent py-3 pl-5 pr-3 text-left align-middle text-base tracking-tight text-neutral-black-5 placeholder-neutral-black-4 outline-none"
-                      placeholder="arushi.parasrampuria@gmail.com"
-                      type="email"
-                      {...register("email")}
-                    />
-                  </div>
-                  {errors.email && (
-                    <div className="relative text-sm tracking-tight text-state-error">
-                      {errors.email.message}
-                    </div>
-                  )}
-                </div>
+              <div className="flex max-w-full flex-col items-start justify-start gap-[24px] self-stretch">
                 <div
                   className={
                     "flex max-w-full flex-col items-start justify-start gap-1 self-stretch text-left text-base text-neutral-black-5"
@@ -213,13 +158,15 @@ const Register: FunctionComponent = () => {
                   )}
                 </div>
               </div>
-              {errors.root?.serverError && (
-                <div className="relative pb-5 text-sm tracking-tight text-state-error">
-                  {errors.root.serverError.message}
-                </div>
-              )}
-              <div className="flex flex-col items-start justify-start gap-[20px] self-stretch">
-                <button className="flex cursor-pointer flex-row items-center justify-center self-stretch rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-5 py-4 font-semibold text-neutral-white shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] hover:box-border hover:border-[2px] hover:border-teal hover:bg-darkcyan-100">
+              <div
+                className={
+                  "items-cneter font-body-large-bold flex flex-col justify-center gap-5 self-stretch text-left text-base text-neutral-black-5"
+                }
+              >
+                <button
+                  type="submit"
+                  className="flex cursor-pointer flex-row items-center justify-center self-stretch whitespace-nowrap rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-5 py-[15px] font-semibold text-neutral-white shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] hover:box-border hover:border-[2px] hover:border-solid hover:border-teal hover:bg-darkcyan-100"
+                >
                   {isSubmitting && (
                     <svg
                       className="-ml-1 mr-2 h-5 w-5 animate-spin text-white"
@@ -243,18 +190,18 @@ const Register: FunctionComponent = () => {
                     </svg>
                   )}
 
-                  {isSubmitting ? "Submitting" : "Register"}
+                  {isSubmitting ? "Submitting..." : "Submit"}
                 </button>
-                <div className="mq450:pl-5 mq450:pr-5 mq450:box-border flex flex-row items-start justify-center gap-[8px] px-[65px] py-0">
-                  <div className="font-body-large-bold relative whitespace-nowrap text-left text-base leading-[140%] tracking-[-0.02em] text-neutral-black-5">
-                    Already have an account?
+                <div className="flex flex-row items-start justify-center gap-[8px]">
+                  <div className="relative whitespace-nowrap">
+                    Dont have an account?
                   </div>
                   <Link
-                    href="/auth/signin"
-                    className="flex flex-row items-center justify-center rounded-13xl"
+                    href="/auth/register"
+                    className="flex cursor-pointer flex-row items-center justify-center rounded-13xl text-lympha-primary"
                   >
-                    <b className="font-body-large-bold relative inline-block min-w-[43px] whitespace-nowrap text-left text-base leading-[140%] tracking-[-0.02em] text-lympha-primary">
-                      Log in
+                    <b className="relative inline-block min-w-[96px] leading-[140%] tracking-[-0.02em]">
+                      Register Here
                     </b>
                   </Link>
                 </div>
@@ -273,4 +220,4 @@ const Register: FunctionComponent = () => {
   );
 };
 
-export default Register;
+export default ResetPassword;

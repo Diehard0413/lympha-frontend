@@ -50,7 +50,11 @@ export const sendEmail = async ({
   from?: string;
 }) => {
   try {
-    console.log("configs.MAILGUN_DOMAIN", configs.MAILGUN_DOMAIN, configs.MAILGUN_API_KEY);
+    console.log(
+      "configs.MAILGUN_DOMAIN",
+      configs.MAILGUN_DOMAIN,
+      configs.MAILGUN_API_KEY,
+    );
     await mailgunClient.messages.create(
       configs.MAILGUN_DOMAIN ?? "sandbox.mailgun.org",
       {
@@ -58,7 +62,7 @@ export const sendEmail = async ({
         to,
         subject,
         html,
-      }
+      },
     );
     return { success: "Email sent successfully!" };
   } catch (e: any) {

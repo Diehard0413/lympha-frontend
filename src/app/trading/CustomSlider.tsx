@@ -18,55 +18,55 @@ const CustomSlider = (props: Props) => {
   };
 
   return (
-    <div className="w-full relative">
-      <div className="relative flex items-center transition-all duration-500 ease-in-out transform">
-        <div className="absolute top-1/2 h-2 -translate-y-1/2 left-0 right-0 w-full z-0 bg-neutral-black-2 rounded-full"></div>
+    <div className="relative w-full">
+      <div className="relative flex transform items-center transition-all duration-500 ease-in-out">
+        <div className="absolute left-0 right-0 top-1/2 z-0 h-2 w-full -translate-y-1/2 rounded-full bg-neutral-black-2"></div>
         <div
           className={cn(
-            "absolute top-1/2 -translate-y-1/2 left-0 right-0 w-full z-10",
-            "h-1 bg-neutrals-4 flex justify-between items-center overflow-visibled"
+            "absolute left-0 right-0 top-1/2 z-10 w-full -translate-y-1/2",
+            "bg-neutrals-4 overflow-visibled flex h-1 items-center justify-between",
           )}
         >
           <div
-            className="shadow-sm relative rounded-full h-2 bg-lympha-primary"
+            className="relative h-2 rounded-full bg-lympha-primary shadow-sm"
             style={{ width: `${value}%` }}
           ></div>
         </div>
 
         <div
           className={cn(
-            "w-full h-1 bg-transparent flex justify-between items-center overflow-visibled",
-            "absolute top-1/2 -translate-y-1/2 left-0 right-0 w-full z-20"
+            "overflow-visibled flex h-1 w-full items-center justify-between bg-transparent",
+            "absolute left-0 right-0 top-1/2 z-20 w-full -translate-y-1/2",
           )}
         >
           <div
             className={cn(
-              "size-4 border-[3px] border-neutral-black-1 shadow-sm relative rounded-full bg-neutral-black-2",
-              value >= 0 && "bg-lympha-dark z-50 border-lympha-primary"
+              "relative size-4 rounded-full border-[3px] border-neutral-black-1 bg-neutral-black-2 shadow-sm",
+              value >= 0 && "z-50 border-lympha-primary bg-lympha-dark",
             )}
           />
           <div
             className={cn(
-              "size-4 border-[3px] border-neutral-black-1 shadow-sm relative rounded-full bg-neutral-black-2",
-              value >= 25 && "bg-lympha-dark z-50 border-lympha-primary"
+              "relative size-4 rounded-full border-[3px] border-neutral-black-1 bg-neutral-black-2 shadow-sm",
+              value >= 25 && "z-50 border-lympha-primary bg-lympha-dark",
             )}
           />
           <div
             className={cn(
-              "size-4 border-[3px] border-neutral-black-1 shadow-sm relative rounded-full bg-neutral-black-2",
-              value >= 50 && "bg-lympha-dark z-50 border-lympha-primary"
+              "relative size-4 rounded-full border-[3px] border-neutral-black-1 bg-neutral-black-2 shadow-sm",
+              value >= 50 && "z-50 border-lympha-primary bg-lympha-dark",
             )}
           />
           <div
             className={cn(
-              "size-4 border-[3px] border-neutral-black-1 shadow-sm relative rounded-full bg-neutral-black-2",
-              value >= 75 && "bg-lympha-dark z-50 border-lympha-primary"
+              "relative size-4 rounded-full border-[3px] border-neutral-black-1 bg-neutral-black-2 shadow-sm",
+              value >= 75 && "z-50 border-lympha-primary bg-lympha-dark",
             )}
           />
           <div
             className={cn(
-              "size-4 border-[3px] border-neutral-black-1 shadow-sm relative rounded-full bg-neutral-black-2",
-              value >= 100 && "bg-lympha-dark z-50 border-lympha-primary"
+              "relative size-4 rounded-full border-[3px] border-neutral-black-1 bg-neutral-black-2 shadow-sm",
+              value >= 100 && "z-50 border-lympha-primary bg-lympha-dark",
             )}
           />
         </div>
@@ -78,7 +78,7 @@ const CustomSlider = (props: Props) => {
           min={0}
           max={100}
           // className="w-full relative size-5 appearance-none bg-transparent custom-range-slider z-10 transition-all duration-100 ease-in-out"
-          className="w-full relative size-5 custom-range-slider"
+          className="custom-range-slider relative size-5 w-full"
           onChange={handleChange}
           value={value}
           data-value={value}
@@ -87,23 +87,23 @@ const CustomSlider = (props: Props) => {
 
         {/* thumb tooltip */}
         <div
-          className="z-30 absolute size-8 shadow-sm rounded-full bg-neutral-white left-0 flex items-center justify-center"
+          className="absolute left-0 z-30 flex size-8 items-center justify-center rounded-full bg-neutral-white shadow-sm"
           style={{
             left: `${value}%`,
             transform: `translateX(${
               value === 0
                 ? -10
                 : value === 100
-                ? -90
-                : value === 25
-                ? -30
-                : value === 75
-                ? -70
-                : -50
+                  ? -90
+                  : value === 25
+                    ? -30
+                    : value === 75
+                      ? -70
+                      : -50
             }%)`,
           }}
         >
-          <div className="text-[9px] aspect-square text-center font-mono font-semibold  text-lympha-primary">
+          <div className="aspect-square text-center font-mono text-[9px] font-semibold text-lympha-primary">
             {value}%
           </div>
         </div>

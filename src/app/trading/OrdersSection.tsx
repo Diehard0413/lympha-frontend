@@ -40,58 +40,58 @@ const OrdersSection: FunctionComponent<OrdersSectionType> = ({
 
   return (
     <div
-      className={`flex-1 rounded-3xl bg-neutral-white flex flex-col items-center justify-start p-4  gap-5 max-w-full text-left  text-neutral-black-4 divide-y divide-neutral-black-1 ${className}`}
+      className={`flex max-w-full flex-1 flex-col items-center justify-start gap-5 divide-y divide-neutral-black-1 rounded-3xl bg-neutral-white p-4 text-left text-neutral-black-4 ${className}`}
     >
-      <div className="self-stretch flex flex-row items-center justify-between gap-[20px] mq450:flex-wrap">
-        <div className="w-48 flex flex-row items-center justify-start gap-[16px]">
-          <div className="h-8 w-8 rounded-3xl bg-neutral-black-1 overflow-hidden shrink-0 flex flex-row items-center justify-start pt-[11.2px] px-[11px] pb-[11.1px] box-border">
-            <GoArrowDownLeft className="h-[9.7px] w-[9.7px] relative object-contain" />
+      <div className="mq450:flex-wrap flex flex-row items-center justify-between gap-[20px] self-stretch">
+        <div className="flex w-48 flex-row items-center justify-start gap-[16px]">
+          <div className="box-border flex h-8 w-8 shrink-0 flex-row items-center justify-start overflow-hidden rounded-3xl bg-neutral-black-1 px-[11px] pb-[11.1px] pt-[11.2px]">
+            <GoArrowDownLeft className="relative h-[9.7px] w-[9.7px] object-contain" />
           </div>
-          <b className="flex-1 relative tracking-[-0.02em] leading-[140%]">
+          <b className="relative flex-1 leading-[140%] tracking-[-0.02em]">
             Buy
           </b>
         </div>
-        <button className="cursor-pointer py-1.5 px-[22px] bg-lympha-primary w-[159px] shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] rounded-13xl box-border flex flex-row items-center justify-center whitespace-nowrap border-[2px] border-solid border-darkslategray hover:bg-darkcyan-100 hover:box-border hover:border-[2px] hover:border-solid hover:border-teal">
-          <b className="relative text-sm tracking-[-0.02em] leading-[130%] inline-block font-body-large-bold text-neutral-white text-left min-w-[111px]">
+        <button className="box-border flex w-[159px] cursor-pointer flex-row items-center justify-center whitespace-nowrap rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-[22px] py-1.5 shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] hover:box-border hover:border-[2px] hover:border-solid hover:border-teal hover:bg-darkcyan-100">
+          <b className="font-body-large-bold relative inline-block min-w-[111px] text-left text-sm leading-[130%] tracking-[-0.02em] text-neutral-white">
             New Buy Order
           </b>
         </button>
       </div>
 
-      <div className="self-stretch flex flex-row items-end justify-between pt-4 px-2 box-border max-w-full gap-5 text-sm ">
-        <div className="w-full flex flex-col py-1.5 gap-5">
-          <div className="flex-1 grid grid-cols-4 items-center justify-between gap-8 min-w-[75px]">
-            <b className="self-stretch relative tracking-[-0.02em] leading-5">
+      <div className="box-border flex max-w-full flex-row items-end justify-between gap-5 self-stretch px-2 pt-4 text-sm">
+        <div className="flex w-full flex-col gap-5 py-1.5">
+          <div className="grid min-w-[75px] flex-1 grid-cols-4 items-center justify-between gap-8">
+            <b className="relative self-stretch leading-5 tracking-[-0.02em]">
               Price
             </b>
-            <b className="self-stretch relative tracking-[-0.02em] leading-[20px]">
+            <b className="relative self-stretch leading-[20px] tracking-[-0.02em]">
               Quantity
             </b>
-            <b className="self-stretch relative tracking-[-0.02em] leading-[20px]">
+            <b className="relative self-stretch leading-[20px] tracking-[-0.02em]">
               Total
             </b>
 
-            <div className=" relative tracking-[-0.02em] leading-[20px] shrink-0"></div>
+            <div className="relative shrink-0 leading-[20px] tracking-[-0.02em]"></div>
           </div>
 
           <div className="flex flex-col gap-y-3">
             {orderData.map((order, index) => (
               <div
                 key={index}
-                className="flex-1 grid grid-cols-4 items-center justify-justify-between gap-8 min-w-[75px] text-left"
+                className="justify-justify-between grid min-w-[75px] flex-1 grid-cols-4 items-center gap-8 text-left"
               >
-                <div className="self-stretch relative tracking-[-0.02em] leading-[20px]">
+                <div className="relative self-stretch leading-[20px] tracking-[-0.02em]">
                   75,890.91
                 </div>
-                <div className="self-stretch relative tracking-[-0.02em] leading-[20px]">
+                <div className="relative self-stretch leading-[20px] tracking-[-0.02em]">
                   75,890.91
                 </div>
 
-                <div className="self-stretch relative tracking-[-0.02em] leading-[20px]">
+                <div className="relative self-stretch leading-[20px] tracking-[-0.02em]">
                   75,890.91
                 </div>
-                <button className="cursor-pointer px-5 py-1 bg-neutral-white self-stretch rounded-2xl flex flex-row items-center justify-center border border-neutral-black-2 hover:bg-lympha-disabled hover:box-border hover:border hover:border-transparent">
-                  <b className="relative text-3xs leading-[130%] inline-block font-body-large-bold text-lympha-primary text-left min-w-[18px]">
+                <button className="flex cursor-pointer flex-row items-center justify-center self-stretch rounded-2xl border border-neutral-black-2 bg-neutral-white px-5 py-1 hover:box-border hover:border hover:border-transparent hover:bg-lympha-disabled">
+                  <b className="text-3xs font-body-large-bold relative inline-block min-w-[18px] text-left leading-[130%] text-lympha-primary">
                     Buy
                   </b>
                 </button>

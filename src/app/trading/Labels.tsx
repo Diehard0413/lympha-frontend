@@ -7,24 +7,24 @@ export type LabelsType = {
 const Labels: FunctionComponent<LabelsType> = ({ className = "" }) => {
   return (
     <div
-      className={`flex-1 flex flex-col items-start justify-start gap-[16px] min-w-[309px] max-w-full text-left text-sm text-neutral-black-5 font-body-large-bold ${className}`}
+      className={`font-body-large-bold flex min-w-[309px] max-w-full flex-1 flex-col items-start justify-start gap-[16px] text-left text-sm text-neutral-black-5 ${className}`}
     >
       <div className="flex flex-row items-start justify-start gap-[4px]">
-        <div className="relative tracking-[-0.02em] leading-[20px] inline-block min-w-[54px]">{`Available `}</div>
-        <b className="relative tracking-[-0.02em] leading-[20px] inline-block min-w-[76px]">
+        <div className="relative inline-block min-w-[54px] leading-[20px] tracking-[-0.02em]">{`Available `}</div>
+        <b className="relative inline-block min-w-[76px] leading-[20px] tracking-[-0.02em]">
           289378 LCT
         </b>
       </div>
-      <div className="self-stretch rounded-lg bg-neutral-white box-border flex flex-row items-start justify-start py-4 pr-[11px] pl-[19px] gap-[12px] max-w-full text-base text-neutral-black-2 border-[0.5px] border-solid border-neutral-black-2 mq750:flex-wrap">
-        <div className="flex-1 relative tracking-[-0.02em] leading-[140%] inline-block min-w-[26px] max-w-full">
+      <div className="mq750:flex-wrap box-border flex max-w-full flex-row items-start justify-start gap-[12px] self-stretch rounded-lg border-[0.5px] border-solid border-neutral-black-2 bg-neutral-white py-4 pl-[19px] pr-[11px] text-base text-neutral-black-2">
+        <div className="relative inline-block min-w-[26px] max-w-full flex-1 leading-[140%] tracking-[-0.02em]">
           Price
         </div>
-        <div className="flex flex-col items-start justify-start pt-0.5 px-0 pb-0 text-mid text-neutral-black-5">
-          <div className="h-[18px] rounded-13xl flex flex-row items-start justify-start gap-[8px]">
-            <b className="mt-[-1px] relative tracking-[-0.02em] leading-[120%] inline-block min-w-[29px]">
+        <div className="text-mid flex flex-col items-start justify-start px-0 pb-0 pt-0.5 text-neutral-black-5">
+          <div className="flex h-[18px] flex-row items-start justify-start gap-[8px] rounded-13xl">
+            <b className="relative mt-[-1px] inline-block min-w-[29px] leading-[120%] tracking-[-0.02em]">
               783
             </b>
-            <b className="mt-[-1px] relative tracking-[-0.02em] leading-[120%] inline-block min-w-[30px]">
+            <b className="relative mt-[-1px] inline-block min-w-[30px] leading-[120%] tracking-[-0.02em]">
               LCT
             </b>
           </div>

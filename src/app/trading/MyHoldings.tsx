@@ -7,26 +7,26 @@ export type MyHoldingsType = {
 const MyHoldings: FunctionComponent<MyHoldingsType> = ({ className = "" }) => {
   return (
     <div
-      className={`w-full rounded-2xl bg-neutral-white flex flex-col items-start justify-end p-6 gap-4 shrink-0 text-left text-lg text-neutral-black-4 ${className} divide-y divide-neutral-black-2 gap-y-5`}
+      className={`flex w-full shrink-0 flex-col items-start justify-end gap-4 rounded-2xl bg-neutral-white p-6 text-left text-lg text-neutral-black-4 ${className} gap-y-5 divide-y divide-neutral-black-2`}
     >
-      <b className="relative tracking-[-0.02em] leading-[140%] inline-block min-w-[96px]">
+      <b className="relative inline-block min-w-[96px] leading-[140%] tracking-[-0.02em]">
         My holdings
       </b>
 
-      <div className="self-stretch flex flex-row items-start justify-between gap-5 text-2xl text-neutral-black-6 py-10">
+      <div className="flex flex-row items-start justify-between gap-5 self-stretch py-10 text-2xl text-neutral-black-6">
         <div className="flex flex-col items-start justify-center gap-1">
-          <b className="relative tracking-tight leading-8 ">31 tokens</b>
-          <div className="relative text-sm tracking-tight leading-5 text-neutral-black-3">
+          <b className="relative leading-8 tracking-tight">31 tokens</b>
+          <div className="text-neutral-black-3 relative text-sm leading-5 tracking-tight">
             (average buy price $45900)
           </div>
         </div>
         <div className="flex flex-col items-end justify-center gap-1 text-right">
-          <b className="relative tracking-[-0.02em] leading-[34px] inline-block min-w-[84px] whitespace-nowrap mq450:text-lgi mq450:leading-[27px]">
+          <b className="mq450:text-lgi mq450:leading-[27px] relative inline-block min-w-[84px] whitespace-nowrap leading-[34px] tracking-[-0.02em]">
             $53700
           </b>
           <div className="flex flex-col items-end justify-start text-base text-state-success">
             <div className="flex flex-row items-start justify-start">
-              <div className="relative tracking-[-0.02em] leading-[140%] inline-block min-w-[96px]">
+              <div className="relative inline-block min-w-[96px] leading-[140%] tracking-[-0.02em]">
                 {`1D +$898 (2%)`}
               </div>
             </div>

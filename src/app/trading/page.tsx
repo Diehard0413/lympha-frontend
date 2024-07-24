@@ -13,28 +13,28 @@ type Props = {};
 
 const TradingPage = (props: Props) => {
   return (
-    <div className="w-full min-h-screen relative [background:linear-gradient(rgba(230,_232,_232,_0.4),_rgba(230,_232,_232,_0.4)),_#fcfdfd] overflow-hidden flex flex-col items-start justify-start font-proxima">
+    <div className="relative flex min-h-screen w-full flex-col items-start justify-start overflow-hidden font-proxima [background:linear-gradient(rgba(230,_232,_232,_0.4),_rgba(230,_232,_232,_0.4)),_#fcfdfd]">
       <Navbar />
-      <main className="w-11/12 md:w-5/6 lg:w-4/5 mx-auto self-stretch flex flex-row items-start justify-center md:px-5 py-10">
-        <section className="w-full flex flex-col items-start justify-start  gap-4 max-w-full text-left text-sm text-neutral-white">
+      <main className="mx-auto flex w-11/12 flex-row items-start justify-center self-stretch py-10 md:w-5/6 md:px-5 lg:w-4/5">
+        <section className="flex w-full max-w-full flex-col items-start justify-start gap-4 text-left text-sm text-neutral-white">
           <div
-            className={`w-full flex flex-col items-start justify-start gap-6 shrink-0 max-w-full text-left text-13xl text-neutral-black-6`}
+            className={`text-13xl flex w-full max-w-full shrink-0 flex-col items-start justify-start gap-6 text-left text-neutral-black-6`}
           >
             {/* Trading Header */}
-            <div className="w-full flex flex-col  md:flex-row items-start md:items-center justify-between max-w-full gap-2">
-              <div className="w-max flex flex-row items-center justify-start gap-4 max-w-full">
+            <div className="flex w-full max-w-full flex-col items-start justify-between gap-2 md:flex-row md:items-center">
+              <div className="flex w-max max-w-full flex-row items-center justify-start gap-4">
                 <img
-                  className="size-20 relative object-cover"
+                  className="relative size-20 object-cover"
                   loading="lazy"
                   alt=""
                   src={"/images/coins/let-coin.svg"}
                 />
-                <div className="flex-1 flex flex-row items-center justify-start py-0 pr-5 pl-0 box-border min-w-[203px]">
-                  <div className="flex-1 flex flex-col items-start justify-start">
-                    <h1 className="m-0 self-stretch relative text-inherit tracking-[-0.02em] leading-10 font-bold font-inherit text-2xl">
+                <div className="box-border flex min-w-[203px] flex-1 flex-row items-center justify-start py-0 pl-0 pr-5">
+                  <div className="flex flex-1 flex-col items-start justify-start">
+                    <h1 className="font-inherit relative m-0 self-stretch text-2xl font-bold leading-10 tracking-[-0.02em] text-inherit">
                       $LET
                     </h1>
-                    <h2 className="m-0 self-stretch relative text-xl md:text-2xl tracking-tight">
+                    <h2 className="relative m-0 self-stretch text-xl tracking-tight md:text-2xl">
                       Lympha Earch Token
                     </h2>
                   </div>
@@ -44,13 +44,13 @@ const TradingPage = (props: Props) => {
             </div>
 
             {/* Trading Body */}
-            <div className="w-full flex flex-col md:flex-row items-start justify-start  gap-4 max-w-full ">
+            <div className="flex w-full max-w-full flex-col items-start justify-start gap-4 md:flex-row">
               <TradingChartSection />
               <Statistics />
             </div>
           </div>
           <MyHoldings />
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 flex-row flex-wrap items-center justify-start gap-4 shrink-0 max-w-full">
+          <div className="grid w-full max-w-full shrink-0 grid-cols-1 flex-row flex-wrap items-center justify-start gap-4 md:grid-cols-2">
             <BuyOrders />
             <SellOrders />
           </div>
@@ -59,14 +59,14 @@ const TradingPage = (props: Props) => {
 
           <SampleProjectTokens />
 
-          <div className="self-stretch rounded-[20px] bg-lightgray flex flex-col md:flex-row items-start justify-between p-5 box-border shrink-0 max-w-full gap-3 md:gap-5 text-lg md:text-xl text-gray-200">
-            <div className=" flex flex-col items-start justify-start py-3 max-w-full">
-              <h3 className="self-stretch relative  font-bold font-inherit inline-block ">
+          <div className="box-border flex max-w-full shrink-0 flex-col items-start justify-between gap-3 self-stretch rounded-[20px] bg-lightgray p-5 text-lg text-gray-200 md:flex-row md:gap-5 md:text-xl">
+            <div className="flex max-w-full flex-col items-start justify-start py-3">
+              <h3 className="font-inherit relative inline-block self-stretch font-bold">
                 You can also choose to retire your tokens
               </h3>
             </div>
-            <button className=" shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] rounded-full px-5 bg-neutral-white flex flex-row items-start justify-start py-3 whitespace-nowrap text-base text-state-error hover:bg-state-error hover:text-neutral-white transition-all duration-300 ease-out">
-              <b className="self-stretch flex-1 relative tracking-[0.15px] leading-[24px]">
+            <button className="flex flex-row items-start justify-start whitespace-nowrap rounded-full bg-neutral-white px-5 py-3 text-base text-state-error shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] transition-all duration-300 ease-out hover:bg-state-error hover:text-neutral-white">
+              <b className="relative flex-1 self-stretch leading-[24px] tracking-[0.15px]">
                 Retire my LCT tokens
               </b>
             </button>

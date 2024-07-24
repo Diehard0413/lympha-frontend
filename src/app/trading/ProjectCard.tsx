@@ -17,50 +17,50 @@ export type ProjectCardType = {
 const ProjectCard: FC<ProjectCardType> = ({ className = "", project }) => {
   return (
     <div
-      className={`shadow-[0px_0px_20px_rgba(0,_0,_0,_0.04)] rounded-2xl bg-neutral-white overflow-hidden flex flex-col items-start justify-start text-left text-lg text-neutral-black-6  ${className} group`}
+      className={`flex flex-col items-start justify-start overflow-hidden rounded-2xl bg-neutral-white text-left text-lg text-neutral-black-6 shadow-[0px_0px_20px_rgba(0,_0,_0,_0.04)] ${className} group`}
     >
-      <div className="self-stretch h-36 flex flex-col items-start justify-start group overflow-hidden">
+      <div className="group flex h-36 flex-col items-start justify-start self-stretch overflow-hidden">
         <img
-          className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover group-hover:scale-125 transition-transform duration-300 ease-in-out"
+          className="relative max-h-full max-w-full flex-1 self-stretch overflow-hidden object-cover transition-transform duration-300 ease-in-out group-hover:scale-125"
           loading="lazy"
           alt=""
           src="/images/image-1.png"
         />
       </div>
-      <div className="self-stretch flex flex-col items-start justify-start p-4 gap-[24px]">
-        <div className="self-stretch flex flex-col items-start justify-start">
-          <div className="self-stretch flex flex-col items-start justify-start gap-[8px]">
-            <b className="relative tracking-[-0.02em] leading-[140%] inline-block min-w-[94px]">
+      <div className="flex flex-col items-start justify-start gap-[24px] self-stretch p-4">
+        <div className="flex flex-col items-start justify-start self-stretch">
+          <div className="flex flex-col items-start justify-start gap-[8px] self-stretch">
+            <b className="relative inline-block min-w-[94px] leading-[140%] tracking-[-0.02em]">
               {project.title}
             </b>
-            <div className="self-stretch flex flex-col items-start justify-start text-sm text-neutral-black-4">
-              <b className="self-stretch relative tracking-[-0.02em] leading-[20px]">
+            <div className="flex flex-col items-start justify-start self-stretch text-sm text-neutral-black-4">
+              <b className="relative self-stretch leading-[20px] tracking-[-0.02em]">
                 Method: {project.method}
               </b>
-              <div className="self-stretch relative tracking-[-0.02em] leading-[140%]">
+              <div className="relative self-stretch leading-[140%] tracking-[-0.02em]">
                 {project.description}
               </div>
             </div>
           </div>
         </div>
-        <div className="self-stretch flex flex-row items-center justify-start gap-[24px] text-xs text-neutral-black-4">
-          <div className="flex-1 flex flex-col items-start justify-start py-0 pr-[11px] pl-0">
-            <div className="relative tracking-[-0.02em] leading-[17px] inline-block min-w-[94px]">
+        <div className="flex flex-row items-center justify-start gap-[24px] self-stretch text-xs text-neutral-black-4">
+          <div className="flex flex-1 flex-col items-start justify-start py-0 pl-0 pr-[11px]">
+            <div className="relative inline-block min-w-[94px] leading-[17px] tracking-[-0.02em]">
               Min Invest: ${project.minInvest}
             </div>
-            <div className="self-stretch h-[17px] relative tracking-[-0.02em] leading-[140%] inline-block">
+            <div className="relative inline-block h-[17px] self-stretch leading-[140%] tracking-[-0.02em]">
               Tokens Offered: {project.tokensOffered}
             </div>
           </div>
           <Link
             href={`/invest/${project.id}`}
-            className="w-[50px] flex flex-row items-start justify-start text-sm text-neutral-white"
+            className="flex w-[50px] flex-row items-start justify-start text-sm text-neutral-white"
           >
-            <div className="flex-1 shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] rounded-13xl bg-lympha-primary flex flex-row items-center justify-center py-1.5 px-3.5 gap-[8px] border-[2px] border-solid border-darkslategray">
-              <b className="self-stretch w-[52px] relative tracking-[-0.02em] leading-[130%] uppercase hidden">
+            <div className="flex flex-1 flex-row items-center justify-center gap-[8px] rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-3.5 py-1.5 shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)]">
+              <b className="relative hidden w-[52px] self-stretch uppercase leading-[130%] tracking-[-0.02em]">
                 get let
               </b>
-              <IoIosArrowForward className="h-[18px] w-[18px] relative" />
+              <IoIosArrowForward className="relative h-[18px] w-[18px]" />
             </div>
           </Link>
         </div>

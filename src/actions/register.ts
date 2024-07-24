@@ -1,6 +1,8 @@
 "use server";
 
-import bcrypt from "bcryptjs";
+// import bcrypt from "bcryptjs";
+const bcrypt = require("bcryptjs");
+
 import prisma from "../lib/prisma";
 import { getUserByEmail } from "@/lib/data/user";
 import {
