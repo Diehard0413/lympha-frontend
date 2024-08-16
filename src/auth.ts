@@ -48,6 +48,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return true;
     },
     async signIn({ user, account }) {
+      /*
       // Allow OAuth without email verification
       if (account?.provider !== "credentials") return true;
 
@@ -55,7 +56,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
       // Prevent sign in without email verification
       if (!existingUser?.emailVerified) return false;
-
+      */
       return true;
     },
 
