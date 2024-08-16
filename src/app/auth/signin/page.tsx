@@ -38,6 +38,8 @@ const SignIn: FunctionComponent = () => {
   });
 
   const onSubmit = async (data: LoginFormDataType) => {
+    router.push("/dashboard");
+    /*
     try {
       console.log("the data is ", data);
       // const res = await login(data, "/dashboard");
@@ -66,6 +68,7 @@ const SignIn: FunctionComponent = () => {
         clearErrors();
       }, 2000);
     }
+    */
     setTimeout(() => {
       clearErrors();
     }, 3000);
