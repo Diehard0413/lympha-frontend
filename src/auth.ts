@@ -14,7 +14,7 @@ import {
 export const { handlers, auth, signIn, signOut } = NextAuth({
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
-      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+      return true;
       const isAuthorized = !!auth;
 
       const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
