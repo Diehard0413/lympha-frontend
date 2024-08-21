@@ -14,7 +14,6 @@ import {
 export const { handlers, auth, signIn, signOut } = NextAuth({
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
-      return true;
       const isAuthorized = !!auth;
 
       const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
