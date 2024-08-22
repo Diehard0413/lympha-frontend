@@ -108,8 +108,8 @@ const InvestsPage = (props: Props) => {
   useEffect(() => {
     const fetchProjects = async () => {
       const response = await getAllProjects();
-      console.log(response.date);
-      const approvedProjects = response.date.filter((project: any) => project.approved);
+      console.log(response.data);
+      const approvedProjects = response.data.filter((project: any) => project.approved);
       setApprovedProjects(approvedProjects);
 
     }
