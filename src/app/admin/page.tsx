@@ -20,15 +20,15 @@ type ProjectType = {
 
 const InvestsPage = (props: Props) => {
 
-  const [approvedProjects, setApprovedProjects] = useState<ProjectType[]>([]);
+  const [unApprovedProjects, setUnApprovedProjects] = useState<ProjectType[]>([]);
 
   useEffect(() => {
     const fetchProjects = async () => {
       const response = await getAllProjects();
       console.log(response.data);
-      const approvedProjects = response.data.filter((project: any) => project.approved);
-      console.log(approvedProjects);
-      setApprovedProjects(approvedProjects);
+      const unApprovedProjects = response.data.filter((project: any) => !project.approved);
+      console.log(unApprovedProjects);
+      setUnApprovedProjects(unApprovedProjects);
 
     }
 
@@ -45,18 +45,17 @@ const InvestsPage = (props: Props) => {
             <div className="flex flex-col items-start justify-start self-stretch">
               <div className="flex flex-col items-start justify-start self-stretch">
                 <h1 className="relative m-0 self-stretch text-xl font-bold tracking-tight md:text-2xl">
-                  Invest your Lympha Carbon Tokens in Projects
+                  Approve Lympha Carbon Projects
                 </h1>
                 <h1 className="font-inherit relative self-stretch text-base font-normal text-neutral-black-4 md:text-xl">
-                  Here are some of the projects you can choose to invest in.
-                  Some copy on these lines.
+                  Here are the projects admin should review and approve.
                 </h1>
               </div>
             </div>
             <div className="flex flex-col items-start justify-start self-stretch py-10">
               <div className="flex flex-col items-start justify-start self-stretch">
                 <div className="grid grid-cols-1 flex-row items-start justify-start gap-4 self-stretch md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                  {approvedProjects.map((project) => (
+                  {unApprovedProjects.map((project) => (
                     <ProjectCard key={project.id} project={project} />
                   ))}
                 </div>

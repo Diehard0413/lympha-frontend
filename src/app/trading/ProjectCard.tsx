@@ -1,6 +1,10 @@
+"use client";
+
 import { FC } from "react";
 import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
+import { approveProject } from "@/actions/project";
+import { useRouter } from "next/navigation";
 
 export type ProjectCardType = {
   className?: string;
@@ -12,10 +16,20 @@ export type ProjectCardType = {
     description: string;
     minInvest: number;
     tokensOffered: number;
+    approved: boolean;
   };
 };
 
 const ProjectCard: FC<ProjectCardType> = ({ className = "", project }) => {
+  const router = useRouter();
+
+  const onApprove = async () => {
+    const response = await approveProject(project.id, true);
+    if(response.result) {
+      router.push("/invest");
+    }
+  }
+
   return (
     <div
       className={`flex flex-col items-start justify-start overflow-hidden rounded-2xl bg-neutral-white text-left text-lg text-neutral-black-6 shadow-[0px_0px_20px_rgba(0,_0,_0,_0.04)] ${className} group`}
@@ -53,17 +67,20 @@ const ProjectCard: FC<ProjectCardType> = ({ className = "", project }) => {
               Tokens Offered: {project.tokensOffered}
             </div>
           </div>
-          <Link
-            href={`/invest/${project.id}`}
-            className="flex w-[50px] flex-row items-start justify-start text-sm text-neutral-white"
-          >
-            <div className="flex flex-1 flex-row items-center justify-center gap-[8px] rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-3.5 py-1.5 shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)]">
-              <b className="relative hidden w-[52px] self-stretch uppercase leading-[130%] tracking-[-0.02em]">
-                get let
-              </b>
-              <IoIosArrowForward className="relative h-[18px] w-[18px]" />
-            </div>
-          </Link>
+          {!project.approved ?
+            <Link
+              href={`/invest/${project.id}`}
+              className="flex w-[50px] flex-row items-start justify-start text-sm text-neutral-white"
+            >
+              <div className="flex flex-1 flex-row items-center justify-center gap-[8px] rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-3.5 py-1.5 shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)]">
+                <b className="relative hidden w-[52px] self-stretch uppercase leading-[130%] tracking-[-0.02em]">
+                  get let
+                </b>
+                <IoIosArrowForward className="relative h-[18px] w-[18px]" />
+              </div>
+            </Link> :
+            <button onClick={(e) => { onApprove(); }} className="text-sm text-neutral-white uppercase leading-[130%] tracking-[-0.02em]">Approve</button>
+          }
         </div>
       </div>
     </div>

@@ -26,3 +26,15 @@ export const listNewProject = async (title: string, email: string) => {
     return res;
 
 };
+
+export const approveProject = async (id: string, approve: boolean) => {
+
+    console.log("approveProject", id, approve);
+
+    const res = axios.post(`${configs.API_URL}/project/update_project`, { id, approved: approve })
+        .then(response => { return response.data })
+        .catch(error => { console.log(error) });
+
+    return res;
+
+};
