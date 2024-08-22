@@ -10,6 +10,7 @@ import { useState } from "react";
 import { CiMenuFries } from "react-icons/ci";
 import NavbarListSidebar from "./NavbarListSidebar";
 import { useSession } from "next-auth/react";
+import configs from "@/configs";
 
 export type NavbarType = {
   className?: string;
@@ -39,7 +40,7 @@ const Navbar = ({ className = "" }) => {
             className={cn(
               "flex flex-row items-center justify-start",
               (pathname.includes("/dashboard") || pathname == "/") &&
-                "font-bold",
+              "font-bold",
             )}
           >
             <div className="relative inline-block tracking-wide">Dashboard</div>
@@ -78,6 +79,18 @@ const Navbar = ({ className = "" }) => {
               List a Project
             </div>
           </Link>
+          {user?.email == configs.ADMIN_EMAIL && <Link
+            href="/admin"
+            className={cn(
+              "flex flex-row items-center justify-center",
+              pathname.includes("/admin") && "font-bold",
+            )}
+          >
+            <div className="flex flex-row items-start justify-start">
+              Admin
+            </div>
+          </Link>
+          }
         </div>
       </div>
       <div className="flex items-center gap-x-5">
@@ -108,7 +121,7 @@ const Navbar = ({ className = "" }) => {
         className={cn(
           "text-neutral-black-3 fixed bottom-0 right-0 top-0 z-50 flex max-h-screen min-h-screen w-full max-w-xl translate-x-full flex-col items-start justify-start gap-6 overflow-hidden rounded-l-13xl bg-gray-300 p-5 text-base backdrop-blur-2xl transition-transform duration-500 ease-in-out md:p-8 lg:p-10",
           isNavbarMenuOpen &&
-            "translate-x-0 shadow-[0px_0px_72px_rgba(2,_24,_29,_0.11)]",
+          "translate-x-0 shadow-[0px_0px_72px_rgba(2,_24,_29,_0.11)]",
         )}
       >
         <NavbarListSidebar onClose={() => setIsNavbarMenuOpen(false)} />

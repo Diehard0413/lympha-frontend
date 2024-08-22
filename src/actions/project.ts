@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 
-import configs from './config';
+import configs from '../configs';
 
 export const getAllProjects = async () => {
 

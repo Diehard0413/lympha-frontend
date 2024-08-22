@@ -5,6 +5,10 @@ import React, { useEffect, useState } from "react";
 import ProjectCard from "../trading/ProjectCard";
 import { getAllProjects } from "@/actions/project";
 
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import configs from "@/configs";
+
 type Props = {};
 
 type ProjectType = {
@@ -20,9 +24,18 @@ type ProjectType = {
 
 const InvestsPage = (props: Props) => {
 
+  const router = useRouter();
+  const { data: session } = useSession();
+  const user = session?.user;
+
   const [unApprovedProjects, setUnApprovedProjects] = useState<ProjectType[]>([]);
 
   useEffect(() => {
+
+    if(user?.email != configs.ADMIN_EMAIL) {
+      router.push("/dashboard");
+    }
+
     const fetchProjects = async () => {
       const response = await getAllProjects();
       console.log(response.data);
