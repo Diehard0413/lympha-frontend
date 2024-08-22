@@ -11,8 +11,8 @@ import { IoArrowForward } from "react-icons/io5";
 import Stepper from "../Stepper";
 import { Select } from "@headlessui/react";
 import { cn } from "@/app/helpers/utils";
-import { listNewProject } from "@/actions/list-project";
 import { useSession } from "next-auth/react";
+import { listNewProject } from "@/actions/project";
 
 type Props = {};
 
@@ -66,10 +66,7 @@ const Step1 = (props: Props) => {
     try {
       console.log("the data is ", data);
 
-      const response = await listNewProject({
-        title: data.projectName,
-        email: user?.email || ""
-      });
+      const response = await listNewProject(data.projectName, user?.email || "");
       if (response.error) {
         setError("root.serverError", {
           message: response.error,

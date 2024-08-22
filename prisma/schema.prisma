@@ -113,14 +113,3 @@ model PasswordResetToken {
 
   @@unique([email, resetToken])
 }
-
-model Project {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
-  title         String
-  email         String
-  method        String
-  description   String
-  minInvest     Int
-  tokensOffered Int
-  approved      Boolean
-}
