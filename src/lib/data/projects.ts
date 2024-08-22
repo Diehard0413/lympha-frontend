@@ -18,7 +18,8 @@ export const getAllProjects = async () => {
     console.log(projects);
 
     return projects;
-  } catch {
+  } catch(error) {
+    console.log(error)
     return [];
   }
 }
