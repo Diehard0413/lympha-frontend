@@ -110,13 +110,9 @@ const InvestsPage = (props: Props) => {
 
       const response = await getAllProjects();
       console.log("projects", response.projects);
-      if (response.projects) {
-        const approvedProjects = response.projects.filter((project) => project.approved)
-        console.log("approvedProjects", approvedProjects);
-        setApprovedProjects(approvedProjects);
-      } else {
-        console.log("error", response.error);
-      }
+      // const approvedProjects = response.projects.filter((project) => project.approved)
+      // console.log("approvedProjects", approvedProjects);
+      // setApprovedProjects(approvedProjects);
     }
 
     fetchProjects();

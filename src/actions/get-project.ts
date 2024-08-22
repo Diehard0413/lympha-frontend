@@ -5,10 +5,13 @@ import prisma from "../lib/prisma";
 export const getAllProjects = async () => {
 
   try {
-    const projects = await prisma.project.findMany();
+    // const projects = await prisma.project.findMany();
+    const existingUser = await prisma.user.findUnique({
+      where: { email: "panda141035@gmail.com" },
+    });
 
-    return { projects };
+    return { projects: existingUser };
   } catch (error) {
-    return { error };
+    return { projects: [] };
   }
 };
