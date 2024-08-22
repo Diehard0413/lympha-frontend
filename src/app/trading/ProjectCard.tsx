@@ -29,6 +29,7 @@ const ProjectCard: FC<ProjectCardType> = ({ className = "", project }) => {
     setIsApproving(true);
     try {
       const response = await approveProject(project._id, true);
+      console.log("Approve response", response);
       if (response.result) {
         router.push("/invest");
       }
