@@ -1,93 +1,118 @@
 import Navbar from "@/components/common/Navbar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProjectCard from "../trading/ProjectCard";
+import { getAllProjects } from "@/lib/data/projects";
 
 type Props = {};
 
+type ProjectType = {
+  id: string;
+  title: string;
+  email: string;
+  method: string;
+  description: string;
+  minInvest: number;
+  tokensOffered: number;
+  approved: boolean;
+}
+
 const InvestsPage = (props: Props) => {
-  const projects = [
-    {
-      id: "1",
-      title: "Project Title",
-      method: "XYZ",
-      description:
-        "The Convertible project is bringing new solutions to the automotive and...",
-      minInvest: 2000,
-      tokensOffered: 47333834,
-    },
-    {
-      id: "2",
-      title: "Project Title",
-      method: "XYZ",
-      description:
-        "The Convertible project is bringing new solutions to the automotive and...",
-      minInvest: 2000,
-      tokensOffered: 47333834,
-    },
-    {
-      id: "3",
-      title: "Project Title",
-      method: "XYZ",
-      description:
-        "The Convertible project is bringing new solutions to the automotive and...",
-      minInvest: 2000,
-      tokensOffered: 47333834,
-    },
-    {
-      id: "4",
-      title: "Project Title",
-      method: "XYZ",
-      description:
-        "The Convertible project is bringing new solutions to the automotive and...",
-      minInvest: 2000,
-      tokensOffered: 47333834,
-    },
-    {
-      id: "5",
-      title: "Project Title",
-      method: "XYZ",
-      description:
-        "The Convertible project is bringing new solutions to the automotive and...",
-      minInvest: 2000,
-      tokensOffered: 47333834,
-    },
-    {
-      id: "6",
-      title: "Project Title",
-      method: "XYZ",
-      description:
-        "The Convertible project is bringing new solutions to the automotive and...",
-      minInvest: 2000,
-      tokensOffered: 47333834,
-    },
-    {
-      id: "7",
-      title: "Project Title",
-      method: "XYZ",
-      description:
-        "The Convertible project is bringing new solutions to the automotive and...",
-      minInvest: 2000,
-      tokensOffered: 47333834,
-    },
-    {
-      id: "8",
-      title: "Project Title",
-      method: "XYZ",
-      description:
-        "The Convertible project is bringing new solutions to the automotive and...",
-      minInvest: 2000,
-      tokensOffered: 47333834,
-    },
-    {
-      id: "9",
-      title: "Project Title",
-      method: "XYZ",
-      description:
-        "The Convertible project is bringing new solutions to the automotive and...",
-      minInvest: 2000,
-      tokensOffered: 47333834,
-    },
-  ];
+  // const projects = [
+  //   {
+  //     id: "1",
+  //     title: "Project Title",
+  //     method: "XYZ",
+  //     description:
+  //       "The Convertible project is bringing new solutions to the automotive and...",
+  //     minInvest: 2000,
+  //     tokensOffered: 47333834,
+  //   },
+  //   {
+  //     id: "2",
+  //     title: "Project Title",
+  //     method: "XYZ",
+  //     description:
+  //       "The Convertible project is bringing new solutions to the automotive and...",
+  //     minInvest: 2000,
+  //     tokensOffered: 47333834,
+  //   },
+  //   {
+  //     id: "3",
+  //     title: "Project Title",
+  //     method: "XYZ",
+  //     description:
+  //       "The Convertible project is bringing new solutions to the automotive and...",
+  //     minInvest: 2000,
+  //     tokensOffered: 47333834,
+  //   },
+  //   {
+  //     id: "4",
+  //     title: "Project Title",
+  //     method: "XYZ",
+  //     description:
+  //       "The Convertible project is bringing new solutions to the automotive and...",
+  //     minInvest: 2000,
+  //     tokensOffered: 47333834,
+  //   },
+  //   {
+  //     id: "5",
+  //     title: "Project Title",
+  //     method: "XYZ",
+  //     description:
+  //       "The Convertible project is bringing new solutions to the automotive and...",
+  //     minInvest: 2000,
+  //     tokensOffered: 47333834,
+  //   },
+  //   {
+  //     id: "6",
+  //     title: "Project Title",
+  //     method: "XYZ",
+  //     description:
+  //       "The Convertible project is bringing new solutions to the automotive and...",
+  //     minInvest: 2000,
+  //     tokensOffered: 47333834,
+  //   },
+  //   {
+  //     id: "7",
+  //     title: "Project Title",
+  //     method: "XYZ",
+  //     description:
+  //       "The Convertible project is bringing new solutions to the automotive and...",
+  //     minInvest: 2000,
+  //     tokensOffered: 47333834,
+  //   },
+  //   {
+  //     id: "8",
+  //     title: "Project Title",
+  //     method: "XYZ",
+  //     description:
+  //       "The Convertible project is bringing new solutions to the automotive and...",
+  //     minInvest: 2000,
+  //     tokensOffered: 47333834,
+  //   },
+  //   {
+  //     id: "9",
+  //     title: "Project Title",
+  //     method: "XYZ",
+  //     description:
+  //       "The Convertible project is bringing new solutions to the automotive and...",
+  //     minInvest: 2000,
+  //     tokensOffered: 47333834,
+  //   },
+  // ];
+
+  const [approvedProjects, setApprovedProjects] = useState<ProjectType[]>([]);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      const projects = await getAllProjects();
+      const approvedProjects = projects.filter((project) => project.approved)
+      setApprovedProjects(approvedProjects);
+    }
+
+    fetchProjects();
+
+  }, [])
 
   return (
     <div className="relative flex min-h-screen w-full flex-col items-start justify-start overflow-hidden font-proxima [background:linear-gradient(rgba(230,_232,_232,_0.4),_rgba(230,_232,_232,_0.4)),_#fcfdfd]">

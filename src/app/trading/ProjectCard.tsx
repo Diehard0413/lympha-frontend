@@ -7,6 +7,7 @@ export type ProjectCardType = {
   project: {
     id: string;
     title: string;
+    email: string;
     method: string;
     description: string;
     minInvest: number;
