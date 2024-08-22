@@ -6,11 +6,11 @@ export const getAllProjects = async () => {
 
   try {
     // const projects = await prisma.project.findMany();
-    const existingUser = await prisma.user.findUnique({
+    const project = await prisma.project.findUnique({
       where: { email: "panda141035@gmail.com" },
     });
 
-    return { projects: existingUser };
+    return { projects: project };
   } catch (error) {
     return { projects: [] };
   }
