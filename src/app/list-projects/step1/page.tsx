@@ -11,6 +11,8 @@ import { IoArrowForward } from "react-icons/io5";
 import Stepper from "../Stepper";
 import { Select } from "@headlessui/react";
 import { cn } from "@/app/helpers/utils";
+import { listNewProject } from "@/actions/list-project";
+import { useSession } from "next-auth/react";
 
 type Props = {};
 
@@ -41,6 +43,8 @@ const step1ValidationSchema = Yup.object().shape(
 
 const Step1 = (props: Props) => {
   const navigator = useRouter();
+  const session = useSession();
+  const user = session.data?.user;
 
   const {
     register,
@@ -61,12 +65,24 @@ const Step1 = (props: Props) => {
   const onSubmit = async (data: Step1FormDataType) => {
     try {
       console.log("the data is ", data);
-      // mock api call, with promise resolve
-      await new Promise((resolve) =>
+
+      const response = await listNewProject({
+        title: data.projectName,
+        email: user?.email || ""
+      });
+      if (response.error) {
+        setError("root.serverError", {
+          message: response.error,
+        });
+
         setTimeout(() => {
-          navigator.push("/list-projects/step2");
-        }, 2000),
-      );
+          clearErrors();
+        }, 2000);
+
+        return;
+      }
+
+      navigator.push("/list-projects/step2");
     } catch (error: any) {
       console.error("An unexpected error happened:", error);
       setError("root.serverError", {
