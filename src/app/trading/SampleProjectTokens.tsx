@@ -6,7 +6,7 @@ type Props = {};
 const SampleProjectTokens = (props: Props) => {
   const projects = [
     {
-      id: "1",
+      _id: "1",
       title: "Project Title",
       email: "",
       method: "XYZ",
@@ -17,7 +17,7 @@ const SampleProjectTokens = (props: Props) => {
       approved: false
     },
     {
-      id: "2",
+      _id: "2",
       title: "Project Title",
       email: "",
       method: "XYZ",
@@ -28,7 +28,7 @@ const SampleProjectTokens = (props: Props) => {
       approved: false
     },
     {
-      id: "3",
+      _id: "3",
       title: "Project Title",
       email: "",
       method: "XYZ",
@@ -39,7 +39,7 @@ const SampleProjectTokens = (props: Props) => {
       approved: false
     },
     {
-      id: "4",
+      _id: "4",
       title: "Project Title",
       email: "",
       method: "XYZ",
@@ -50,7 +50,7 @@ const SampleProjectTokens = (props: Props) => {
       approved: false
     },
     {
-      id: "5",
+      _id: "5",
       title: "Project Title",
       email: "",
       method: "XYZ",
@@ -61,7 +61,7 @@ const SampleProjectTokens = (props: Props) => {
       approved: false
     },
     {
-      id: "6",
+      _id: "6",
       title: "Project Title",
       email: "",
       method: "XYZ",
@@ -72,7 +72,7 @@ const SampleProjectTokens = (props: Props) => {
       approved: false
     },
     {
-      id: "7",
+      _id: "7",
       title: "Project Title",
       email: "",
       method: "XYZ",
@@ -83,7 +83,7 @@ const SampleProjectTokens = (props: Props) => {
       approved: false
     },
     {
-      id: "8",
+      _id: "8",
       title: "Project Title",
       email: "",
       method: "XYZ",
@@ -94,7 +94,7 @@ const SampleProjectTokens = (props: Props) => {
       approved: false
     },
     {
-      id: "9",
+      _id: "9",
       title: "Project Title",
       email: "",
       method: "XYZ",
@@ -123,7 +123,7 @@ const SampleProjectTokens = (props: Props) => {
         <div className="flex flex-col items-start justify-start self-stretch">
           <div className="grid grid-cols-1 flex-row items-start justify-start gap-4 self-stretch sm:grid-cols-2 lg:grid-cols-4">
             {projects.slice(0, 4).map((project) => (
-              <ProjectCard key={project.id} project={project} />
+              <ProjectCard key={project._id} project={project} />
             ))}
           </div>
         </div>
