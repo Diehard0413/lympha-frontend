@@ -7,18 +7,19 @@ export const getProjectByProjectId = async (id: string) => {
     });
 
     return project;
-  } catch {
+  } catch (error) {
+    console.log(error);
     return null;
   }
 };
 
 export const getAllProjects = async () => {
   try {
-    const projects = await prisma.project.findMany({ take: 10 });
+    const projects = await prisma.user.findMany();
     console.log(projects);
 
-    return projects;
-  } catch(error) {
+    return [];
+  } catch (error) {
     console.log(error)
     return [];
   }
