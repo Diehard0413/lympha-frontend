@@ -15,11 +15,15 @@ export const listNewProject = async (values: any) => {
         error: "User email doesn't exist!",
       };
     }
-    
+
     await prisma.project.create({
       data: {
         title,
         email,
+        method: "",
+        description: "",
+        minInvest: 0,
+        tokensOffered: 0,
         approved: false
       },
     });
