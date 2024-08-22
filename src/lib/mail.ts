@@ -29,7 +29,7 @@ import { Resend } from "resend";
 
 import Mailgun from "mailgun.js";
 import FormData from "form-data";
-import configs from "./configs";
+import configs from "@/configs";
 
 const mailgun = new Mailgun(FormData);
 

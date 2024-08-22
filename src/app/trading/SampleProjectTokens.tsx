@@ -14,6 +14,7 @@ const SampleProjectTokens = (props: Props) => {
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
+      approved: false
     },
     {
       id: "2",
@@ -24,6 +25,7 @@ const SampleProjectTokens = (props: Props) => {
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
+      approved: false
     },
     {
       id: "3",
@@ -34,6 +36,7 @@ const SampleProjectTokens = (props: Props) => {
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
+      approved: false
     },
     {
       id: "4",
@@ -44,6 +47,7 @@ const SampleProjectTokens = (props: Props) => {
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
+      approved: false
     },
     {
       id: "5",
@@ -54,6 +58,7 @@ const SampleProjectTokens = (props: Props) => {
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
+      approved: false
     },
     {
       id: "6",
@@ -64,6 +69,7 @@ const SampleProjectTokens = (props: Props) => {
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
+      approved: false
     },
     {
       id: "7",
@@ -74,6 +80,7 @@ const SampleProjectTokens = (props: Props) => {
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
+      approved: false
     },
     {
       id: "8",
@@ -84,6 +91,7 @@ const SampleProjectTokens = (props: Props) => {
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
+      approved: false
     },
     {
       id: "9",
@@ -94,6 +102,7 @@ const SampleProjectTokens = (props: Props) => {
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
+      approved: false
     },
   ];
 
