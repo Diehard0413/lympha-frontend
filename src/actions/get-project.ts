@@ -12,6 +12,6 @@ export const getAllProjects = async () => {
 
     return { projects: project };
   } catch (error) {
-    return { projects: [] };
+    return { projects: "error while finding" };
   }
 };
