@@ -14,7 +14,7 @@ export const getProjectByProjectId = async (id: string) => {
 
 export const getAllProjects = async () => {
   try {
-    const projects = await prisma.project.findMany({});
+    const projects = await prisma.project.findMany();
 
     return projects;
   } catch {
