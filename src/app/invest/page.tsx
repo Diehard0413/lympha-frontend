@@ -109,7 +109,8 @@ const InvestsPage = (props: Props) => {
     const fetchProjects = async () => {
       const projects = await getAllProjects();
       console.log(projects);
-      // const approvedProjects = projects.filter((project) => project.approved);
+      const approvedProjects = projects.filter((project: any) => project.approved);
+      setApprovedProjects(approvedProjects);
 
     }
 
