@@ -8,6 +8,7 @@ const SampleProjectTokens = (props: Props) => {
     {
       id: "1",
       title: "Project Title",
+      email: "",
       method: "XYZ",
       description:
         "The Convertible project is bringing new solutions to the automotive and...",
@@ -17,6 +18,7 @@ const SampleProjectTokens = (props: Props) => {
     {
       id: "2",
       title: "Project Title",
+      email: "",
       method: "XYZ",
       description:
         "The Convertible project is bringing new solutions to the automotive and...",
@@ -26,6 +28,7 @@ const SampleProjectTokens = (props: Props) => {
     {
       id: "3",
       title: "Project Title",
+      email: "",
       method: "XYZ",
       description:
         "The Convertible project is bringing new solutions to the automotive and...",
@@ -35,6 +38,7 @@ const SampleProjectTokens = (props: Props) => {
     {
       id: "4",
       title: "Project Title",
+      email: "",
       method: "XYZ",
       description:
         "The Convertible project is bringing new solutions to the automotive and...",
@@ -44,6 +48,7 @@ const SampleProjectTokens = (props: Props) => {
     {
       id: "5",
       title: "Project Title",
+      email: "",
       method: "XYZ",
       description:
         "The Convertible project is bringing new solutions to the automotive and...",
@@ -53,6 +58,7 @@ const SampleProjectTokens = (props: Props) => {
     {
       id: "6",
       title: "Project Title",
+      email: "",
       method: "XYZ",
       description:
         "The Convertible project is bringing new solutions to the automotive and...",
@@ -62,6 +68,7 @@ const SampleProjectTokens = (props: Props) => {
     {
       id: "7",
       title: "Project Title",
+      email: "",
       method: "XYZ",
       description:
         "The Convertible project is bringing new solutions to the automotive and...",
@@ -71,6 +78,7 @@ const SampleProjectTokens = (props: Props) => {
     {
       id: "8",
       title: "Project Title",
+      email: "",
       method: "XYZ",
       description:
         "The Convertible project is bringing new solutions to the automotive and...",
@@ -80,6 +88,7 @@ const SampleProjectTokens = (props: Props) => {
     {
       id: "9",
       title: "Project Title",
+      email: "",
       method: "XYZ",
       description:
         "The Convertible project is bringing new solutions to the automotive and...",
