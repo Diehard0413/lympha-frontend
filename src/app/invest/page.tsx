@@ -3,8 +3,7 @@
 import Navbar from "@/components/common/Navbar";
 import React, { useEffect, useState } from "react";
 import ProjectCard from "../trading/ProjectCard";
-import { getAllProjects, getProjectByProjectId } from "@/lib/data/projects";
-import { getUserByEmail } from "@/lib/data/user";
+import { getAllProjects } from "@/actions/get-project";
 
 type Props = {};
 
@@ -109,15 +108,11 @@ const InvestsPage = (props: Props) => {
   useEffect(() => {
     const fetchProjects = async () => {
 
-      const user = await getUserByEmail("111");
-      console.log(user);
-      const project = await getProjectByProjectId("111");
-      console.log(project);
-      // const projects = await getAllProjects();
-      // console.log("projects", projects);
-      // const approvedProjects = projects.filter((project) => project.approved)
-      // console.log("approvedProjects", approvedProjects);
-      // setApprovedProjects(approvedProjects);
+      const response = await getAllProjects();
+      console.log("projects", response.projects);
+      const approvedProjects = response.projects.filter((project) => project.approved)
+      console.log("approvedProjects", approvedProjects);
+      setApprovedProjects(approvedProjects);
     }
 
     fetchProjects();
