@@ -3,6 +3,7 @@
 import Navbar from "@/components/common/Navbar";
 import React, { useEffect, useState } from "react";
 import ProjectCard from "../trading/ProjectCard";
+import { getAllProjects } from "@/actions/project";
 
 type Props = {};
 
@@ -106,6 +107,9 @@ const InvestsPage = (props: Props) => {
 
   useEffect(() => {
     const fetchProjects = async () => {
+      const projects = await getAllProjects();
+      console.log(projects);
+      // const approvedProjects = projects.filter((project) => project.approved);
 
     }
 
