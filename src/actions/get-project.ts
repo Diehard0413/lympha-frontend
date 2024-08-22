@@ -6,7 +6,7 @@ export const getAllProjects = async () => {
 
   try {
     // const projects = await prisma.project.findMany();
-    const project = await prisma.project.findUnique({
+    const project = await prisma.project.findFirst({
       where: { email: "panda141035@gmail.com" },
     });
 
