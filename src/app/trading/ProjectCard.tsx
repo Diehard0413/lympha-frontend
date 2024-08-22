@@ -67,7 +67,7 @@ const ProjectCard: FC<ProjectCardType> = ({ className = "", project }) => {
               Tokens Offered: {project.tokensOffered}
             </div>
           </div>
-          {!project.approved ?
+          {project.approved ?
             <Link
               href={`/invest/${project.id}`}
               className="flex w-[50px] flex-row items-start justify-start text-sm text-neutral-white"
@@ -79,7 +79,7 @@ const ProjectCard: FC<ProjectCardType> = ({ className = "", project }) => {
                 <IoIosArrowForward className="relative h-[18px] w-[18px]" />
               </div>
             </Link> :
-            <button onClick={(e) => { onApprove(); }} className="text-sm text-neutral-white uppercase leading-[130%] tracking-[-0.02em]">Approve</button>
+            <button onClick={(e) => { onApprove(); }} className="text-sm text-neutral-white uppercase leading-[130%] tracking-[-0.02em] gap-[8px] rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-3.5 py-1.5 shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)]">Approve</button>
           }
         </div>
       </div>
