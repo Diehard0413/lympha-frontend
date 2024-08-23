@@ -69,10 +69,10 @@ const Navbar = ({ className = "" }) => {
             </div>
           </Link>
           <Link
-            href="/my_project"
+            href="/my-project"
             className={cn(
               "flex flex-row items-center justify-center",
-              pathname.includes("/my_project") && "font-bold",
+              pathname.includes("/my-project") && "font-bold",
             )}
           >
             <div className="flex flex-row items-start justify-start">

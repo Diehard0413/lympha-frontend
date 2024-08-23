@@ -31,7 +31,7 @@ const NavbarListSidebar = (props: Props) => {
   const pathname = usePathname();
   const { data: session, update } = useSession();
   const user = session?.user;
-  
+
   const navItems = [
     {
       id: "1",
@@ -51,7 +51,7 @@ const NavbarListSidebar = (props: Props) => {
     {
       id: "3",
       title: "MyProject",
-      href: "/my_project",
+      href: "/my-project",
     },
     {
       id: "4",
