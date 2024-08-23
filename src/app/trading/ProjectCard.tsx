@@ -124,7 +124,7 @@ const ProjectCard: FC<ProjectCardType> = ({ className = "", project, page = "" }
             (page == "admin" ?
               <>
                 <input disabled={isApproving || project.approved} placeholder="Symbol" value={symbol} onChange={(e) => setSymbol(e.target.value)} className="w-[35%] appearance-none rounded-lg border-[0.5px] border-solid border-neutral-black-2 px-3 py-2 text-base tracking-tight text-neutral-black-4 outline-none placeholder:text-neutral-black-2" />
-                <button disabled={isApproving || project.approved} onClick={(e) => { onApprove(); }} className="text-sm font-body-large-bold text-neutral-white uppercase leading-[130%] tracking-[-0.02em] gap-[8px] rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-3.5 py-1.5 shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)]">
+                <button disabled={isApproving || project.approved} onClick={(e) => { onApprove(); }} className="text-sm font-body-large-bold text-neutral-white uppercase leading-[130%] tracking-[-0.02em] gap-[8px] rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary disabled:opacity-[0.4] px-3.5 py-1.5 shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)]">
                   {isApproving && (
                     <svg
                       className="-ml-1 mr-2 h-5 w-5 animate-spin text-white"
@@ -154,7 +154,7 @@ const ProjectCard: FC<ProjectCardType> = ({ className = "", project, page = "" }
                 <>
                   <input disabled={isOpeningTrading || !project.approved} placeholder="LCT" type="number" value={lctAmount} onChange={(e) => setLctAmount(e.target.value)} className="w-[30%] appearance-none rounded-lg border-[0.5px] border-solid border-neutral-black-2 px-3 py-2 text-base tracking-tight text-neutral-black-4 outline-none placeholder:text-neutral-black-2" />
                   <input disabled={isOpeningTrading || !project.approved} placeholder="LET" type="number" value={letAmount} onChange={(e) => setLetAmount(e.target.value)} className="w-[30%] appearance-none rounded-lg border-[0.5px] border-solid border-neutral-black-2 px-3 py-2 text-base tracking-tight text-neutral-black-4 outline-none placeholder:text-neutral-black-2" />
-                  <button disabled={isOpeningTrading || !project.approved} onClick={(e) => { onOpenTrading(); }} className="text-sm font-body-large-bold text-neutral-white uppercase leading-[130%] tracking-[-0.02em] gap-[8px] rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-3.5 py-1.5 shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)]">
+                  <button disabled={isOpeningTrading || !project.approved} onClick={(e) => { onOpenTrading(); }} className="text-sm font-body-large-bold text-neutral-white uppercase leading-[130%] tracking-[-0.02em] gap-[8px] rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary disabled:opacity-[0.4] px-3.5 py-1.5 shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)]">
                     {isOpeningTrading && (
                       <svg
                         className="-ml-1 mr-2 h-5 w-5 animate-spin text-white"
