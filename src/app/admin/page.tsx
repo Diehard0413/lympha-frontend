@@ -35,7 +35,7 @@ const InvestsPage = (props: Props) => {
   const { data: session } = useSession();
   const user = session?.user;
 
-  const [unApprovedProjects, setUnApprovedProjects] = useState<ProjectType[]>([]);
+  const [projects, setProjects] = useState<ProjectType[]>([]);
 
   useEffect(() => {
 
@@ -46,9 +46,7 @@ const InvestsPage = (props: Props) => {
     const fetchProjects = async () => {
       const response = await getAllProjects();
       console.log(response.data);
-      const unApprovedProjects = response.data.filter((project: any) => !project.approved);
-      console.log(unApprovedProjects);
-      setUnApprovedProjects(unApprovedProjects);
+      setProjects(response.data);
     }
 
     fetchProjects();
@@ -74,7 +72,7 @@ const InvestsPage = (props: Props) => {
             <div className="flex flex-col items-start justify-start self-stretch py-10">
               <div className="flex flex-col items-start justify-start self-stretch">
                 <div className="grid grid-cols-1 flex-row items-start justify-start gap-4 self-stretch md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                  {unApprovedProjects.map((project) => (
+                  {projects.map((project) => (
                     <ProjectCard key={project._id} project={project} page="admin" />
                   ))}
                 </div>
