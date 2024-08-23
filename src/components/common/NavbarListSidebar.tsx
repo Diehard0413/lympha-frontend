@@ -19,6 +19,8 @@ import FeedbackSidebar from "../profile-sub-sections/FeedbackSidebar";
 import SupportSidebar from "../profile-sub-sections/SupportSidebar";
 import ChangePasswordSidebar from "../profile-sub-sections/ChangePasswordSidebar";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
+import configs from "@/configs";
 
 type Props = {
   onClose: () => void;
@@ -27,7 +29,9 @@ type Props = {
 const NavbarListSidebar = (props: Props) => {
   const navigate = useRouter();
   const pathname = usePathname();
-
+  const { data: session, update } = useSession();
+  const user = session?.user;
+  
   const navItems = [
     {
       id: "1",
@@ -45,9 +49,19 @@ const NavbarListSidebar = (props: Props) => {
       href: "/invest",
     },
     {
+      id: "3",
+      title: "MyProject",
+      href: "/my_project",
+    },
+    {
       id: "4",
       title: "List a Project",
       href: "/list-projects",
+    },
+    {
+      id: "5",
+      title: "Admin",
+      href: "/admin",
     },
   ];
 
@@ -72,7 +86,7 @@ const NavbarListSidebar = (props: Props) => {
       <div className="flex w-full max-w-full flex-col items-start justify-start gap-[16px] text-sm text-neutral-black-5">
         <ul className="flex w-full flex-col items-center justify-center gap-y-4 py-10 text-xl">
           {navItems.map((item) => (
-            <li
+            user?.email == configs.ADMIN_EMAIL && <li
               key={item.id}
               className="flex flex-row items-center justify-start gap-4"
             >

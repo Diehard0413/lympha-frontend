@@ -19,7 +19,7 @@ export const getProjectById = async (id: string) => {
 
     console.log("getProjectById");
 
-    const res = axios.post(`${configs.API_URL}/project/get_project_by_id`, {id})
+    const res = axios.post(`${configs.API_URL}/project/get_project_by_id`, { id })
         .then(response => { return response.data })
         .catch(error => { console.log(error) });
 
@@ -39,11 +39,11 @@ export const listNewProject = async (title: string, email: string) => {
 
 };
 
-export const approveProject = async (id: string, approve: boolean) => {
+export const approveProject = async (id: string, approve: boolean, symbol: string) => {
 
-    console.log("approveProject", id, approve);
+    console.log("approveProject", id, approve, symbol);
 
-    const res = axios.post(`${configs.API_URL}/project/approve_project`, { id, approved: approve })
+    const res = axios.post(`${configs.API_URL}/project/approve_project`, { id, approved: approve, symbol })
         .then(response => { return response.data })
         .catch(error => { console.log(error) });
 
@@ -51,11 +51,11 @@ export const approveProject = async (id: string, approve: boolean) => {
 
 };
 
-export const openTrading = async (id: string, open_trading: boolean) => {
+export const openTrading = async (id: string, open_trading: boolean, lctAmount: number, letAmount: number) => {
 
-    console.log("openTrading", id, open_trading);
+    console.log("openTrading", id, open_trading, lctAmount, letAmount);
 
-    const res = axios.post(`${configs.API_URL}/project/open_trading`, { id, open_trading })
+    const res = axios.post(`${configs.API_URL}/project/open_trading`, { id, open_trading, pool_lct_amount: lctAmount, pool_let_amount: letAmount })
         .then(response => { return response.data })
         .catch(error => { console.log(error) });
 

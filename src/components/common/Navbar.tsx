@@ -69,6 +69,17 @@ const Navbar = ({ className = "" }) => {
             </div>
           </Link>
           <Link
+            href="/my_project"
+            className={cn(
+              "flex flex-row items-center justify-center",
+              pathname.includes("/my_project") && "font-bold",
+            )}
+          >
+            <div className="flex flex-row items-start justify-start">
+              MyProject
+            </div>
+          </Link>
+          <Link
             href="/list-projects"
             className={cn(
               "flex flex-row items-center justify-center",
