@@ -177,7 +177,7 @@ const SampleProjectTokens = (props: Props) => {
         <div className="flex flex-col items-start justify-start self-stretch">
           <div className="grid grid-cols-1 flex-row items-start justify-start gap-4 self-stretch sm:grid-cols-2 lg:grid-cols-4">
             {projects.slice(0, 4).map((project) => (
-              <ProjectCard key={project._id} project={project} />
+              <ProjectCard key={project._id} project={project} page="sample" />
             ))}
           </div>
         </div>

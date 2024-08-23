@@ -61,7 +61,7 @@ const InvestsPage = (props: Props) => {
               <div className="flex flex-col items-start justify-start self-stretch">
                 <div className="grid grid-cols-1 flex-row items-start justify-start gap-4 self-stretch md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                   {projects.map((project) => (
-                    <ProjectCard key={project._id} project={project} />
+                    <ProjectCard key={project._id} project={project} page="invest" />
                   ))}
                 </div>
               </div>

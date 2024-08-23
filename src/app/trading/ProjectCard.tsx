@@ -24,9 +24,10 @@ export type ProjectCardType = {
     approved: boolean;
     openTrading: boolean;
   };
+  page: string;
 };
 
-const ProjectCard: FC<ProjectCardType> = ({ className = "", project }) => {
+const ProjectCard: FC<ProjectCardType> = ({ className = "", project, page = "" }) => {
   const router = useRouter();
 
   const [isApproving, setIsApproving] = useState(false);
@@ -82,7 +83,7 @@ const ProjectCard: FC<ProjectCardType> = ({ className = "", project }) => {
               Tokens Offered: {project.tokensOffered}
             </div>
           </div>
-          {project.approved ?
+          {page == "invest" ?
             <Link
               href={`/invest/${project._id}`}
               className="flex w-[50px] flex-row items-start justify-start text-sm text-neutral-white"
