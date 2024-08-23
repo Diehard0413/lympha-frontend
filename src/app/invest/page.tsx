@@ -11,25 +11,29 @@ type ProjectType = {
   _id: string;
   title: string;
   email: string;
+  lctId: string;
+  lctTreasuryId: string;
+  lctTreasuryKey: string;
+  lctAmount: number;
+  letAmount: number;
   method: string;
   description: string;
   minInvest: number;
   tokensOffered: number;
   approved: boolean;
+  openTrading: boolean;
 }
 
 const InvestsPage = (props: Props) => {
 
-  const [approvedProjects, setApprovedProjects] = useState<ProjectType[]>([]);
+  const [projects, setProjects] = useState<ProjectType[]>([]);
 
   useEffect(() => {
     const fetchProjects = async () => {
       const response = await getAllProjects();
-      console.log(response.data);
-      const approvedProjects = response.data.filter((project: any) => project.approved);
-      console.log(approvedProjects);
-      setApprovedProjects(approvedProjects);
-
+      const projects = response.data;
+      console.log(projects);
+      setProjects(projects);
     }
 
     fetchProjects();
@@ -56,7 +60,7 @@ const InvestsPage = (props: Props) => {
             <div className="flex flex-col items-start justify-start self-stretch py-10">
               <div className="flex flex-col items-start justify-start self-stretch">
                 <div className="grid grid-cols-1 flex-row items-start justify-start gap-4 self-stretch md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                  {approvedProjects.map((project) => (
+                  {projects.map((project) => (
                     <ProjectCard key={project._id} project={project} />
                   ))}
                 </div>

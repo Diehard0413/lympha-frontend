@@ -9,100 +9,154 @@ const SampleProjectTokens = (props: Props) => {
       _id: "1",
       title: "Project Title",
       email: "",
+      lctId: "",
+      lctTreasuryId: "",
+      lctTreasuryKey: "",
+      lctAmount: 0,
+      letAmount: 0,
       method: "XYZ",
       description:
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
-      approved: false
+      approved: false,
+      openTrading: false
     },
     {
       _id: "2",
       title: "Project Title",
       email: "",
+      lctId: "",
+      lctTreasuryId: "",
+      lctTreasuryKey: "",
+      lctAmount: 0,
+      letAmount: 0,
       method: "XYZ",
       description:
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
-      approved: false
+      approved: false,
+      openTrading: false
     },
     {
       _id: "3",
       title: "Project Title",
       email: "",
+      lctId: "",
+      lctTreasuryId: "",
+      lctTreasuryKey: "",
+      lctAmount: 0,
+      letAmount: 0,
       method: "XYZ",
       description:
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
-      approved: false
+      approved: false,
+      openTrading: false
     },
     {
       _id: "4",
       title: "Project Title",
       email: "",
+      lctId: "",
+      lctTreasuryId: "",
+      lctTreasuryKey: "",
+      lctAmount: 0,
+      letAmount: 0,
       method: "XYZ",
       description:
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
-      approved: false
+      approved: false,
+      openTrading: false
     },
     {
       _id: "5",
       title: "Project Title",
       email: "",
+      lctId: "",
+      lctTreasuryId: "",
+      lctTreasuryKey: "",
+      lctAmount: 0,
+      letAmount: 0,
       method: "XYZ",
       description:
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
-      approved: false
+      approved: false,
+      openTrading: false
     },
     {
       _id: "6",
       title: "Project Title",
       email: "",
+      lctId: "",
+      lctTreasuryId: "",
+      lctTreasuryKey: "",
+      lctAmount: 0,
+      letAmount: 0,
       method: "XYZ",
       description:
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
-      approved: false
+      approved: false,
+      openTrading: false
     },
     {
       _id: "7",
       title: "Project Title",
       email: "",
+      lctId: "",
+      lctTreasuryId: "",
+      lctTreasuryKey: "",
+      lctAmount: 0,
+      letAmount: 0,
       method: "XYZ",
       description:
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
-      approved: false
+      approved: false,
+      openTrading: false
     },
     {
       _id: "8",
       title: "Project Title",
       email: "",
+      lctId: "",
+      lctTreasuryId: "",
+      lctTreasuryKey: "",
+      lctAmount: 0,
+      letAmount: 0,
       method: "XYZ",
       description:
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
-      approved: false
+      approved: false,
+      openTrading: false
     },
     {
       _id: "9",
       title: "Project Title",
       email: "",
+      lctId: "",
+      lctTreasuryId: "",
+      lctTreasuryKey: "",
+      lctAmount: 0,
+      letAmount: 0,
       method: "XYZ",
       description:
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
-      approved: false
+      approved: false,
+      openTrading: false
     },
   ];
 

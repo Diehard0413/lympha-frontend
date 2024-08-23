@@ -15,11 +15,17 @@ type ProjectType = {
   _id: string;
   title: string;
   email: string;
+  lctId: string;
+  lctTreasuryId: string;
+  lctTreasuryKey: string;
+  lctAmount: number;
+  letAmount: number;
   method: string;
   description: string;
   minInvest: number;
   tokensOffered: number;
   approved: boolean;
+  openTrading: boolean;
 }
 
 const InvestsPage = (props: Props) => {
@@ -42,7 +48,6 @@ const InvestsPage = (props: Props) => {
       const unApprovedProjects = response.data.filter((project: any) => !project.approved);
       console.log(unApprovedProjects);
       setUnApprovedProjects(unApprovedProjects);
-
     }
 
     fetchProjects();

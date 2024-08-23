@@ -12,11 +12,17 @@ export type ProjectCardType = {
     _id: string;
     title: string;
     email: string;
+    lctId: string;
+    lctTreasuryId: string;
+    lctTreasuryKey: string;
+    lctAmount: number;
+    letAmount: number;
     method: string;
     description: string;
     minInvest: number;
     tokensOffered: number;
     approved: boolean;
+    openTrading: boolean;
   };
 };
 
