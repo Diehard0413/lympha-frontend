@@ -15,6 +15,7 @@ export type ProjectCardType = {
     lctId: string;
     lctTreasuryId: string;
     lctTreasuryKey: string;
+    lctTotalSupply: number;
     lctAmount: number;
     letAmount: number;
     method: string;

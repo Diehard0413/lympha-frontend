@@ -15,6 +15,18 @@ export const getAllProjects = async () => {
 
 };
 
+export const getProjectById = async (id: string) => {
+
+    console.log("getProjectById");
+
+    const res = axios.post(`${configs.API_URL}/project/get_project_by_id`, {id})
+        .then(response => { return response.data })
+        .catch(error => { console.log(error) });
+
+    return res;
+
+};
+
 export const listNewProject = async (title: string, email: string) => {
 
     console.log("listNewProject", title, email);

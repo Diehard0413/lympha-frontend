@@ -1,32 +1,57 @@
 "use client";
+import { getProjectById } from "@/actions/project";
 import Navbar from "@/components/common/Navbar";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import React from "react";
+import { useRouter, usePathname } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import { FaInfoCircle } from "react-icons/fa";
 import { MdArrowBack, MdOutlineFileDownload } from "react-icons/md";
 
 type Props = {};
 
-const ProjectDetailPage = (props: Props) => {
-  const project = {
-    id: "1",
-    title: "Project Title",
-    method: "XYZ",
-    description:
-      "The Convertible project is bringing new solutions to the automotive and...",
-    minInvest: 2000,
-    tokensOffered: 47333834,
-  };
+type ProjectType = {
+  _id: string;
+  title: string;
+  email: string;
+  lctId: string;
+  lctTreasuryId: string;
+  lctTreasuryKey: string;
+  lctTotalSupply: number;
+  lctAmount: number;
+  letAmount: number;
+  method: string;
+  description: string;
+  minInvest: number;
+  tokensOffered: number;
+  approved: boolean;
+  openTrading: boolean;
+}
 
-  const navigate = useRouter();
+const ProjectDetailPage = (props: Props) => {
+
+  const router = useRouter();
+  const pathname = usePathname();
+  const projectId = pathname.split('/').filter(Boolean).pop();
+  const [project, setProject] = useState<ProjectType>();
+
+  useEffect(() => {
+    const fetchProject = async () => {
+      const response = await getProjectById(projectId || "");
+      const project = response.data;
+      console.log(project);
+      setProject(project);
+    }
+
+    fetchProject();
+  }, []);
+
   return (
     <div className="relative flex min-h-screen w-full flex-col items-start justify-start overflow-hidden font-proxima [background:linear-gradient(rgba(230,_232,_232,_0.4),_rgba(230,_232,_232,_0.4)),_#fcfdfd]">
       <Navbar />
       <main className="mx-auto flex w-11/12 max-w-full flex-col items-start justify-center self-stretch py-10 md:w-5/6 md:px-5 lg:w-3/4 xl:w-2/3">
         <button
           onClick={() => {
-            navigate.back();
+            router.back();
           }}
           className="flex max-w-full shrink-0 flex-row items-center justify-start gap-2 self-stretch"
         >
@@ -39,7 +64,7 @@ const ProjectDetailPage = (props: Props) => {
             </div>
           </div>
         </button>
-        <div className="my-3 box-border flex w-full max-w-full shrink-0 flex-row items-center justify-center rounded-2xl border border-state-warning bg-orange px-6 py-3">
+        {!project?.approved && <div className="my-3 box-border flex w-full max-w-full shrink-0 flex-row items-center justify-center rounded-2xl border border-state-warning bg-orange px-6 py-3">
           <div className="flex flex-1 flex-row items-center justify-start gap-2">
             <FaInfoCircle className="relative h-6 w-6 text-neutral-black-6" />
             <p className="h-7 w-full overflow-hidden bg-transparent text-lg font-light text-neutral-black-5">
@@ -47,8 +72,9 @@ const ProjectDetailPage = (props: Props) => {
             </p>
           </div>
         </div>
+        }
         <h2 className="font-inherit relative shrink-0 pt-5 text-2xl font-bold leading-8 tracking-wide text-neutral-black-6">
-          {project.title}
+          {project?.title}
         </h2>
         <section className="box-border flex shrink-0 flex-col items-start justify-start gap-4 self-stretch rounded-2xl py-3 text-lg text-neutral-black-4 md:flex-row">
           <article className="flex max-w-full flex-1 flex-col items-start justify-start gap-4 rounded-11xl">
@@ -120,7 +146,7 @@ const ProjectDetailPage = (props: Props) => {
                     Min invest
                   </div>
                   <div className="relative inline-block w-12 shrink-0 whitespace-nowrap text-right leading-[20px] tracking-tight">
-                    $2000
+                    {project?.minInvest}
                   </div>
                 </div>
                 <div className="flex flex-row items-center justify-between gap-[20px] self-stretch">
@@ -128,7 +154,7 @@ const ProjectDetailPage = (props: Props) => {
                     Tokens offered
                   </div>
                   <div className="relative inline-block w-[94px] shrink-0 text-right leading-[20px] tracking-tight">
-                    47,333,834
+                    {project?.tokensOffered}
                   </div>
                 </div>
                 <div className="flex flex-row items-center justify-between gap-[17px] self-stretch">
@@ -136,11 +162,11 @@ const ProjectDetailPage = (props: Props) => {
                     Total Token Supply
                   </div>
                   <div className="relative inline-block w-[94px] shrink-0 text-right leading-[20px] tracking-tight">
-                    200,000,000
+                    {project?.lctTotalSupply}
                   </div>
                 </div>
               </div>
-              <button className="flex cursor-pointer flex-row items-center justify-center self-stretch rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-5 py-[9px] opacity-[0.4] shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] hover:box-border hover:border-[2px] hover:border-solid hover:border-teal hover:bg-darkcyan-100">
+              <button disabled={!project?.approved} className="flex cursor-pointer flex-row items-center justify-center self-stretch rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-5 py-[9px] disabled:opacity-[0.4] shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] hover:box-border hover:border-[2px] hover:border-solid hover:border-teal hover:bg-darkcyan-100">
                 <b className="font-body-large-bold relative inline-block min-w-[45px] text-left text-base leading-6 tracking-[0.15px] text-neutral-white">
                   Invest
                 </b>
@@ -159,7 +185,7 @@ const ProjectDetailPage = (props: Props) => {
                     </div>
                   </div>
                   <MdOutlineFileDownload
-                    onClick={() => {}}
+                    onClick={() => { }}
                     className="relative h-6 min-h-6 w-6 shrink-0 cursor-pointer overflow-hidden"
                   />
                 </div>
@@ -170,7 +196,7 @@ const ProjectDetailPage = (props: Props) => {
                     </div>
                   </div>
                   <MdOutlineFileDownload
-                    onClick={() => {}}
+                    onClick={() => { }}
                     className="relative h-6 min-h-6 w-6 shrink-0 cursor-pointer overflow-hidden"
                   />{" "}
                 </div>
@@ -181,7 +207,7 @@ const ProjectDetailPage = (props: Props) => {
                     </div>
                   </div>
                   <MdOutlineFileDownload
-                    onClick={() => {}}
+                    onClick={() => { }}
                     className="relative h-6 min-h-6 w-6 shrink-0 cursor-pointer overflow-hidden"
                   />{" "}
                 </div>
