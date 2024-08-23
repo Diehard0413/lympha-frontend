@@ -29,24 +29,21 @@ type ProjectType = {
   openTrading: boolean;
 }
 
-const AdminPage = (props: Props) => {
+const MyProjectPage = (props: Props) => {
 
   const router = useRouter();
   const { data: session } = useSession();
   const user = session?.user;
 
-  const [projects, setProjects] = useState<ProjectType[]>([]);
+  const [myProjects, setMyProjects] = useState<ProjectType[]>([]);
 
   useEffect(() => {
-
-    if(user?.email != configs.ADMIN_EMAIL) {
-      router.push("/dashboard");
-    }
 
     const fetchProjects = async () => {
       const response = await getAllProjects();
       console.log(response.data);
-      setProjects(response.data);
+      const myProjects = response.data.filter((project: any) => project.email == user?.email);
+      setMyProjects(myProjects);
     }
 
     fetchProjects();
@@ -72,8 +69,8 @@ const AdminPage = (props: Props) => {
             <div className="flex flex-col items-start justify-start self-stretch py-10">
               <div className="flex flex-col items-start justify-start self-stretch">
                 <div className="grid grid-cols-1 flex-row items-start justify-start gap-4 self-stretch md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                  {projects.map((project) => (
-                    <ProjectCard key={project._id} project={project} page="admin" />
+                  {myProjects.map((project) => (
+                    <ProjectCard key={project._id} project={project} page="my-project" />
                   ))}
                 </div>
               </div>
@@ -85,4 +82,4 @@ const AdminPage = (props: Props) => {
   );
 };
 
-export default AdminPage;
+export default MyProjectPage;

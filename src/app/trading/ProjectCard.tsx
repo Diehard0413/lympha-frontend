@@ -31,7 +31,10 @@ export type ProjectCardType = {
 const ProjectCard: FC<ProjectCardType> = ({ className = "", project, page = "" }) => {
   const router = useRouter();
 
+  const [symbol, setSymbol] = useState<string>("");
+
   const [isApproving, setIsApproving] = useState(false);
+  const [isOpeningTrading, setIsOpeningTrading] = useState(false);
 
   const onApprove = async () => {
     setIsApproving(true);
@@ -45,6 +48,20 @@ const ProjectCard: FC<ProjectCardType> = ({ className = "", project, page = "" }
       console.log(error);
     }
     setIsApproving(false);
+  }
+
+  const onOpenTrading = async () => {
+    setIsOpeningTrading(true);
+    try {
+      const response = await approveProject(project._id, true);
+      console.log("Approve response", response);
+      if (response.result) {
+        router.push("/trading");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    setIsOpeningTrading(false);
   }
 
   return (
@@ -84,45 +101,82 @@ const ProjectCard: FC<ProjectCardType> = ({ className = "", project, page = "" }
               Tokens Offered: {project.tokensOffered}
             </div>
           </div>
+        </div>
+        <div className="flex flex-row items-center justify-start gap-[24px] self-stretch text-xs text-neutral-black-4">
           {page == "invest" ?
-            <Link
-              href={`/invest/${project._id}`}
-              className="flex w-[50px] flex-row items-start justify-start text-sm text-neutral-white"
-            >
-              <div className="flex flex-1 flex-row items-center justify-center gap-[8px] rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-3.5 py-1.5 shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)]">
-                <b className="relative hidden w-[52px] self-stretch uppercase leading-[130%] tracking-[-0.02em]">
-                  get let
-                </b>
-                <IoIosArrowForward className="relative h-[18px] w-[18px]" />
-              </div>
-            </Link> :
-            !project.approved ?
-              <button disabled={isApproving} onClick={(e) => { onApprove(); }} className="text-sm font-body-large-bold text-neutral-white uppercase leading-[130%] tracking-[-0.02em] gap-[8px] rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-3.5 py-1.5 shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)]">
-                {isApproving && (
-                  <svg
-                    className="-ml-1 mr-2 h-5 w-5 animate-spin text-white"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    ></circle>
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
-                  </svg>
-                )}
-                Approve
-              </button> :
-              <></>
+            <>
+              <div className="relative inline-block min-w-[94px] leading-[17px] tracking-[-0.02em]">View Project</div>
+              <Link
+                href={`/invest/${project._id}`}
+                className="flex w-[50px] flex-row items-start justify-start text-sm text-neutral-white"
+              >
+                <div className="flex flex-1 flex-row items-center justify-center gap-[8px] rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-3.5 py-1.5 shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)]">
+                  <b className="relative hidden w-[52px] self-stretch uppercase leading-[130%] tracking-[-0.02em]">
+                    get let
+                  </b>
+                  <IoIosArrowForward className="relative h-[18px] w-[18px]" />
+                </div>
+              </Link>
+            </> :
+            (page == "admin" ?
+              (!project.approved ?
+                <>
+                  <input placeholder="Symbol" value={symbol} onChange={(e) => setSymbol(e.target.value)} className="appearance-none rounded-lg border-[0.5px] border-solid border-neutral-black-2 px-3 py-2 text-base tracking-tight text-neutral-black-4 outline-none placeholder:text-neutral-black-2" />
+                  <button disabled={isApproving} onClick={(e) => { onApprove(); }} className="text-sm font-body-large-bold text-neutral-white uppercase leading-[130%] tracking-[-0.02em] gap-[8px] rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-3.5 py-1.5 shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)]">
+                    {isApproving && (
+                      <svg
+                        className="-ml-1 mr-2 h-5 w-5 animate-spin text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
+                      </svg>
+                    )}
+                    Approve
+                  </button>
+                </> :
+                <></>) :
+              (!project.openTrading ?
+                <button disabled={isOpeningTrading && !project.approved} onClick={(e) => { onOpenTrading(); }} className="text-sm font-body-large-bold text-neutral-white uppercase leading-[130%] tracking-[-0.02em] gap-[8px] rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-3.5 py-1.5 shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)]">
+                  {isOpeningTrading && (
+                    <svg
+                      className="-ml-1 mr-2 h-5 w-5 animate-spin text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+                  )}
+                  {!project.approved ? "UnApproved" : "Open"}
+                </button> :
+                <></>)
+            )
           }
         </div>
       </div>

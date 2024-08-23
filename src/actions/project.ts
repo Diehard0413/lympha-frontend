@@ -43,7 +43,19 @@ export const approveProject = async (id: string, approve: boolean) => {
 
     console.log("approveProject", id, approve);
 
-    const res = axios.post(`${configs.API_URL}/project/update_project`, { id, approved: approve })
+    const res = axios.post(`${configs.API_URL}/project/approve_project`, { id, approved: approve })
+        .then(response => { return response.data })
+        .catch(error => { console.log(error) });
+
+    return res;
+
+};
+
+export const openTrading = async (id: string, open_trading: boolean) => {
+
+    console.log("openTrading", id, open_trading);
+
+    const res = axios.post(`${configs.API_URL}/project/open_trading`, { id, open_trading })
         .then(response => { return response.data })
         .catch(error => { console.log(error) });
 
