@@ -51,11 +51,11 @@ export const approveProject = async (id: string, approve: boolean, symbol: strin
 
 };
 
-export const openTrading = async (id: string, open_trading: boolean, lctAmount: number, letAmount: number) => {
+export const openTrading = async (id: string, openTrading: boolean, lctAmount: number, letAmount: number) => {
 
-    console.log("openTrading", id, open_trading, lctAmount, letAmount);
+    console.log("openTrading", id, openTrading, lctAmount, letAmount);
 
-    const res = axios.post(`${configs.API_URL}/project/open_trading`, { id, open_trading, pool_lct_amount: lctAmount, pool_let_amount: letAmount })
+    const res = axios.post(`${configs.API_URL}/project/open_trading`, { id, openTrading, pool_lct_amount: lctAmount, pool_let_amount: letAmount })
         .then(response => { return response.data })
         .catch(error => { console.log(error) });
 
