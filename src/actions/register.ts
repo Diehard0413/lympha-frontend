@@ -15,9 +15,6 @@ import axios from 'axios';
 import configs from '../configs';
 
 const createWallet = async () => {
-
-  console.log("createWallet");
-
   const res = axios.post(`${configs.API_URL}/wallet/create_wallet`, {})
     .then(response => { return response.data })
     .catch(error => { console.log(error) });
@@ -27,7 +24,6 @@ const createWallet = async () => {
 };
 
 export const registerNewUser = async (values: any) => {
-  console.log("registerNewUser", values);
   const { name, email, password, confirmPassword } = values;
 
   if (password !== confirmPassword) {
@@ -39,7 +35,6 @@ export const registerNewUser = async (values: any) => {
     const existingUser = await prisma.user.findUnique({
       where: { email: email },
     });
-    console.log(existingUser);
 
     if (existingUser) {
       return {
@@ -48,18 +43,16 @@ export const registerNewUser = async (values: any) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    console.log(hashedPassword);
     // create user wallet
 
-    // const newWallet_res = await createWallet();
-    // console.log(newWallet_res.data);
+    const newWalletId = await createWallet();
 
     await prisma.user.create({
       data: {
         name,
         email,
         password: hashedPassword,
-        walletId: "", //newWallet_res.data,
+        walletId: newWalletId,
       },
     });
 
@@ -83,7 +76,6 @@ export const verifyEmailVerificationOtpCode = async ({
   otpCode: string;
   email: string;
 }) => {
-  console.log("verifyEmailVerificationOtpCode", otpCode, email);
   const existingUser = await getUserByEmail(email);
 
   if (!existingUser) {
