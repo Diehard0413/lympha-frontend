@@ -27,8 +27,8 @@ const createWallet = async () => {
 };
 
 export const registerNewUser = async (values: any) => {
+  console.log("registerNewUser", values);
   const { name, email, password, confirmPassword } = values;
-  console.log("registerNewUser", name, email, password, confirmPassword);
 
   if (password !== confirmPassword) {
     return {
@@ -69,7 +69,7 @@ export const registerNewUser = async (values: any) => {
       success: "User successfully created!",
     };
   } catch (error) {
-    console.error(error);
+    console.log(error);
     return {
       error: "Failed to create user!",
     };
