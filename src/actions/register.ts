@@ -86,7 +86,7 @@ export const verifyEmailVerificationOtpCode = async ({
 
   // create user wallet
 
-  const newWalletId_res = await axios.post(`${configs.API_URL}/wallet/create_wallet`, {});
+  const newWalletId_res = await axios.post(`${configs.API_URL}/wallet/create_wallet`, {aa: "aa"});
 
   await prisma.user.update({
     where: { id: existingUser.id },
