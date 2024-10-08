@@ -12,7 +12,7 @@ import {
 
 import configs from '../configs';
 
-export const createUserWallet = async () => {
+const createUserWallet = async () => {
   const response = await fetch(`${configs.API_URL}/wallet/create_wallet`, {
     method: 'POST',
     headers: {
