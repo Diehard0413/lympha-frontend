@@ -51,15 +51,15 @@ export const registerNewUser = async (values: any) => {
     console.log(hashedPassword);
     // create user wallet
 
-    const newWallet_res = await createWallet();
-    console.log(newWallet_res.data);
+    // const newWallet_res = await createWallet();
+    // console.log(newWallet_res.data);
 
     await prisma.user.create({
       data: {
         name,
         email,
         password: hashedPassword,
-        walletId: newWallet_res.data,
+        walletId: "", //newWallet_res.data,
       },
     });
 
