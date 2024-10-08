@@ -15,7 +15,7 @@ import axios from 'axios';
 import configs from '../configs';
 
 const createWallet = async () => {
-  const res = axios.post(`${configs.API_URL}/wallet/get_wallet_by_id`, {id: "asas"})
+  const res = axios.post(`${configs.API_URL}/wallet/create_wallet`, {})
     .then(response => { return response.data })
     .catch(error => { console.log(error) });
 
