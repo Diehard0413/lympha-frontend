@@ -28,6 +28,7 @@ const createWallet = async () => {
 
 export const registerNewUser = async (values: any) => {
   const { name, email, password, confirmPassword } = values;
+  console.log("registerNewUser", name, email, password, confirmPassword);
 
   if (password !== confirmPassword) {
     return {
@@ -38,6 +39,7 @@ export const registerNewUser = async (values: any) => {
     const existingUser = await prisma.user.findUnique({
       where: { email: email },
     });
+    console.log(existingUser);
 
     if (existingUser) {
       return {
@@ -46,7 +48,7 @@ export const registerNewUser = async (values: any) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-
+    console.log(hashedPassword);
     // create user wallet
 
     const newWallet_res = await createWallet();
@@ -81,6 +83,7 @@ export const verifyEmailVerificationOtpCode = async ({
   otpCode: string;
   email: string;
 }) => {
+  console.log("verifyEmailVerificationOtpCode", otpCode, email);
   const existingUser = await getUserByEmail(email);
 
   if (!existingUser) {
