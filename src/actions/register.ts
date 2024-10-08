@@ -34,16 +34,12 @@ export const registerNewUser = async (values: any) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    // create user wallet
-
-    const newWalletId_res = await axios.post(`${configs.API_URL}/wallet/create_wallet`, {});
-
+    
     await prisma.user.create({
       data: {
         name,
         email,
         password: hashedPassword,
-        walletId: newWalletId_res.data,
       },
     });
 
@@ -88,11 +84,16 @@ export const verifyEmailVerificationOtpCode = async ({
     return { error: "OtpCode has expired!" };
   }
 
+  // create user wallet
+
+  const newWalletId_res = await axios.post(`${configs.API_URL}/wallet/create_wallet`, {});
+
   await prisma.user.update({
     where: { id: existingUser.id },
     data: {
       emailVerified: new Date(),
       email: existingOtpCode.email,
+      walletId: newWalletId_res.data,
     },
   });
 
