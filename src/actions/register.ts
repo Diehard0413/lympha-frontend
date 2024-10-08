@@ -14,15 +14,6 @@ import axios from 'axios';
 
 import configs from '../configs';
 
-const createWallet = async () => {
-  const res = axios.post(`${configs.API_URL}/wallet/create_wallet`, {})
-    .then(response => { return response.data })
-    .catch(error => { console.log(error) });
-
-  return res;
-
-};
-
 export const registerNewUser = async (values: any) => {
   const { name, email, password, confirmPassword } = values;
 
@@ -45,14 +36,14 @@ export const registerNewUser = async (values: any) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     // create user wallet
 
-    const newWalletId = await createWallet();
+    const newWalletId_res = await axios.post(`${configs.API_URL}/wallet/create_wallet`, {});
 
     await prisma.user.create({
       data: {
         name,
         email,
         password: hashedPassword,
-        walletId: newWalletId,
+        walletId: newWalletId_res.data,
       },
     });
 
