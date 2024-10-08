@@ -20,7 +20,7 @@ const SampleProjectTokens = (props: Props) => {
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
-      approved: false,
+      approve: false,
       openTrading: false
     },
     {
@@ -38,7 +38,7 @@ const SampleProjectTokens = (props: Props) => {
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
-      approved: false,
+      approve: false,
       openTrading: false
     },
     {
@@ -56,7 +56,7 @@ const SampleProjectTokens = (props: Props) => {
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
-      approved: false,
+      approve: false,
       openTrading: false
     },
     {
@@ -74,7 +74,7 @@ const SampleProjectTokens = (props: Props) => {
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
-      approved: false,
+      approve: false,
       openTrading: false
     },
     {
@@ -92,7 +92,7 @@ const SampleProjectTokens = (props: Props) => {
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
-      approved: false,
+      approve: false,
       openTrading: false
     },
     {
@@ -110,7 +110,7 @@ const SampleProjectTokens = (props: Props) => {
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
-      approved: false,
+      approve: false,
       openTrading: false
     },
     {
@@ -128,7 +128,7 @@ const SampleProjectTokens = (props: Props) => {
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
-      approved: false,
+      approve: false,
       openTrading: false
     },
     {
@@ -146,7 +146,7 @@ const SampleProjectTokens = (props: Props) => {
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
-      approved: false,
+      approve: false,
       openTrading: false
     },
     {
@@ -164,7 +164,7 @@ const SampleProjectTokens = (props: Props) => {
         "The Convertible project is bringing new solutions to the automotive and...",
       minInvest: 2000,
       tokensOffered: 47333834,
-      approved: false,
+      approve: false,
       openTrading: false
     },
   ];

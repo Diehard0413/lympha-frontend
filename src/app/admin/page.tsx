@@ -25,7 +25,7 @@ type ProjectType = {
   description: string;
   minInvest: number;
   tokensOffered: number;
-  approved: boolean;
+  approve: boolean;
   openTrading: boolean;
 }
 

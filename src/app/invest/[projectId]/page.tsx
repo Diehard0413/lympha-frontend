@@ -23,7 +23,7 @@ type ProjectType = {
   description: string;
   minInvest: number;
   tokensOffered: number;
-  approved: boolean;
+  approve: boolean;
   openTrading: boolean;
 }
 
@@ -64,7 +64,7 @@ const ProjectDetailPage = (props: Props) => {
             </div>
           </div>
         </button>
-        {!project?.approved && <div className="my-3 box-border flex w-full max-w-full shrink-0 flex-row items-center justify-center rounded-2xl border border-state-warning bg-orange px-6 py-3">
+        {!project?.approve && <div className="my-3 box-border flex w-full max-w-full shrink-0 flex-row items-center justify-center rounded-2xl border border-state-warning bg-orange px-6 py-3">
           <div className="flex flex-1 flex-row items-center justify-start gap-2">
             <FaInfoCircle className="relative h-6 w-6 text-neutral-black-6" />
             <p className="h-7 w-full overflow-hidden bg-transparent text-lg font-light text-neutral-black-5">
@@ -166,7 +166,7 @@ const ProjectDetailPage = (props: Props) => {
                   </div>
                 </div>
               </div>
-              <button disabled={!project?.approved} className="flex cursor-pointer flex-row items-center justify-center self-stretch rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-5 py-[9px] disabled:opacity-[0.4] shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] hover:box-border hover:border-[2px] hover:border-solid hover:border-teal hover:bg-darkcyan-100">
+              <button disabled={!project?.approve} className="flex cursor-pointer flex-row items-center justify-center self-stretch rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-5 py-[9px] disabled:opacity-[0.4] shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] hover:box-border hover:border-[2px] hover:border-solid hover:border-teal hover:bg-darkcyan-100">
                 <b className="font-body-large-bold relative inline-block min-w-[45px] text-left text-base leading-6 tracking-[0.15px] text-neutral-white">
                   Invest
                 </b>

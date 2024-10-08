@@ -43,7 +43,7 @@ export const approveProject = async (id: string, approve: boolean, symbol: strin
 
     console.log("approveProject", id, approve, symbol);
 
-    const res = axios.post(`${configs.API_URL}/project/approve_project`, { id, approved: approve, symbol })
+    const res = axios.post(`${configs.API_URL}/project/approve_project`, { id, approve, symbol })
         .then(response => { return response.data })
         .catch(error => { console.log(error) });
 
