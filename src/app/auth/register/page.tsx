@@ -46,6 +46,7 @@ const Register: FunctionComponent = () => {
   });
 
   const onSubmit = async (data: RegisterFormDataType) => {
+    console.log("onSubmit", data);
     try {
       const response = await registerNewUser({
         name: data.name,
@@ -53,6 +54,7 @@ const Register: FunctionComponent = () => {
         password: data.password,
         confirmPassword: data.confirmPassword,
       });
+      console.log(response);
       if (response.error) {
         setError("root.serverError", {
           message: response.error,
