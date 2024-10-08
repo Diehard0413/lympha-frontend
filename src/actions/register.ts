@@ -59,6 +59,7 @@ export const registerNewUser = async (values: any) => {
         name,
         email,
         password: hashedPassword,
+        walletId: ''
       },
     });
 
