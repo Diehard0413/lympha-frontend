@@ -33,6 +33,13 @@ const ProjectDetailPage = (props: Props) => {
   const pathname = usePathname();
   const projectId = pathname.split('/').filter(Boolean).pop();
   const [project, setProject] = useState<ProjectType>();
+  const [investAmount, setInvestAmount] = useState<string>("");
+  
+  const [isInvesting, setIsInvesting] = useState(false);
+
+  const onInvest = async () => {
+    
+  }
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -166,7 +173,8 @@ const ProjectDetailPage = (props: Props) => {
                   </div>
                 </div>
               </div>
-              <button disabled={!project?.approve} className="flex cursor-pointer flex-row items-center justify-center self-stretch rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-5 py-[9px] disabled:opacity-[0.4] shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] hover:box-border hover:border-[2px] hover:border-solid hover:border-teal hover:bg-darkcyan-100">
+              <input disabled={isInvesting || project?.approve} placeholder="Symbol" value={investAmount} onChange={(e) => setInvestAmount(e.target.value)} className="w-[35%] appearance-none rounded-lg border-[0.5px] border-solid border-neutral-black-2 px-3 py-2 text-base tracking-tight text-neutral-black-4 outline-none placeholder:text-neutral-black-2" />
+              <button disabled={!project?.approve} onClick={(e) => {}} className="flex cursor-pointer flex-row items-center justify-center self-stretch rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-5 py-[9px] disabled:opacity-[0.4] shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] hover:box-border hover:border-[2px] hover:border-solid hover:border-teal hover:bg-darkcyan-100">
                 <b className="font-body-large-bold relative inline-block min-w-[45px] text-left text-base leading-6 tracking-[0.15px] text-neutral-white">
                   Invest
                 </b>

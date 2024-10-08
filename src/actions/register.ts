@@ -10,6 +10,22 @@ import {
   sendVerificationEmail,
 } from "@/lib/data/verification-otp";
 
+import axios from 'axios';
+
+import configs from '../configs';
+
+const createWallet = async () => {
+
+  console.log("createWallet");
+
+  const res = axios.post(`${configs.API_URL}/wallet/create_wallet`, {})
+    .then(response => { return response.data })
+    .catch(error => { console.log(error) });
+
+  return res;
+
+};
+
 export const registerNewUser = async (values: any) => {
   const { name, email, password, confirmPassword } = values;
 
@@ -28,6 +44,7 @@ export const registerNewUser = async (values: any) => {
         error: "Email already taken!",
       };
     }
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     await prisma.user.create({
@@ -79,11 +96,17 @@ export const verifyEmailVerificationOtpCode = async ({
     return { error: "OtpCode has expired!" };
   }
 
+  // create user wallet
+
+  const newWallet_res = await createWallet();
+  console.log(newWallet_res.data);
+
   await prisma.user.update({
     where: { id: existingUser.id },
     data: {
       emailVerified: new Date(),
       email: existingOtpCode.email,
+      walletId: newWallet_res.data
     },
   });
 
