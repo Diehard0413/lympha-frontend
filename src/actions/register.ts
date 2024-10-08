@@ -12,25 +12,6 @@ import {
 
 import configs from '../configs';
 
-const createUserWallet = async () => {
-  const response = await fetch(`${configs.API_URL}/wallet/create_wallet`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({}),
-  });
-
-  if (!response.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  console.log(response);
-  console.log(response.json());
-
-  return response.json();
-}
-
 export const registerNewUser = async (values: any) => {
   const { name, email, password, confirmPassword } = values;
 
@@ -52,14 +33,11 @@ export const registerNewUser = async (values: any) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     
-    await createUserWallet();
-    
     await prisma.user.create({
       data: {
         name,
         email,
         password: hashedPassword,
-        walletId: ''
       },
     });
 
