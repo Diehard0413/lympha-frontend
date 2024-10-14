@@ -224,55 +224,6 @@ const LinkedBankAccountSidebar = (props: Props) => {
               </b>
             </button>
           }
-          // <div className="flex flex-col items-start justify-start self-stretch">
-          //   <div className="mq450:flex-wrap flex flex-row items-start justify-between gap-[20px] self-stretch">
-          //     <div className="relative font-medium leading-5 tracking-tight">
-          //       Spot Wallet
-          //     </div>
-          //     <div className="flex flex-col items-start justify-center gap-[13px] text-right">
-          //       <div className="flex flex-row items-center justify-start gap-[8px]">
-          //         <MdContentCopy className="relative m-0 h-4 w-4 shrink-0 overflow-hidden" />
-          //         <div className="relative leading-[20px] tracking-[-0.02em]">
-          //           XXXX XXXX XXXX XXXX
-          //         </div>
-          //       </div>
-          //       <div className="flex flex-row items-center justify-start gap-[8px]">
-          //         <MdContentCopy className="relative m-0 h-4 w-4 shrink-0 overflow-hidden" />
-
-          //         <div className="relative leading-[20px] tracking-[-0.02em]">
-          //           XXXX XXXX XXXX XXXX
-          //         </div>
-          //       </div>
-          //     </div>
-          //   </div>
-          // </div>
-          // <div className="flex flex-col items-start justify-start self-stretch">
-          //   <div className="mq450:flex-wrap flex flex-row items-center justify-between gap-[20px] self-stretch">
-          //     <div className="relative font-medium leading-5 tracking-tight">
-          //       Trading Wallet
-          //     </div>
-          //     <div className="flex flex-row items-center justify-start gap-[8px] text-right">
-          //       <MdContentCopy className="relative m-0 h-4 w-4 shrink-0 overflow-hidden" />
-
-          //       <div className="relative leading-[20px] tracking-[-0.02em]">
-          //         XXXX XXXX XXXX XXXX
-          //       </div>
-          //     </div>
-          //   </div>
-          // </div>
-          // <div className="flex flex-col items-start justify-start self-stretch">
-          //   <div className="mq450:flex-wrap flex flex-row items-center justify-between gap-[20px] self-stretch">
-          //     <div className="relative font-medium leading-5 tracking-tight">
-          //       Etc Details
-          //     </div>
-          //     <div className="flex flex-row items-center justify-start gap-[8px] text-right">
-          //       <MdContentCopy className="relative m-0 h-4 w-4 shrink-0 overflow-hidden" />
-          //       <div className="relative leading-[20px] tracking-[-0.02em]">
-          //         XXXX XXXX XXXX XXXX
-          //       </div>
-          //     </div>
-          //   </div>
-          // </div>
         </div>
       </div>
     </div>
