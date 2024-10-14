@@ -12,6 +12,7 @@ import { MdContentCopy } from "react-icons/md";
 import { getUser, initUserWallet } from "@/actions/project";
 
 type Props = {
+  activeSidebarOption: string | null;
   onClose: () => void;
 };
 
@@ -23,7 +24,7 @@ const feedValidationSchema = Yup.object().shape({
   message: Yup.string().required(),
 });
 
-const LinkedBankAccountSidebar = (props: Props) => {
+const MyWalletSidebar = (props: Props) => {
   const navigate = useRouter();
   const session = useSession();
   const user = session.data?.user;
@@ -80,7 +81,7 @@ const LinkedBankAccountSidebar = (props: Props) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      if (user?.email) {
+      if (user?.email && props.activeSidebarOption == "my_wallet") {
         const response = await getUser(user.email);
         const userData = response.data;
         console.log(userData);
@@ -89,7 +90,7 @@ const LinkedBankAccountSidebar = (props: Props) => {
     }
 
     fetchUser();
-  }, []);
+  }, [props.activeSidebarOption]);
 
   return (
     // <div className="w-full flex flex-col gap-y-5">
@@ -252,4 +253,4 @@ const LinkedBankAccountSidebar = (props: Props) => {
   );
 };
 
-export default LinkedBankAccountSidebar;
+export default MyWalletSidebar;

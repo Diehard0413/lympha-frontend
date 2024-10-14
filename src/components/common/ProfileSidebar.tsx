@@ -172,7 +172,7 @@ const ProfileSidebar = (props: Props) => {
             "translate-x-0 shadow-[0px_0px_72px_rgba(2,_24,_29,_0.11)]",
         )}
       >
-        <MyWalletSidebar onClose={() => setActiveSidebarOption(null)} />
+        <MyWalletSidebar activeSidebarOption={activeSidebarOption} onClose={() => setActiveSidebarOption(null)} />
       </div>
 
       {/* Feedback */}
