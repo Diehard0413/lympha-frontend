@@ -1,13 +1,15 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { FaArrowLeft } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { IoArrowForward } from "react-icons/io5";
 import { MdContentCopy } from "react-icons/md";
+import { getUser, initUserWallet } from "@/actions/project";
 
 type Props = {
   onClose: () => void;
@@ -23,6 +25,11 @@ const feedValidationSchema = Yup.object().shape({
 
 const LinkedBankAccountSidebar = (props: Props) => {
   const navigate = useRouter();
+  const session = useSession();
+  const user = session.data?.user;
+
+  const [userData, setUserData] = useState<any>({});
+  const [isCreatingWallet, setIsCreatingWallet] = useState<boolean>(false);
 
   const {
     register,
@@ -58,6 +65,31 @@ const LinkedBankAccountSidebar = (props: Props) => {
       clearErrors();
     }, 3000);
   };
+
+  const onCreateWallet = async () => {
+    if (!user?.email) return;
+    setIsCreatingWallet(true);
+    const response = await initUserWallet(user.email);
+    console.log("Create Wallet response", response);
+    if (response.result) {
+      const userData = response.data;
+      setUserData(userData);
+    }
+    setIsCreatingWallet(false);
+  }
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      if (user?.email) {
+        const response = await getUser(user.email);
+        const userData = response.data;
+        console.log(userData);
+        setUserData(userData);
+      }
+    }
+
+    fetchUser();
+  }, []);
 
   return (
     // <div className="w-full flex flex-col gap-y-5">
@@ -172,55 +204,75 @@ const LinkedBankAccountSidebar = (props: Props) => {
 
       <div className="flex flex-col items-start justify-start self-stretch text-sm text-neutral-black-4">
         <div className="flex flex-col items-start justify-start gap-[24px] self-stretch rounded-2xl bg-neutral-white p-4">
-          <div className="flex flex-col items-start justify-start self-stretch">
-            <div className="mq450:flex-wrap flex flex-row items-start justify-between gap-[20px] self-stretch">
-              <div className="relative font-medium leading-5 tracking-tight">
-                Spot Wallet
-              </div>
-              <div className="flex flex-col items-start justify-center gap-[13px] text-right">
-                <div className="flex flex-row items-center justify-start gap-[8px]">
+          {userData && userData.userWalletId ?
+            <div className="flex flex-col items-start justify-start self-stretch">
+              <div className="mq450:flex-wrap flex flex-row items-center justify-between gap-[20px] self-stretch">
+                <div className="relative font-medium leading-5 tracking-tight">
+                  Etc Details
+                </div>
+                <div className="flex flex-row items-center justify-start gap-[8px] text-right">
                   <MdContentCopy className="relative m-0 h-4 w-4 shrink-0 overflow-hidden" />
                   <div className="relative leading-[20px] tracking-[-0.02em]">
                     XXXX XXXX XXXX XXXX
                   </div>
                 </div>
-                <div className="flex flex-row items-center justify-start gap-[8px]">
-                  <MdContentCopy className="relative m-0 h-4 w-4 shrink-0 overflow-hidden" />
+              </div>
+            </div> :
+            <button onClick={(e) => { onCreateWallet(); }} className="flex flex-1 flex-row items-center justify-center whitespace-nowrap rounded-13xl border-[2px] border-darkslategray bg-lympha-primary px-[22px] py-1.5 shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] hover:box-border hover:border-[2px] hover:hover:border-teal hover:bg-darkcyan-100" >
+              <b className="relative shrink-0 text-sm uppercase text-neutral-white">
+                create wallet
+              </b>
+            </button>
+          }
+          // <div className="flex flex-col items-start justify-start self-stretch">
+          //   <div className="mq450:flex-wrap flex flex-row items-start justify-between gap-[20px] self-stretch">
+          //     <div className="relative font-medium leading-5 tracking-tight">
+          //       Spot Wallet
+          //     </div>
+          //     <div className="flex flex-col items-start justify-center gap-[13px] text-right">
+          //       <div className="flex flex-row items-center justify-start gap-[8px]">
+          //         <MdContentCopy className="relative m-0 h-4 w-4 shrink-0 overflow-hidden" />
+          //         <div className="relative leading-[20px] tracking-[-0.02em]">
+          //           XXXX XXXX XXXX XXXX
+          //         </div>
+          //       </div>
+          //       <div className="flex flex-row items-center justify-start gap-[8px]">
+          //         <MdContentCopy className="relative m-0 h-4 w-4 shrink-0 overflow-hidden" />
 
-                  <div className="relative leading-[20px] tracking-[-0.02em]">
-                    XXXX XXXX XXXX XXXX
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-col items-start justify-start self-stretch">
-            <div className="mq450:flex-wrap flex flex-row items-center justify-between gap-[20px] self-stretch">
-              <div className="relative font-medium leading-5 tracking-tight">
-                Trading Wallet
-              </div>
-              <div className="flex flex-row items-center justify-start gap-[8px] text-right">
-                <MdContentCopy className="relative m-0 h-4 w-4 shrink-0 overflow-hidden" />
+          //         <div className="relative leading-[20px] tracking-[-0.02em]">
+          //           XXXX XXXX XXXX XXXX
+          //         </div>
+          //       </div>
+          //     </div>
+          //   </div>
+          // </div>
+          // <div className="flex flex-col items-start justify-start self-stretch">
+          //   <div className="mq450:flex-wrap flex flex-row items-center justify-between gap-[20px] self-stretch">
+          //     <div className="relative font-medium leading-5 tracking-tight">
+          //       Trading Wallet
+          //     </div>
+          //     <div className="flex flex-row items-center justify-start gap-[8px] text-right">
+          //       <MdContentCopy className="relative m-0 h-4 w-4 shrink-0 overflow-hidden" />
 
-                <div className="relative leading-[20px] tracking-[-0.02em]">
-                  XXXX XXXX XXXX XXXX
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-col items-start justify-start self-stretch">
-            <div className="mq450:flex-wrap flex flex-row items-center justify-between gap-[20px] self-stretch">
-              <div className="relative font-medium leading-5 tracking-tight">
-                Etc Details
-              </div>
-              <div className="flex flex-row items-center justify-start gap-[8px] text-right">
-                <MdContentCopy className="relative m-0 h-4 w-4 shrink-0 overflow-hidden" />
-                <div className="relative leading-[20px] tracking-[-0.02em]">
-                  XXXX XXXX XXXX XXXX
-                </div>
-              </div>
-            </div>
-          </div>
+          //       <div className="relative leading-[20px] tracking-[-0.02em]">
+          //         XXXX XXXX XXXX XXXX
+          //       </div>
+          //     </div>
+          //   </div>
+          // </div>
+          // <div className="flex flex-col items-start justify-start self-stretch">
+          //   <div className="mq450:flex-wrap flex flex-row items-center justify-between gap-[20px] self-stretch">
+          //     <div className="relative font-medium leading-5 tracking-tight">
+          //       Etc Details
+          //     </div>
+          //     <div className="flex flex-row items-center justify-start gap-[8px] text-right">
+          //       <MdContentCopy className="relative m-0 h-4 w-4 shrink-0 overflow-hidden" />
+          //       <div className="relative leading-[20px] tracking-[-0.02em]">
+          //         XXXX XXXX XXXX XXXX
+          //       </div>
+          //     </div>
+          //   </div>
+          // </div>
         </div>
       </div>
     </div>
