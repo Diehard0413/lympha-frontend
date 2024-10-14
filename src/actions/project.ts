@@ -51,6 +51,30 @@ export const approveProject = async (id: string, approve: boolean, symbol: strin
 
 };
 
+export const invest = async (id: string, email: string, amount: number) => {
+
+    console.log("invest", id, email, amount);
+
+    const res = axios.post(`${configs.API_URL}/project/invest`, { id, email, amount })
+        .then(response => { return response.data })
+        .catch(error => { console.log(error) });
+
+    return res;
+
+};
+
+export const execute = async (signedTransaction: string) => {
+
+    console.log("execute", signedTransaction);
+
+    const res = axios.post(`${configs.API_URL}/project/execute`, { signedTransaction })
+        .then(response => { return response.data })
+        .catch(error => { console.log(error) });
+
+    return res;
+
+};
+
 export const openTrading = async (id: string, openTrading: boolean, lctAmount: number, letAmount: number) => {
 
     console.log("openTrading", id, openTrading, lctAmount, letAmount);

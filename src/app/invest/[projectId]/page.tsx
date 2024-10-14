@@ -1,11 +1,13 @@
 "use client";
-import { getProjectById } from "@/actions/project";
+import { getProjectById, invest, execute } from "@/actions/project";
 import Navbar from "@/components/common/Navbar";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FaInfoCircle } from "react-icons/fa";
 import { MdArrowBack, MdOutlineFileDownload } from "react-icons/md";
+import { useSession } from "next-auth/react";
+import { useHashConnectContext } from "@/hooks/useHashconnect";
 
 type Props = {};
 
@@ -31,6 +33,10 @@ const ProjectDetailPage = (props: Props) => {
 
   const router = useRouter();
   const pathname = usePathname();
+  const session = useSession();
+  const user = session.data?.user;
+  const { signTransaction } = useHashConnectContext();
+
   const projectId = pathname.split('/').filter(Boolean).pop();
   const [project, setProject] = useState<ProjectType>();
   const [investAmount, setInvestAmount] = useState<string>("");
@@ -38,7 +44,23 @@ const ProjectDetailPage = (props: Props) => {
   const [isInvesting, setIsInvesting] = useState(false);
 
   const onInvest = async () => {
+    if (!investAmount || Number(investAmount) <= 0 || !project || !user?.email) return;
+    setIsInvesting(true);
+    try {
+      const investResponse = await invest(project._id, user.email, Number(investAmount));
+      console.log("investResponse", investResponse);
+      if (investResponse.result) {
+        const signedTransaction = await signTransaction(investResponse.data.transactionBase64);
+        const executeResponse = await execute(signedTransaction);
+        console.log("executeResponse", executeResponse);
+        if (executeResponse.result) {
 
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    setIsInvesting(false);
   }
 
   useEffect(() => {
