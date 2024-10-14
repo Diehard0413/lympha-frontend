@@ -196,7 +196,29 @@ const ProjectDetailPage = (props: Props) => {
                 </div>
               </div>
               <input disabled={isInvesting || !project?.approve} placeholder="Invest Amount" value={investAmount} onChange={(e) => setInvestAmount(e.target.value)} className="w-full appearance-none rounded-lg border-[0.5px] border-solid border-neutral-black-2 px-3 py-2 text-base tracking-tight text-neutral-black-4 outline-none placeholder:text-neutral-black-2" />
-              <button disabled={!project?.approve} onClick={(e) => { onInvest(); }} className="flex cursor-pointer flex-row items-center justify-center self-stretch rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-5 py-[9px] disabled:opacity-[0.4] shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] hover:box-border hover:border-[2px] hover:border-solid hover:border-teal hover:bg-darkcyan-100">
+              <button disabled={isInvesting || !project?.approve} onClick={(e) => { onInvest(); }} className="flex cursor-pointer flex-row items-center justify-center self-stretch rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-5 py-[9px] disabled:opacity-[0.4] shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] hover:box-border hover:border-[2px] hover:border-solid hover:border-teal hover:bg-darkcyan-100">
+                {isInvesting && (
+                  <svg
+                    className="-ml-1 mr-2 h-5 w-5 animate-spin text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                )}
                 <b className="font-body-large-bold relative inline-block min-w-[45px] text-left text-base leading-6 tracking-[0.15px] text-neutral-white">
                   Invest
                 </b>
