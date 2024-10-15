@@ -38,6 +38,7 @@
     "react-otp-input": "^3.1.1",
     "react-toastify": "^10.0.5",
     "resend": "^3.4.0",
+    "simple-crypto-js": "2.2.0",
     "tailwind-merge": "^2.4.0",
     "yup": "^1.4.0"
   },
