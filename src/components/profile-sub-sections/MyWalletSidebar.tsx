@@ -72,6 +72,7 @@ const MyWalletSidebar = (props: Props) => {
   };
 
   const onDeposit = async () => {
+    console.log("onDeposit", depositAmount, pairingData);
     if (!depositAmount || Number(depositAmount) <= 0 || !user?.email) return;
     if (!(pairingData && pairingData.accountIds && pairingData.accountIds.length > 0)) return;
     setIsDepositing(true);
@@ -241,7 +242,7 @@ const MyWalletSidebar = (props: Props) => {
                   </div>
                 </div>
               </div>
-              <input disabled={isDepositing} placeholder="Invest Amount" value={depositAmount} onChange={(e) => setDepositAmount(e.target.value)} className="w-full appearance-none rounded-lg border-[0.5px] border-solid border-neutral-black-2 px-3 py-2 text-base tracking-tight text-neutral-black-4 outline-none placeholder:text-neutral-black-2" />
+              <input disabled={isDepositing} placeholder="Deposit Amount" value={depositAmount} onChange={(e) => setDepositAmount(e.target.value)} className="w-full appearance-none rounded-lg border-[0.5px] border-solid border-neutral-black-2 px-3 py-2 text-base tracking-tight text-neutral-black-4 outline-none placeholder:text-neutral-black-2" />
               <button disabled={isDepositing} onClick={(e) => { onDeposit(); }} className="flex flex-1 flex-row items-center justify-center whitespace-nowrap rounded-13xl border-[2px] border-darkslategray bg-lympha-primary px-[22px] py-1.5 shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] hover:box-border hover:border-[2px] hover:hover:border-teal hover:bg-darkcyan-100" >
                 {isDepositing && (
                   <svg
