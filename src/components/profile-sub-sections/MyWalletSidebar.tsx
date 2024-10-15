@@ -10,7 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { IoArrowForward } from "react-icons/io5";
 import { MdContentCopy } from "react-icons/md";
 import { deposit, execute, getUser, initUserWallet } from "@/actions/project";
-import { useHashConnectContext } from "@/hooks/useHashconnect";
+import { useHashConnectContext } from "hashconnect-provider";
 
 type Props = {
   activeSidebarOption: string | null;
@@ -29,7 +29,7 @@ const MyWalletSidebar = (props: Props) => {
   const navigate = useRouter();
   const session = useSession();
   const user = session.data?.user;
-  const { pairingData, signTransaction, connectToExtension } = useHashConnectContext();
+  const { pairingData, connectToExtension } = useHashConnectContext();
 
   const [userData, setUserData] = useState<any>({});
   const [isCreatingWallet, setIsCreatingWallet] = useState<boolean>(false);
@@ -75,19 +75,19 @@ const MyWalletSidebar = (props: Props) => {
     console.log("onDeposit", depositAmount, pairingData);
     if (!depositAmount || Number(depositAmount) <= 0 || !user?.email) return;
     if (!(pairingData && pairingData.accountIds && pairingData.accountIds.length > 0)) {
-      connectToExtension();
+      // connectToExtension();
       return;
     }
     setIsDepositing(true);
     const depositResponse = await deposit(user.email, pairingData.accountIds[0], Number(depositAmount));
     console.log("depositResponse", depositResponse);
     if (depositResponse.result) {
-      const signedTransaction = await signTransaction(depositResponse.data.transactionBase64);
-      const executeResponse = await execute(signedTransaction);
-      console.log("executeResponse", executeResponse);
-      if (executeResponse.result) {
+      // const signedTransaction = await signTransaction(depositResponse.data.transactionBase64);
+      // const executeResponse = await execute(signedTransaction);
+      // console.log("executeResponse", executeResponse);
+      // if (executeResponse.result) {
 
-      }
+      // }
     }
     setIsDepositing(false);
   }

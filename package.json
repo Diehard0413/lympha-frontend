@@ -24,7 +24,7 @@
     "bcryptjs": "^2.4.3",
     "clsx": "^2.1.1",
     "framer-motion": "^11.3.2",
-    "hashconnect": "0.2.4",
+    "hashconnect-provider": "^1.0.0",
     "mailgun.js": "^10.2.3",
     "next": "14.2.5",
     "next-auth": "^5.0.0-beta.19",
