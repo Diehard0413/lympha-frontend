@@ -5,8 +5,8 @@ import localFont from "next/font/local";
 import { Toaster } from "react-hot-toast";
 import { SessionProvider } from "next-auth/react";
 import AuthWrapper from "./auth_wrapper";
-import { HashConnect } from "hashconnect/dist/hashconnect";
-import { HashConnectContextProvider } from 'hashconnect-provider';
+import HashConnectProvider from '../context/hashconnect'
+import SingingProvider from '../context/signing'
 
 export const metadata: Metadata = {
   title: "Lympha - Invest in the future",
@@ -52,18 +52,14 @@ export default function RootLayout({
           gutter={16}
           containerClassName="fixed z-[1000] top-0 right-0"
         />
-        <HashConnectContextProvider hashConnect={new HashConnect(true)} network="testnet" metaData={{
-          name: "Lympha - Invest in the future",
-          description: "Invest in the future with Lympha and help remove CO2e",
-          icon: "https://www.hashpack.app/img/logo.svg",
-          url: "https://lympha.vercel.app"
-        }}
-        >
-          <AuthWrapper>
-            {/* <LoadingPage /> */}
-            {children}
-          </AuthWrapper>
-        </HashConnectContextProvider>
+        <SingingProvider>
+          <HashConnectProvider>
+            <AuthWrapper>
+              {/* <LoadingPage /> */}
+              {children}
+            </AuthWrapper>
+          </HashConnectProvider>
+        </SingingProvider>
       </body>
     </html>
   );

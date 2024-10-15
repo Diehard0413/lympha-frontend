@@ -7,7 +7,6 @@ import React, { useEffect, useState } from "react";
 import { FaInfoCircle } from "react-icons/fa";
 import { MdArrowBack, MdOutlineFileDownload } from "react-icons/md";
 import { useSession } from "next-auth/react";
-import { useHashConnectContext } from "hashconnect-provider";
 
 type Props = {};
 

@@ -10,7 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { IoArrowForward } from "react-icons/io5";
 import { MdContentCopy } from "react-icons/md";
 import { deposit, execute, getUser, initUserWallet } from "@/actions/project";
-import { useHashConnectContext } from "hashconnect-provider";
+import { useHashConnectContext } from "@/context/hashconnect";
 
 type Props = {
   activeSidebarOption: string | null;
@@ -29,7 +29,7 @@ const MyWalletSidebar = (props: Props) => {
   const navigate = useRouter();
   const session = useSession();
   const user = session.data?.user;
-  const { pairingData, connectToExtension } = useHashConnectContext();
+  const { state, pairingData, connectToExtension } = useHashConnectContext();
 
   const [userData, setUserData] = useState<any>({});
   const [isCreatingWallet, setIsCreatingWallet] = useState<boolean>(false);
@@ -73,6 +73,11 @@ const MyWalletSidebar = (props: Props) => {
 
   const onDeposit = async () => {
     console.log("onDeposit", depositAmount, pairingData);
+
+    if(!state) {
+      connectToExtension();
+    }
+
     if (!depositAmount || Number(depositAmount) <= 0 || !user?.email) return;
     if (!(pairingData && pairingData.accountIds && pairingData.accountIds.length > 0)) {
       // connectToExtension();
