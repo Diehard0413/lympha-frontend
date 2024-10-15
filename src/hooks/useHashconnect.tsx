@@ -104,7 +104,7 @@ export const HashConnectContextProvider = ({
     const init = async (net: HederaNetworkType) => {
         
         console.log("useHashconnect ------ 4")
-        
+
         setUpHashConnectEvents();
 
         let initData = await hashConnect.init(appMetadata, net, false);
@@ -117,14 +117,17 @@ export const HashConnectContextProvider = ({
 
     const setUpHashConnectEvents = () => {
         hashConnect.foundExtensionEvent.on((data) => {
+            console.log("useHashconnect ------ 5")
             setAvailableExtension(data);
         })
 
         hashConnect.pairingEvent.on((data) => {
+            console.log("useHashconnect ------ 6")
             setPairingData(data.pairingData!);
         });
 
         hashConnect.connectionStatusChangeEvent.on((state) => {
+            console.log("useHashconnect ------ 6")
             setState(state);
         })
     }
