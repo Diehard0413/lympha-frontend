@@ -45,6 +45,8 @@ const g_appMetadata = {
 }
 const g_network = 'testnet';
 
+console.log("useHashconnect ------ 1")
+
 export const HashConnectContextProvider = ({
     children,
 }: IHashconnectProviderProps) => {
@@ -63,8 +65,13 @@ export const HashConnectContextProvider = ({
     const [state, setState] = React.useState(HashConnectConnectionState.Disconnected);
     const [network, setNetwork] = React.useState<HederaNetworkType>(null!);
     const [initialLoad, setInitialLoad] = React.useState(true);
+    
+    console.log("useHashconnect ------ 2")
 
     React.useEffect(() => {
+
+        console.log("useHashconnect ------ 3")
+
         let selectedNetwork = g_network
         if (isLocalAvailable()) {
             const storedNetwork = localStorage.getItem('hederaNetwork') as HederaNetworkType;
@@ -72,7 +79,7 @@ export const HashConnectContextProvider = ({
                 setNetwork(g_network);
             } else {
                 setNetwork(storedNetwork);
-                selectedNetwork = storedNetwork
+                selectedNetwork = storedNetwork;
             }
         } else {
             if (isValidNetwork(g_network)) {
@@ -95,6 +102,9 @@ export const HashConnectContextProvider = ({
     });
 
     const init = async (net: HederaNetworkType) => {
+        
+        console.log("useHashconnect ------ 4")
+        
         setUpHashConnectEvents();
 
         let initData = await hashConnect.init(appMetadata, net, false);
