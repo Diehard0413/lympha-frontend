@@ -5,6 +5,7 @@ import localFont from "next/font/local";
 import { Toaster } from "react-hot-toast";
 import { SessionProvider } from "next-auth/react";
 import AuthWrapper from "./auth_wrapper";
+import { HashConnectContextProvider } from "@/hooks/useHashconnect";
 
 export const metadata: Metadata = {
   title: "Lympha - Invest in the future",
@@ -50,10 +51,12 @@ export default function RootLayout({
           gutter={16}
           containerClassName="fixed z-[1000] top-0 right-0"
         />
-        <AuthWrapper>
-          {/* <LoadingPage /> */}
-          {children}
-        </AuthWrapper>
+        <HashConnectContextProvider>
+          <AuthWrapper>
+            {/* <LoadingPage /> */}
+            {children}
+          </AuthWrapper>
+        </HashConnectContextProvider>
       </body>
     </html>
   );

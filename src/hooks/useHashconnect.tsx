@@ -34,19 +34,21 @@ export type HashConnectContent = {
 const HashConnectContext = React.createContext<HashConnectContent>({} as HashConnectContent);
 
 export interface IHashconnectProviderProps {
-    hashConnect: HashConnect,
-    metaData?: HashConnectTypes.AppMetadata,
-    network?: HederaNetworkType,
     children: React.ReactNode
 }
 
+const g_hashConnect = new HashConnect();
+const g_appMetadata = {
+    name: "Lympha - Invest in the future",
+    description: "Invest in the future with Lympha and help remove CO2e",
+    icon: ""
+}
+const g_network = 'testnet';
+
 export const HashConnectContextProvider = ({
     children,
-    hashConnect: hashConnectProp,
-    metaData,
-    network: hederaNetwork = 'testnet'
 }: IHashconnectProviderProps) => {
-    const [hashConnect] = React.useState(hashConnectProp);
+    const [hashConnect] = React.useState(g_hashConnect);
     const [hcData, setHcData] = React.useState<object>(hashConnect.hcData);
     const [topic, setTopic] = React.useState('');
     const [pairingString, setPairingString] = React.useState("");
@@ -56,28 +58,28 @@ export const HashConnectContextProvider = ({
         description: "",
         icon: ""
     });
-    const appMetadata: HashConnectTypes.AppMetadata = metaData!;
+    const appMetadata: HashConnectTypes.AppMetadata = g_appMetadata!;
 
     const [state, setState] = React.useState(HashConnectConnectionState.Disconnected);
     const [network, setNetwork] = React.useState<HederaNetworkType>(null!);
     const [initialLoad, setInitialLoad] = React.useState(true);
 
     React.useEffect(() => {
-        let selectedNetwork = hederaNetwork
+        let selectedNetwork = g_network
         if (isLocalAvailable()) {
             const storedNetwork = localStorage.getItem('hederaNetwork') as HederaNetworkType;
             if (!storedNetwork || !isValidNetwork(storedNetwork)) {
-                setNetwork(hederaNetwork);
+                setNetwork(g_network);
             } else {
                 setNetwork(storedNetwork);
                 selectedNetwork = storedNetwork
             }
         } else {
-            if (isValidNetwork(hederaNetwork)) {
-                setNetwork(hederaNetwork);
+            if (isValidNetwork(g_network)) {
+                setNetwork(g_network);
             }
         }
-        init(selectedNetwork);
+        init(selectedNetwork as HederaNetworkType);
     }, []);
 
     React.useEffect(() => {
