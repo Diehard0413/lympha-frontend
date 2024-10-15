@@ -27,6 +27,19 @@ export const getUser = async (email: string) => {
     
 };
 
+
+export const deposit = async (email: string, senderId: string, amount: number) => {
+
+    console.log("deposit", email, senderId, amount);
+
+    const res = axios.post(`${configs.API_URL}/project/deposit`, { email, senderId, amount })
+        .then(response => { return response.data })
+        .catch(error => { console.log(error) });
+
+    return res;
+
+};
+
 export const initUserWallet = async (email: string) => {
 
     console.log("initUserWallet", email);
