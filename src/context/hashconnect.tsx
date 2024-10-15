@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, PropsWithChildren, useContext, useEffect, useState } from "react";
 import { HashConnect, HashConnectTypes, MessageTypes } from "hashconnect";
 import { HashConnectConnectionState } from "hashconnect/dist/types";
