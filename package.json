@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.4.1",
+    "@hashgraph/sdk": "2.20.0",
     "@headlessui/react": "^2.1.2",
     "@hookform/resolvers": "^3.9.0",
     "@prisma/client": "^5.17.0",
