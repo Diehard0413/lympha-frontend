@@ -29,7 +29,7 @@ const MyWalletSidebar = (props: Props) => {
   const navigate = useRouter();
   const session = useSession();
   const user = session.data?.user;
-  const { state, topic, pairingData, connectToExtension } = useHashConnectContext();
+  const { state, topic, pairingData, hcData, connectToExtension } = useHashConnectContext();
 
   const [userData, setUserData] = useState<any>({});
   const [isCreatingWallet, setIsCreatingWallet] = useState<boolean>(false);
@@ -72,7 +72,7 @@ const MyWalletSidebar = (props: Props) => {
   };
 
   const onDeposit = async () => {
-    console.log("onDeposit", depositAmount, state, pairingData);
+    console.log("onDeposit", depositAmount, state, pairingData, hcData);
 
     if(state !== 'Paired') {
       await connectToExtension(topic);
