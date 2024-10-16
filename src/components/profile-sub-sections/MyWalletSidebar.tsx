@@ -75,7 +75,7 @@ const MyWalletSidebar = (props: Props) => {
     console.log("onDeposit", depositAmount, state, pairingData, hcData);
 
     if(state !== 'Paired') {
-      await connectToExtension(topic);
+      connectToExtension(topic);
     }
 
     if (!depositAmount || Number(depositAmount) <= 0 || !user?.email) return;

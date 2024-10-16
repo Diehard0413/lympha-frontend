@@ -39,7 +39,7 @@ export default function HashConnectProvider({ children }: PropsWithChildren) {
         name: "dApp Example",
         description: "An example hedera dApp",
         icon: "https://www.hashpack.app/img/logo.svg",
-        url: "http://localhost:3000"
+        url: "https://lympha.vercel.app/"
     }
 
     const [state, setState] = useState(HashConnectConnectionState.Disconnected);
