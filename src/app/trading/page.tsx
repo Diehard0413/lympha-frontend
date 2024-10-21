@@ -1,5 +1,5 @@
 import Navbar from "@/components/common/Navbar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TradingChartSection from "./TradingChartSection";
 import MyHoldings from "./MyHoldings";
 import Statistics from "./Statistics";
@@ -8,10 +8,59 @@ import SellOrders from "./SellOrders";
 import BuySellTradingSection from "./BuySellTradingSection";
 import SampleProjectTokens from "./SampleProjectTokens";
 import TradingTabs from "./TradingTabs";
+import configs from "@/configs";
+
+import { toast } from "react-toastify";
 
 type Props = {};
 
 const TradingPage = (props: Props) => {
+
+  const [socket, setSocket] = useState<WebSocket | null>(null);
+
+  useEffect(() => {
+    let ws: WebSocket;
+
+    const connect = () => {
+      ws = new WebSocket(configs.SOCKET_URL);
+
+      ws.onopen = () => {
+        console.log('WebSocket connection established');
+      };
+
+      ws.onmessage = (event: MessageEvent) => {
+        console.log('WebSocket message received:', event.data);
+      };
+
+      ws.onerror = (error: Event) => {
+        console.log('WebSocket error:', error);
+      };
+
+      ws.onclose = (e: CloseEvent) => {
+        console.log('WebSocket connection closed');
+        if (!e.wasClean) {
+          setTimeout(connect, 5000); // Try to reconnect after 5 seconds
+        }
+      };
+
+      setSocket(ws);
+    };
+
+    connect();
+
+    return () => {
+      if (ws) {
+        ws.close();
+      }
+    };
+  }, []);
+
+  const sendMessage = () => {
+    if (socket && socket.readyState === WebSocket.OPEN) {
+      socket.send('Hello from Next.js!');
+    }
+  };
+
   return (
     <div className="relative flex min-h-screen w-full flex-col items-start justify-start overflow-hidden font-proxima [background:linear-gradient(rgba(230,_232,_232,_0.4),_rgba(230,_232,_232,_0.4)),_#fcfdfd]">
       <Navbar />
@@ -31,7 +80,7 @@ const TradingPage = (props: Props) => {
                 />
                 <div className="box-border flex min-w-[203px] flex-1 flex-row items-center justify-start py-0 pl-0 pr-5">
                   <div className="flex flex-1 flex-col items-start justify-start">
-                    <h1 className="font-inherit relative m-0 self-stretch text-2xl font-bold leading-10 tracking-[-0.02em] text-inherit">
+                    <h1 onClick={() => { sendMessage(); }} className="font-inherit relative m-0 self-stretch text-2xl font-bold leading-10 tracking-[-0.02em] text-inherit">
                       $LET
                     </h1>
                     <h2 className="relative m-0 self-stretch text-xl tracking-tight md:text-2xl">
