@@ -47,13 +47,8 @@ const ProjectDetailPage = (props: Props) => {
     try {
       const investResponse = await invest(project._id, user.email, Number(investAmount));
       console.log("investResponse", investResponse);
-      if (investResponse.result) {
-        // const signedTransaction = await signTransaction(investResponse.data.transactionBase64);
-        // const executeResponse = await execute(signedTransaction);
-        // console.log("executeResponse", executeResponse);
-        // if (executeResponse.result) {
-
-        // }
+      if (investResponse.error) {
+        console.log(investResponse.error);
       }
     } catch (error) {
       console.log(error);
