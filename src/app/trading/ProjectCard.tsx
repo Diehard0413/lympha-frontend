@@ -1,10 +1,11 @@
 "use client";
 
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
 import { approveProject, openTrading } from "@/actions/project";
 import { useRouter } from "next/navigation";
+import configs from "@/configs";
 
 import { toast } from "react-toastify";
 
@@ -31,7 +32,10 @@ export type ProjectCardType = {
 };
 
 const ProjectCard: FC<ProjectCardType> = ({ className = "", project, page = "" }) => {
+
   const router = useRouter();
+
+  const [socket, setSocket] = useState<WebSocket | null>(null);
 
   const [symbol, setSymbol] = useState<string>("");
   const [lctAmount, setLctAmount] = useState<string>("");
@@ -75,6 +79,49 @@ const ProjectCard: FC<ProjectCardType> = ({ className = "", project, page = "" }
     setIsOpeningTrading(false);
   }
 
+  useEffect(() => {
+    let ws: WebSocket;
+
+    const connect = () => {
+      ws = new WebSocket(configs.SOCKET_URL);
+
+      ws.onopen = () => {
+        console.log('WebSocket connection established');
+      };
+
+      ws.onmessage = (event: MessageEvent) => {
+        console.log('WebSocket message received:', event.data);
+      };
+
+      ws.onerror = (error: Event) => {
+        console.log('WebSocket error:', error);
+      };
+
+      ws.onclose = (e: CloseEvent) => {
+        console.log('WebSocket connection closed');
+        if (!e.wasClean) {
+          setTimeout(connect, 5000); // Try to reconnect after 5 seconds
+        }
+      };
+
+      setSocket(ws);
+    };
+
+    connect();
+
+    return () => {
+      if (ws) {
+        ws.close();
+      }
+    };
+  }, []);
+
+  const sendMessage = () => {
+    if (socket && socket.readyState === WebSocket.OPEN) {
+      socket.send('Hello from Next.js!');
+    }
+  };
+
   return (
     <div
       className={`flex flex-col items-start justify-start overflow-hidden rounded-2xl bg-neutral-white text-left text-lg text-neutral-black-6 shadow-[0px_0px_20px_rgba(0,_0,_0,_0.04)] ${className} group`}
@@ -105,7 +152,7 @@ const ProjectCard: FC<ProjectCardType> = ({ className = "", project, page = "" }
         </div>
         <div className="flex flex-row items-center justify-start gap-[24px] self-stretch text-xs text-neutral-black-4">
           <div className="flex flex-1 flex-col items-start justify-start py-0 pl-0 pr-[11px]">
-            <div className="relative inline-block min-w-[94px] leading-[17px] tracking-[-0.02em]">
+            <div onClick={() => { sendMessage(); }} className="relative inline-block min-w-[94px] leading-[17px] tracking-[-0.02em]">
               Min Invest: ${project.minInvest}
             </div>
             <div className="relative inline-block h-[17px] self-stretch leading-[140%] tracking-[-0.02em]">
