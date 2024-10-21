@@ -74,7 +74,7 @@ const MyWalletSidebar = (props: Props) => {
   const onDeposit = async () => {
     console.log("onDeposit", depositAmount, state, pairingData, hcData);
 
-    if(state !== 'Paired') {
+    if (state !== 'Paired') {
       connectToExtension(topic);
     }
 
@@ -240,7 +240,7 @@ const MyWalletSidebar = (props: Props) => {
               <div className="flex flex-col items-start justify-start self-stretch">
                 <div className="mq450:flex-wrap flex flex-row items-center justify-between gap-[20px] self-stretch">
                   <div className="relative font-medium leading-5 tracking-tight">
-                    Your Wallet
+                    Wallet Information
                   </div>
                   <div className="flex flex-row items-center justify-start gap-[8px] text-right">
                     <MdContentCopy className="relative m-0 h-4 w-4 shrink-0 overflow-hidden" />
@@ -248,6 +248,14 @@ const MyWalletSidebar = (props: Props) => {
                       {userData.userWalletId}
                     </div>
                   </div>
+                </div>
+              </div>
+              <div className="flex gap-[20px] justify-end items-center">
+                <div className="relative leading-[20px] tracking-[-0.02em]">
+                  LET Amount:
+                </div>
+                <div className="relative leading-[20px] tracking-[-0.02em]">
+                  {userData.userWalletId}
                 </div>
               </div>
               <input disabled={isDepositing} placeholder="Deposit Amount" value={depositAmount} onChange={(e) => setDepositAmount(e.target.value)} className="w-full appearance-none rounded-lg border-[0.5px] border-solid border-neutral-black-2 px-3 py-2 text-base tracking-tight text-neutral-black-4 outline-none placeholder:text-neutral-black-2" />
