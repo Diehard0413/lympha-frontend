@@ -63,7 +63,10 @@ const ProjectCard: FC<ProjectCardType> = ({ className = "", project, page = "" }
     try {
       const response = await openTrading(project._id, true, Number(lctAmount), Number(letAmount));
       console.log("onOpenTrading response", response);
-      if (response.result) {
+      if (response.error) {
+        toast.error(response.error);
+      } else {
+        toast.success("Open trading successfully");
         router.push("/trading");
       }
     } catch (error) {
