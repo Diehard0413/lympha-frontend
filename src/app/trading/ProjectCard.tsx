@@ -6,6 +6,8 @@ import { IoIosArrowForward } from "react-icons/io";
 import { approveProject, openTrading } from "@/actions/project";
 import { useRouter } from "next/navigation";
 
+import { toast } from "react-toastify";
+
 export type ProjectCardType = {
   className?: string;
   project: {
@@ -34,17 +36,20 @@ const ProjectCard: FC<ProjectCardType> = ({ className = "", project, page = "" }
   const [symbol, setSymbol] = useState<string>("");
   const [lctAmount, setLctAmount] = useState<string>("");
   const [letAmount, setLetAmount] = useState<string>("");
-  
+
   const [isApproving, setIsApproving] = useState(false);
   const [isOpeningTrading, setIsOpeningTrading] = useState(false);
 
   const onApprove = async () => {
-    if(!symbol) return;
+    if (!symbol) return;
     setIsApproving(true);
     try {
       const response = await approveProject(project._id, true, symbol);
       console.log("Approve response", response);
-      if (response.result) {
+      if (response.error) {
+        toast.error(response.error);
+      } else {
+        toast.success("Approve successfully");
         router.push("/invest");
       }
     } catch (error) {

@@ -6,8 +6,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
 import { resetPassword } from "@/actions/forgot-password";
+
+import { toast } from "react-toastify";
 
 interface ResetFormDataType {
   email: string;

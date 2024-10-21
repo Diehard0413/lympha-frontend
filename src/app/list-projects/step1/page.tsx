@@ -14,6 +14,8 @@ import { cn } from "@/app/helpers/utils";
 import { useSession } from "next-auth/react";
 import { listNewProject } from "@/actions/project";
 
+import { toast } from "react-toastify";
+
 type Props = {};
 
 interface Step1FormDataType {
@@ -72,11 +74,15 @@ const Step1 = (props: Props) => {
           message: response.error,
         });
 
+        toast.error(response.error);
+
         setTimeout(() => {
           clearErrors();
         }, 2000);
 
         return;
+      } else {
+        toast.success("List project successfully");
       }
 
       navigator.push("/list-projects/step2");

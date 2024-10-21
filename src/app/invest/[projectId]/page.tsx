@@ -8,6 +8,8 @@ import { FaInfoCircle } from "react-icons/fa";
 import { MdArrowBack, MdOutlineFileDownload } from "react-icons/md";
 import { useSession } from "next-auth/react";
 
+import { toast } from "react-toastify";
+
 type Props = {};
 
 type ProjectType = {
@@ -48,7 +50,9 @@ const ProjectDetailPage = (props: Props) => {
       const investResponse = await invest(project._id, user.email, Number(investAmount));
       console.log("investResponse", investResponse);
       if (investResponse.error) {
-        console.log(investResponse.error);
+        toast.error(investResponse.error);
+      } else {
+        toast.success("Invest successfully");
       }
     } catch (error) {
       console.log(error);
