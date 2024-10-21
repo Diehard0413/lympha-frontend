@@ -1,3 +1,5 @@
+"use client";
+
 import Navbar from "@/components/common/Navbar";
 import React, { useEffect, useState } from "react";
 import TradingChartSection from "./TradingChartSection";
