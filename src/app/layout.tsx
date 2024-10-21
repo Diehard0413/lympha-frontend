@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { cn } from "./helpers/utils";
 import localFont from "next/font/local";
-import { Toaster } from "react-hot-toast";
 import { SessionProvider } from "next-auth/react";
 import AuthWrapper from "./auth_wrapper";
 import HashConnectProvider from '../context/hashconnect'
 import SingingProvider from '../context/signing'
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata: Metadata = {
   title: "Lympha - Invest in the future",
@@ -47,11 +49,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(proxima.variable, "text-neutral-black-5")}>
-        <Toaster
-          position="top-right"
-          gutter={16}
-          containerClassName="fixed z-[1000] top-0 right-0"
-        />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
         <SingingProvider>
           <HashConnectProvider>
             <AuthWrapper>
