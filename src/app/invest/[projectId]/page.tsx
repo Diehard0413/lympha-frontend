@@ -193,8 +193,8 @@ const ProjectDetailPage = (props: Props) => {
                   </div>
                 </div>
               </div>
-              <input disabled={isInvesting || !project?.approve} placeholder="Invest Amount" value={investAmount} onChange={(e) => setInvestAmount(e.target.value)} className="w-full appearance-none rounded-lg border-[0.5px] border-solid border-neutral-black-2 px-3 py-2 text-base tracking-tight text-neutral-black-4 outline-none placeholder:text-neutral-black-2" />
-              <button disabled={isInvesting || !project?.approve} onClick={(e) => { onInvest(); }} className="flex cursor-pointer flex-row items-center justify-center self-stretch rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-5 py-[9px] disabled:opacity-[0.4] shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] hover:box-border hover:border-[2px] hover:border-solid hover:border-teal hover:bg-darkcyan-100">
+              <input disabled={isInvesting || !project?.approve || project.openTrading} placeholder="Invest Amount" value={investAmount} onChange={(e) => setInvestAmount(e.target.value)} className="w-full appearance-none rounded-lg border-[0.5px] border-solid border-neutral-black-2 px-3 py-2 text-base tracking-tight text-neutral-black-4 outline-none placeholder:text-neutral-black-2" />
+              <button disabled={isInvesting || !project?.approve || project.openTrading} onClick={(e) => { onInvest(); }} className="flex cursor-pointer flex-row items-center justify-center self-stretch rounded-13xl border-[2px] border-solid border-darkslategray bg-lympha-primary px-5 py-[9px] disabled:opacity-[0.4] shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] hover:box-border hover:border-[2px] hover:border-solid hover:border-teal hover:bg-darkcyan-100">
                 {isInvesting && (
                   <svg
                     className="-ml-1 mr-2 h-5 w-5 animate-spin text-white"
