@@ -53,6 +53,7 @@ const ProjectDetailPage = (props: Props) => {
         toast.error(investResponse.error);
       } else {
         toast.success("Invest successfully");
+        setProject(investResponse.data);
       }
     } catch (error) {
       console.log(error);
