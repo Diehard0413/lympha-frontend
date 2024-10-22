@@ -28,11 +28,35 @@ export const getUser = async (email: string) => {
 };
 
 
-export const deposit = async (email: string, senderId: string, amount: number) => {
+export const deposit = async (email: string, /*senderId: string,*/ amount: number) => {
 
-    console.log("deposit", email, senderId, amount);
+    console.log("deposit", email, /*senderId,*/ amount);
 
-    const res = axios.post(`${configs.API_URL}/project/deposit`, { email, senderId, amount })
+    const res = axios.post(`${configs.API_URL}/project/deposit`, { email, /*senderId,*/ amount })
+        .then(response => { return response.data })
+        .catch(error => { console.log(error) });
+
+    return res;
+
+};
+
+export const withdraw = async (email: string, amount: number, address: string) => {
+
+    console.log("withdraw", email, amount, address);
+
+    const res = axios.post(`${configs.API_URL}/project/withdraw`, { email, amount, address })
+        .then(response => { return response.data })
+        .catch(error => { console.log(error) });
+
+    return res;
+
+};
+
+export const transfer = async (email: string, amount: number, toEmail: string) => {
+
+    console.log("transfer", email, amount, toEmail);
+
+    const res = axios.post(`${configs.API_URL}/project/transfer`, { email, amount, toEmail })
         .then(response => { return response.data })
         .catch(error => { console.log(error) });
 

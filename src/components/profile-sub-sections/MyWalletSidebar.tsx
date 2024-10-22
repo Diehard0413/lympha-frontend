@@ -9,8 +9,10 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { IoArrowForward } from "react-icons/io5";
 import { MdContentCopy } from "react-icons/md";
-import { deposit, execute, getUser, initUserWallet } from "@/actions/project";
+import { deposit, withdraw, transfer, execute, getUser, initUserWallet } from "@/actions/project";
 import { useHashConnectContext } from "@/context/hashconnect";
+
+import { toast } from "react-toastify";
 
 type Props = {
   activeSidebarOption: string | null;
@@ -32,9 +34,19 @@ const MyWalletSidebar = (props: Props) => {
   const { state, topic, pairingData, hcData, connectToExtension } = useHashConnectContext();
 
   const [userData, setUserData] = useState<any>({});
+
   const [isCreatingWallet, setIsCreatingWallet] = useState<boolean>(false);
+
   const [isDepositing, setIsDepositing] = useState<boolean>(false);
   const [depositAmount, setDepositAmount] = useState<string>("");
+
+  const [isWithdrawing, setIsWithdrawing] = useState<boolean>(false);
+  const [withdrawAmount, setWithdrawAmount] = useState<string>("");
+  const [withdrawAddress, setWithdrawAddress] = useState<string>("");
+
+  const [isTransferring, setIsTransferring] = useState<boolean>(false);
+  const [transferAmount, setTransferAmount] = useState<string>("");
+  const [toEmail, setToEmail] = useState<string>("");
 
   const {
     register,
@@ -72,19 +84,16 @@ const MyWalletSidebar = (props: Props) => {
   };
 
   const onDeposit = async () => {
-    console.log("onDeposit", depositAmount, state, pairingData, hcData);
-
-    if (state !== 'Paired') {
-      connectToExtension(topic);
-    }
+    console.log("onDeposit", depositAmount);
 
     if (!depositAmount || Number(depositAmount) <= 0 || !user?.email) return;
-    if (!(pairingData && pairingData.accountIds && pairingData.accountIds.length > 0)) {
-      // connectToExtension();
-      return;
-    }
+    // if (!(pairingData && pairingData.accountIds && pairingData.accountIds.length > 0)) {
+    //   connectToExtension();
+    //   return;
+    // }
+
     setIsDepositing(true);
-    const depositResponse = await deposit(user.email, pairingData.accountIds[0], Number(depositAmount));
+    const depositResponse = await deposit(user.email, /*pairingData.accountIds[0],*/ Number(depositAmount));
     console.log("depositResponse", depositResponse);
     if (depositResponse.result) {
       // const signedTransaction = await signTransaction(depositResponse.data.transactionBase64);
@@ -93,8 +102,37 @@ const MyWalletSidebar = (props: Props) => {
       // if (executeResponse.result) {
 
       // }
+      toast.success("Deposit successfully");
     }
     setIsDepositing(false);
+  }
+
+  const onWithdraw = async () => {
+    console.log("onWithdraw", withdrawAmount, withdrawAddress);
+
+    if (!withdrawAmount || Number(withdrawAmount) <= 0 || !withdrawAddress || !user?.email) return;
+
+    setIsWithdrawing(true);
+    const withdrawResponse = await withdraw(user.email, Number(withdrawAmount), withdrawAddress);
+    console.log("withdrawResponse", withdrawResponse);
+    if (withdrawResponse.result) {
+      toast.success("Withdraw successfully");
+    }
+    setIsWithdrawing(false);
+  }
+
+  const onTransfer = async () => {
+    console.log("onTransfer", transferAmount, toEmail);
+
+    if (!transferAmount || Number(transferAmount) <= 0 || !user?.email) return;
+
+    setIsTransferring(true);
+    const transferResponse = await transfer(user.email, Number(transferAmount), toEmail);
+    console.log("transferResponse", transferResponse);
+    if (transferResponse.result) {
+      toast.success("Transfer successfully");
+    }
+    setIsTransferring(false);
   }
 
   const onCreateWallet = async () => {
@@ -255,7 +293,15 @@ const MyWalletSidebar = (props: Props) => {
                   LET Amount:
                 </div>
                 <div className="relative leading-[20px] tracking-[-0.02em]">
-                  {userData.userWalletId}
+                  {userData.letAmount}
+                </div>
+              </div>
+              <div className="flex gap-[20px] justify-end items-center">
+                <div className="relative leading-[20px] tracking-[-0.02em]">
+                  LCT Amount:
+                </div>
+                <div className="relative leading-[20px] tracking-[-0.02em]">
+                  {userData.lctAmount}
                 </div>
               </div>
               <input disabled={isDepositing} placeholder="Deposit Amount" value={depositAmount} onChange={(e) => setDepositAmount(e.target.value)} className="w-full appearance-none rounded-lg border-[0.5px] border-solid border-neutral-black-2 px-3 py-2 text-base tracking-tight text-neutral-black-4 outline-none placeholder:text-neutral-black-2" />
@@ -284,6 +330,64 @@ const MyWalletSidebar = (props: Props) => {
                 )}
                 <b className="relative shrink-0 text-sm uppercase text-neutral-white">
                   Deposit
+                </b>
+              </button>
+              <input disabled={isWithdrawing} placeholder="Withdraw Amount" value={withdrawAmount} onChange={(e) => setWithdrawAmount(e.target.value)} className="w-full appearance-none rounded-lg border-[0.5px] border-solid border-neutral-black-2 px-3 py-2 text-base tracking-tight text-neutral-black-4 outline-none placeholder:text-neutral-black-2" />
+              <input disabled={isWithdrawing} placeholder="Withdraw Address" value={withdrawAddress} onChange={(e) => setWithdrawAddress(e.target.value)} className="w-full appearance-none rounded-lg border-[0.5px] border-solid border-neutral-black-2 px-3 py-2 text-base tracking-tight text-neutral-black-4 outline-none placeholder:text-neutral-black-2" />
+              <button disabled={isWithdrawing} onClick={(e) => { onWithdraw(); }} className="flex flex-1 flex-row items-center justify-center whitespace-nowrap rounded-13xl border-[2px] border-darkslategray bg-lympha-primary px-[22px] py-1.5 shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] hover:box-border hover:border-[2px] hover:hover:border-teal hover:bg-darkcyan-100" >
+                {isWithdrawing && (
+                  <svg
+                    className="-ml-1 mr-2 h-5 w-5 animate-spin text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                )}
+                <b className="relative shrink-0 text-sm uppercase text-neutral-white">
+                  Withdraw
+                </b>
+              </button>
+              <input disabled={isTransferring} placeholder="Transfer Amount" value={transferAmount} onChange={(e) => setTransferAmount(e.target.value)} className="w-full appearance-none rounded-lg border-[0.5px] border-solid border-neutral-black-2 px-3 py-2 text-base tracking-tight text-neutral-black-4 outline-none placeholder:text-neutral-black-2" />
+              <input disabled={isTransferring} placeholder="To Email" value={toEmail} onChange={(e) => setToEmail(e.target.value)} className="w-full appearance-none rounded-lg border-[0.5px] border-solid border-neutral-black-2 px-3 py-2 text-base tracking-tight text-neutral-black-4 outline-none placeholder:text-neutral-black-2" />
+              <button disabled={isTransferring} onClick={(e) => { onTransfer(); }} className="flex flex-1 flex-row items-center justify-center whitespace-nowrap rounded-13xl border-[2px] border-darkslategray bg-lympha-primary px-[22px] py-1.5 shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] hover:box-border hover:border-[2px] hover:hover:border-teal hover:bg-darkcyan-100" >
+                {isTransferring && (
+                  <svg
+                    className="-ml-1 mr-2 h-5 w-5 animate-spin text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                )}
+                <b className="relative shrink-0 text-sm uppercase text-neutral-white">
+                  Transfer
                 </b>
               </button>
             </> :
