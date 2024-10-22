@@ -1,44 +1,23 @@
 import { FunctionComponent } from "react";
 import { GoArrowDownLeft } from "react-icons/go";
 
-export type BuyOrdersType = {
-  className?: string;
-  orderIcons?: string;
-  buyOrders?: string;
-  signUp?: string;
+interface Order {
+  _id: string;
+  email: string;
+  type: string;
+  price: number;
+  amount: number;
+}
+
+type Props = {
+  buyOrders: Order[];
 };
 
-const BuyOrders: FunctionComponent<BuyOrdersType> = ({ className = "" }) => {
-  const orderData = [
-    {
-      id: "1",
-      price: "75,890.91",
-      quantity: "10",
-      total: "75,890.91",
-    },
-    {
-      id: "2",
-      price: "75,890.93",
-      quantity: "18",
-      total: "75,890.91",
-    },
-    {
-      id: "3",
-      price: "75,890.97",
-      quantity: "19",
-      total: "75,890.91",
-    },
-    {
-      id: "4",
-      price: "75,891.23",
-      quantity: "12",
-      total: "75,890.91",
-    },
-  ];
+const BuyOrders = (props: Props) => {
 
   return (
     <div
-      className={`flex max-w-full flex-1 flex-col items-center justify-start gap-5 divide-y divide-neutral-black-1 rounded-3xl bg-neutral-white p-4 text-left text-neutral-black-4 ${className}`}
+      className={`flex max-w-full flex-1 flex-col items-center justify-start gap-5 divide-y divide-neutral-black-1 rounded-3xl bg-neutral-white p-4 text-left text-neutral-black-4`}
     >
       <div className="mq450:flex-wrap flex flex-row items-center justify-between gap-[20px] self-stretch">
         <div className="flex flex-row items-center justify-start gap-3">
@@ -47,11 +26,11 @@ const BuyOrders: FunctionComponent<BuyOrdersType> = ({ className = "" }) => {
           </div>
           <b className="relative flex-1 text-lg tracking-tight">Buy Orders</b>
         </div>
-        <button className="flex cursor-pointer flex-row items-center justify-center whitespace-nowrap rounded-full bg-lympha-primary px-6 py-1.5 uppercase shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] transition-all duration-300 ease-in-out hover:bg-darkcyan-100">
+        {/* <button className="flex cursor-pointer flex-row items-center justify-center whitespace-nowrap rounded-full bg-lympha-primary px-6 py-1.5 uppercase shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] transition-all duration-300 ease-in-out hover:bg-darkcyan-100">
           <b className="relative min-w-24 text-left text-sm tracking-tight text-neutral-white">
             New Buy Order
           </b>
-        </button>
+        </button> */}
       </div>
 
       <div className="box-border flex max-w-full flex-row items-end justify-between gap-5 self-stretch px-2 pt-4 text-sm">
@@ -64,7 +43,7 @@ const BuyOrders: FunctionComponent<BuyOrdersType> = ({ className = "" }) => {
           </div>
 
           <div className="flex flex-col gap-y-3">
-            {orderData.map((order, index) => (
+            {props.buyOrders.map((order, index) => (
               <div
                 key={index}
                 className="grid flex-1 grid-cols-4 items-center gap-8 text-left font-normal"
@@ -73,14 +52,14 @@ const BuyOrders: FunctionComponent<BuyOrdersType> = ({ className = "" }) => {
                   {order.price}
                 </div>
                 <div className="text-center leading-5 tracking-tight">
-                  {order.quantity}
+                  {order.amount}
                 </div>
 
                 <div className="text-right leading-5 tracking-tight">
-                  {order.total}
+                  {order.price * order.amount}
                 </div>
                 <div className="flex items-center justify-end">
-                  <button className="flex w-max cursor-pointer flex-row items-center justify-end rounded-2xl border border-neutral-black-2 bg-neutral-white px-5 py-1.5 hover:box-border hover:border hover:border-transparent hover:bg-lympha-disabled">
+                  <button onClick={(e) => { }} className="flex w-max cursor-pointer flex-row items-center justify-end rounded-2xl border border-neutral-black-2 bg-neutral-white px-5 py-1.5 hover:box-border hover:border hover:border-transparent hover:bg-lympha-disabled">
                     <b className="relative text-xs text-lympha-primary">Buy</b>
                   </button>
                 </div>

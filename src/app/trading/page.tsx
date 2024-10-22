@@ -21,8 +21,18 @@ interface Message {
   type: string;
   clientId: string;
   senderId?: string;
+  result: string;
+  data: any;
   message: string;
   timestamp?: number;
+}
+
+interface Order {
+  _id: string;
+  email: string;
+  type: string;
+  price: number;
+  amount: number;
 }
 
 type Props = {};
@@ -36,20 +46,27 @@ const TradingPage = (props: Props) => {
   const [wsService, setWsService] = useState<WebSocketService | null>(null);
   const [connectionStatus, setConnectionStatus] = useState<'connected' | 'disconnected' | 'connecting'>('connecting');
 
+  const [buyOrders, setBuyOrders] = useState<Order[]>([]);
+  const [sellOrders, setSellOrders] = useState<Order[]>([]);
+
   useEffect(() => {
     const service = new WebSocketService(
       configs.SOCKET_URL
     );
 
     const handleMessage = (data: Message) => {
-      console.log("handleMessage", data);
       switch (data.type) {
         case 'connection':
           setClientId(data.clientId || '');
           setConnectionStatus('connected');
           break;
         case 'message':
-          console.log(data);
+          if (!data.result) {
+            toast.error(data.message);
+          } else {
+            setBuyOrders(data.data.buyOrders || []);
+            setSellOrders(data.data.sellOrders || []);
+          }
           break;
         case 'disconnection':
           break;
@@ -142,8 +159,8 @@ const TradingPage = (props: Props) => {
           </div>
           <MyHoldings />
           <div className="grid w-full max-w-full shrink-0 grid-cols-1 flex-row flex-wrap items-center justify-start gap-4 md:grid-cols-2">
-            <BuyOrders />
-            <SellOrders />
+            <BuyOrders buyOrders={buyOrders} />
+            <SellOrders sellOrders={sellOrders} />
           </div>
 
           <BuySellTradingSection onBuyLCT={onBuyLCT} onSellLCT={onSellLCT} />

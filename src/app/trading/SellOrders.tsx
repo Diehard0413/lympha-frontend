@@ -1,44 +1,23 @@
 import { FunctionComponent } from "react";
 import { GoArrowDownLeft, GoArrowUpRight } from "react-icons/go";
 
-export type sellOrdersType = {
-  className?: string;
-  orderIcons?: string;
-  sellOrders?: string;
-  signUp?: string;
+interface Order {
+  _id: string;
+  email: string;
+  type: string;
+  price: number;
+  amount: number;
+}
+
+type Props = {
+  sellOrders: Order[];
 };
 
-const sellOrders: FunctionComponent<sellOrdersType> = ({ className = "" }) => {
-  const orderData = [
-    {
-      id: "1",
-      price: "75,890.91",
-      quantity: "10",
-      total: "75,890.91",
-    },
-    {
-      id: "2",
-      price: "75,890.93",
-      quantity: "18",
-      total: "75,890.91",
-    },
-    {
-      id: "3",
-      price: "75,890.97",
-      quantity: "19",
-      total: "75,890.91",
-    },
-    {
-      id: "4",
-      price: "75,891.23",
-      quantity: "12",
-      total: "75,890.91",
-    },
-  ];
+const SellOrders = (props: Props) => {
 
   return (
     <div
-      className={`flex max-w-full flex-1 flex-col items-center justify-start gap-5 divide-y divide-neutral-black-1 rounded-3xl bg-neutral-white p-4 text-left text-neutral-black-4 ${className}`}
+      className={`flex max-w-full flex-1 flex-col items-center justify-start gap-5 divide-y divide-neutral-black-1 rounded-3xl bg-neutral-white p-4 text-left text-neutral-black-4`}
     >
       <div className="mq450:flex-wrap flex flex-row items-center justify-between gap-[20px] self-stretch">
         <div className="flex flex-row items-center justify-start gap-3">
@@ -64,7 +43,7 @@ const sellOrders: FunctionComponent<sellOrdersType> = ({ className = "" }) => {
           </div>
 
           <div className="flex flex-col gap-y-3">
-            {orderData.map((order, index) => (
+            {props.sellOrders.map((order, index) => (
               <div
                 key={index}
                 className="grid flex-1 grid-cols-4 items-center gap-8 text-left font-normal"
@@ -73,14 +52,14 @@ const sellOrders: FunctionComponent<sellOrdersType> = ({ className = "" }) => {
                   {order.price}
                 </div>
                 <div className="text-center leading-5 tracking-tight">
-                  {order.quantity}
+                  {order.amount}
                 </div>
 
                 <div className="text-right leading-5 tracking-tight">
-                  {order.total}
+                  {order.price * order.amount}
                 </div>
                 <div className="flex items-center justify-end">
-                  <button className="flex w-max cursor-pointer flex-row items-center justify-end rounded-2xl border border-neutral-black-2 bg-neutral-white px-5 py-1.5 hover:box-border hover:border hover:border-transparent hover:bg-lympha-disabled">
+                  <button onClick={(e) => { }} className="flex w-max cursor-pointer flex-row items-center justify-end rounded-2xl border border-neutral-black-2 bg-neutral-white px-5 py-1.5 hover:box-border hover:border hover:border-transparent hover:bg-lympha-disabled">
                     <b className="relative text-xs text-state-error">Sell</b>
                   </button>
                 </div>
@@ -93,4 +72,4 @@ const sellOrders: FunctionComponent<sellOrdersType> = ({ className = "" }) => {
   );
 };
 
-export default sellOrders;
+export default SellOrders;
