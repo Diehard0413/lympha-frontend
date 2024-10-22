@@ -103,6 +103,7 @@ const MyWalletSidebar = (props: Props) => {
 
       // }
       toast.success("Deposit successfully");
+      setUserData(depositResponse.data);
     }
     setIsDepositing(false);
   }
@@ -117,6 +118,7 @@ const MyWalletSidebar = (props: Props) => {
     console.log("withdrawResponse", withdrawResponse);
     if (withdrawResponse.result) {
       toast.success("Withdraw successfully");
+      setUserData(withdrawResponse.data);
     }
     setIsWithdrawing(false);
   }
@@ -131,6 +133,7 @@ const MyWalletSidebar = (props: Props) => {
     console.log("transferResponse", transferResponse);
     if (transferResponse.result) {
       toast.success("Transfer successfully");
+      setUserData(transferResponse.data);
     }
     setIsTransferring(false);
   }
