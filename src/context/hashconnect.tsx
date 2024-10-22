@@ -38,8 +38,7 @@ export default function HashConnectProvider({ children }: PropsWithChildren) {
     const appMetadata: HashConnectTypes.AppMetadata = {
         name: "dApp Example",
         description: "An example hedera dApp",
-        icon: "https://www.hashpack.app/img/logo.svg",
-        url: "https://lympha.vercel.app/"
+        icon: "https://www.hashpack.app/img/logo.svg"
     }
 
     const [state, setState] = useState(HashConnectConnectionState.Disconnected);
