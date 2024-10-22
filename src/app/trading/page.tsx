@@ -16,6 +16,7 @@ import { WebSocketService } from "@/services/WebSocketService";
 import configs from "@/configs";
 
 import { toast } from "react-toastify";
+import InvestsPage from "../invest/page";
 
 interface Message {
   type: string;
@@ -179,7 +180,8 @@ const TradingPage = (props: Props) => {
 
           <BuySellTradingSection onBuyLCT={onBuyLCT} onSellLCT={onSellLCT} />
 
-          <SampleProjectTokens />
+          {/* <SampleProjectTokens /> */}
+          <InvestsPage />
 
           <div className="box-border flex max-w-full shrink-0 flex-col items-start justify-between gap-3 self-stretch rounded-[20px] bg-lightgray p-5 text-lg text-gray-200 md:flex-row md:gap-5 md:text-xl">
             <div className="flex max-w-full flex-col items-start justify-start py-3">
