@@ -59,11 +59,9 @@ const BuyOrders = (props: Props) => {
                 <div className="text-right leading-5 tracking-tight">
                   {order.price * order.amount}
                 </div>
-                {order.email}
-                {props.email}
                 <div className="flex items-center justify-end">
                   <button disabled={order.email == props.email} onClick={(e) => { }} className="flex w-max cursor-pointer flex-row items-center justify-end rounded-2xl border border-neutral-black-2 bg-neutral-white px-5 py-1.5 hover:box-border hover:border hover:border-transparent hover:bg-lympha-disabled">
-                    <b className="relative text-xs text-lympha-primary">Buy</b>
+                    <b className="relative text-xs text-lympha-primary">{order.email == props.email ? "---" : "Buy"}</b>
                   </button>
                 </div>
               </div>
