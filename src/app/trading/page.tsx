@@ -161,8 +161,8 @@ const TradingPage = (props: Props) => {
           </div>
           <MyHoldings />
           <div className="grid w-full max-w-full shrink-0 grid-cols-1 flex-row flex-wrap items-center justify-start gap-4 md:grid-cols-2">
-            <BuyOrders buyOrders={buyOrders} />
-            <SellOrders sellOrders={sellOrders} />
+            <BuyOrders email={user?.email} buyOrders={buyOrders} />
+            <SellOrders email={user?.email} sellOrders={sellOrders} />
           </div>
 
           <BuySellTradingSection onBuyLCT={onBuyLCT} onSellLCT={onSellLCT} />

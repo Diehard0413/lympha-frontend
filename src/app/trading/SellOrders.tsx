@@ -10,6 +10,7 @@ interface Order {
 }
 
 type Props = {
+  email: string | null | undefined;
   sellOrders: Order[];
 };
 
@@ -42,7 +43,7 @@ const SellOrders = (props: Props) => {
             <div className="relative shrink-0 leading-[20px] tracking-[-0.02em]"></div>
           </div>
 
-          <div className="flex flex-col gap-y-3">
+          <div className="min-h-[196px] flex flex-col gap-y-3">
             {props.sellOrders.map((order, index) => (
               <div
                 key={index}
@@ -59,7 +60,7 @@ const SellOrders = (props: Props) => {
                   {order.price * order.amount}
                 </div>
                 <div className="flex items-center justify-end">
-                  <button onClick={(e) => { }} className="flex w-max cursor-pointer flex-row items-center justify-end rounded-2xl border border-neutral-black-2 bg-neutral-white px-5 py-1.5 hover:box-border hover:border hover:border-transparent hover:bg-lympha-disabled">
+                  <button onClick={(e) => { order.email == props.email }} className="flex w-max cursor-pointer flex-row items-center justify-end rounded-2xl border border-neutral-black-2 bg-neutral-white px-5 py-1.5 hover:box-border hover:border hover:border-transparent hover:bg-lympha-disabled">
                     <b className="relative text-xs text-state-error">Sell</b>
                   </button>
                 </div>
