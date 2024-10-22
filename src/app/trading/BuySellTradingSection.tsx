@@ -1,13 +1,25 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { IoIosArrowForward, IoMdArrowDropdown } from "react-icons/io";
 import CustomSlider from "./CustomSlider";
 import { IoSwapHorizontal } from "react-icons/io5";
 
-type Props = {};
+type Props = {
+  onBuyLCT: (price: number, amount: number) => void;
+  onSellLCT: (price: number, amount: number) => void;
+};
 
 const BuySellTradingSection = (props: Props) => {
+
+  const [buyPrice, setBuyPrice] = useState("");
+  const [buyAmount, setBuyAmount] = useState("");
+  const [buyTotal, setBuyTotal] = useState("");
+
+  const [sellPrice, setSellPrice] = useState("");
+  const [sellAmount, setSellAmount] = useState("");
+  const [sellTotal, setSellTotal] = useState("");
+
   return (
     <section className="mq450:pt-5 mq450:pb-5 mq450:box-border box-border flex max-w-full shrink-0 flex-col items-start justify-start gap-[24px] self-stretch rounded-13xl bg-neutral-white px-4 py-6 shadow-[0px_2px_36px_rgba(0,_0,_0,_0.08)]">
       <div className="mq750:flex-wrap flex max-w-full flex-col items-start justify-between gap-[20px] self-stretch text-neutral-black-5 md:flex-row">
@@ -72,13 +84,16 @@ const BuySellTradingSection = (props: Props) => {
               <div className="relative flex flex-row items-start justify-start self-stretch rounded-lg border-[0.5px] border-solid border-neutral-black-2 bg-neutral-white text-neutral-black-2">
                 <input
                   placeholder="Price"
+                  type="number"
+                  value={buyPrice}
+                  onChange={(e) => { setBuyPrice(e.target.value); setBuyTotal((Number(e.target.value) * Number(buyAmount)).toString()); }}
                   className="relative h-full flex-1 appearance-none rounded-lg border-none px-5 py-4 text-base tracking-tight text-neutral-black-4 outline-none placeholder:text-neutral-black-2"
                 />
                 <div className="absolute right-2 top-1/2 flex -translate-y-1/2 items-center text-base text-neutral-black-5">
                   <div className="flex items-center justify-start gap-2 rounded-full">
-                    <b className="">431</b>
+                    {/* <b className="">431</b> */}
                     <b className="relative mt-[-1px] inline-block min-w-[30px] leading-[120%] tracking-[-0.02em]">
-                      LCT
+                      LET
                     </b>
                   </div>
                 </div>
@@ -90,11 +105,14 @@ const BuySellTradingSection = (props: Props) => {
               <div className="relative flex flex-row items-start justify-start self-stretch rounded-lg border-[0.5px] border-solid border-neutral-black-2 bg-neutral-white text-neutral-black-2">
                 <input
                   placeholder="Amount"
+                  type="number"
+                  value={buyAmount}
+                  onChange={(e) => { setBuyAmount(e.target.value); setBuyTotal((Number(buyPrice) * Number(e.target.value)).toString()); }}
                   className="relative h-full flex-1 appearance-none rounded-lg border-none px-5 py-4 text-base tracking-tight text-neutral-black-4 outline-none placeholder:text-neutral-black-2"
                 />
                 <div className="absolute right-2 top-1/2 flex -translate-y-1/2 items-center text-base text-neutral-black-5">
                   <div className="flex items-center justify-start gap-2 rounded-full">
-                    <b className="">0</b>
+                    {/* <b className="">0</b> */}
                     <b className="relative mt-[-1px] inline-block min-w-[30px] leading-[120%] tracking-[-0.02em]">
                       LCT
                     </b>
@@ -102,27 +120,30 @@ const BuySellTradingSection = (props: Props) => {
                 </div>
               </div>
             </div>
-            <CustomSlider value={0} onChange={() => {}} />
+            <CustomSlider value={0} onChange={() => { }} />
             <div
               className={`w-full max-w-full flex-1 gap-4 text-left text-sm text-neutral-black-5`}
             >
               <div className="relative flex flex-row items-start justify-start self-stretch rounded-lg border-[0.5px] border-solid border-neutral-black-2 bg-neutral-white text-neutral-black-2">
                 <input
+                  disabled
                   placeholder="Total"
+                  type="number"
+                  value={buyTotal}
                   className="relative h-full flex-1 appearance-none rounded-lg border-none px-5 py-4 text-base tracking-tight text-neutral-black-4 outline-none placeholder:text-neutral-black-2"
                 />
                 <div className="absolute right-2 top-1/2 flex -translate-y-1/2 items-center text-base text-neutral-black-5">
                   <div className="flex items-center justify-start gap-2 rounded-full">
-                    <b className="">339</b>
+                    {/* <b className="">339</b> */}
                     <b className="relative mt-[-1px] inline-block min-w-[30px] leading-[120%] tracking-[-0.02em]">
-                      LCT
+                      LET
                     </b>
                   </div>
                 </div>
               </div>
             </div>
 
-            <button className="box-border flex w-full min-w-[309px] max-w-full flex-1 cursor-pointer flex-row items-start justify-center whitespace-nowrap rounded-13xl border-[2px] border-solid border-darkslategray bg-state-success px-5 py-[17px] shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] hover:box-border hover:border-[2px] hover:border-solid hover:border-teal hover:bg-mediumseagreen">
+            <button onClick={(e) => { props.onBuyLCT(Number(buyPrice), Number(buyAmount)); }} className="box-border flex w-full min-w-[309px] max-w-full flex-1 cursor-pointer flex-row items-start justify-center whitespace-nowrap rounded-13xl border-[2px] border-solid border-darkslategray bg-state-success px-5 py-[17px] shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] hover:box-border hover:border-[2px] hover:border-solid hover:border-teal hover:bg-mediumseagreen">
               <b className="text-mid font-body-large-bold relative inline-block min-w-[68px] text-left leading-[120%] tracking-[-0.02em] text-neutral-white">
                 BUY LCT
               </b>
@@ -130,7 +151,7 @@ const BuySellTradingSection = (props: Props) => {
           </div>
 
           <button
-            onClick={() => {}}
+            onClick={() => { }}
             className="absolute left-1/2 top-1/2 box-border flex h-12 w-12 shrink-0 -translate-x-1/2 -translate-y-1/2 rotate-90 flex-row items-center justify-center overflow-hidden rounded-13xl border-[1px] border-solid border-neutral-black-2 bg-neutral-white px-[11px] py-3 md:rotate-0"
           >
             <IoSwapHorizontal className="relative h-6 min-h-[24px] w-6 text-ketto-primary" />
@@ -143,13 +164,16 @@ const BuySellTradingSection = (props: Props) => {
               <div className="relative flex flex-row items-start justify-start self-stretch rounded-lg border-[0.5px] border-solid border-neutral-black-2 bg-neutral-white text-neutral-black-2">
                 <input
                   placeholder="Price"
+                  type="number"
+                  value={sellPrice}
+                  onChange={(e) => { setSellPrice(e.target.value); setSellTotal((Number(e.target.value) * Number(sellAmount)).toString()); }}
                   className="relative h-full flex-1 appearance-none rounded-lg border-none px-5 py-4 text-base tracking-tight text-neutral-black-4 outline-none placeholder:text-neutral-black-2"
                 />
                 <div className="absolute right-2 top-1/2 flex -translate-y-1/2 items-center text-base text-neutral-black-5">
                   <div className="flex items-center justify-start gap-2 rounded-full">
-                    <b className="">431</b>
+                    {/* <b className="">431</b> */}
                     <b className="relative mt-[-1px] inline-block min-w-[30px] leading-[120%] tracking-[-0.02em]">
-                      LCT
+                      LET
                     </b>
                   </div>
                 </div>
@@ -161,11 +185,14 @@ const BuySellTradingSection = (props: Props) => {
               <div className="relative flex flex-row items-start justify-start self-stretch rounded-lg border-[0.5px] border-solid border-neutral-black-2 bg-neutral-white text-neutral-black-2">
                 <input
                   placeholder="Amount"
+                  type="number"
+                  value={sellAmount}
+                  onChange={(e) => { setSellAmount(e.target.value); setSellTotal((Number(sellPrice) * Number(e.target.value)).toString()); }}
                   className="relative h-full flex-1 appearance-none rounded-lg border-none px-5 py-4 text-base tracking-tight text-neutral-black-4 outline-none placeholder:text-neutral-black-2"
                 />
                 <div className="absolute right-2 top-1/2 flex -translate-y-1/2 items-center text-base text-neutral-black-5">
                   <div className="flex items-center justify-start gap-2 rounded-full">
-                    <b className="">0</b>
+                    {/* <b className="">0</b> */}
                     <b className="relative mt-[-1px] inline-block min-w-[30px] leading-[120%] tracking-[-0.02em]">
                       LCT
                     </b>
@@ -173,18 +200,21 @@ const BuySellTradingSection = (props: Props) => {
                 </div>
               </div>
             </div>
-            <CustomSlider value={0} onChange={() => {}} />
+            <CustomSlider value={0} onChange={() => { }} />
             <div
               className={`w-full max-w-full flex-1 gap-4 text-left text-sm text-neutral-black-5`}
             >
               <div className="relative flex flex-row items-start justify-start self-stretch rounded-lg border-[0.5px] border-solid border-neutral-black-2 bg-neutral-white text-neutral-black-2">
                 <input
+                  disabled
                   placeholder="Total"
+                  type="number"
+                  value={sellTotal}
                   className="relative h-full flex-1 appearance-none rounded-lg border-none px-5 py-4 text-base tracking-tight text-neutral-black-4 outline-none placeholder:text-neutral-black-2"
                 />
                 <div className="absolute right-2 top-1/2 flex -translate-y-1/2 items-center text-base text-neutral-black-5">
                   <div className="flex items-center justify-start gap-2 rounded-full">
-                    <b className="">339</b>
+                    {/* <b className="">339</b> */}
                     <b className="relative mt-[-1px] inline-block min-w-[30px] leading-[120%] tracking-[-0.02em]">
                       LCT
                     </b>
@@ -193,7 +223,7 @@ const BuySellTradingSection = (props: Props) => {
               </div>
             </div>
 
-            <button className="flex max-w-full flex-1 cursor-pointer flex-row items-start justify-center whitespace-nowrap rounded-full border-[2px] border-solid border-darkslategray bg-state-error px-5 py-4 shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] hover:box-border hover:border-[2px] hover:border-solid hover:border-teal hover:bg-crimson">
+            <button onClick={(e) => { props.onSellLCT(Number(sellPrice), Number(sellAmount)); }} className="flex max-w-full flex-1 cursor-pointer flex-row items-start justify-center whitespace-nowrap rounded-full border-[2px] border-solid border-darkslategray bg-state-error px-5 py-4 shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] hover:box-border hover:border-[2px] hover:border-solid hover:border-teal hover:bg-crimson">
               <b className="font-body-large-bold inline-block text-neutral-white">
                 SELL LCT
               </b>

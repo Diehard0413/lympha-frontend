@@ -57,11 +57,21 @@ const TradingPage = (props: Props) => {
     };
   }, []);
 
-  const sendMessage = () => {
+  const sendMessage = (data: string) => {
     if (socket && socket.readyState === WebSocket.OPEN) {
-      socket.send('Hello from Next.js!');
+      socket.send(data);
     }
   };
+
+  const onBuyLCT = (price: number, amount: number) => {
+    const data = { type: "buyOrder", price: price, amount: amount };
+    sendMessage(JSON.stringify(data));
+  }
+
+  const onSellLCT = (price: number, amount: number) => {
+    const data = { type: "sellOrder", price: price, amount: amount };
+    sendMessage(JSON.stringify(data));
+  }
 
   return (
     <div className="relative flex min-h-screen w-full flex-col items-start justify-start overflow-hidden font-proxima [background:linear-gradient(rgba(230,_232,_232,_0.4),_rgba(230,_232,_232,_0.4)),_#fcfdfd]">
@@ -82,7 +92,7 @@ const TradingPage = (props: Props) => {
                 />
                 <div className="box-border flex min-w-[203px] flex-1 flex-row items-center justify-start py-0 pl-0 pr-5">
                   <div className="flex flex-1 flex-col items-start justify-start">
-                    <h1 onClick={() => { sendMessage(); }} className="font-inherit relative m-0 self-stretch text-2xl font-bold leading-10 tracking-[-0.02em] text-inherit">
+                    <h1 onClick={() => { sendMessage("Hello"); }} className="font-inherit relative m-0 self-stretch text-2xl font-bold leading-10 tracking-[-0.02em] text-inherit">
                       $LET
                     </h1>
                     <h2 className="relative m-0 self-stretch text-xl tracking-tight md:text-2xl">
@@ -106,7 +116,7 @@ const TradingPage = (props: Props) => {
             <SellOrders />
           </div>
 
-          <BuySellTradingSection />
+          <BuySellTradingSection onBuyLCT={onBuyLCT} onSellLCT={onSellLCT} />
 
           <SampleProjectTokens />
 
