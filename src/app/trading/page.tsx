@@ -122,6 +122,15 @@ const TradingPage = (props: Props) => {
     sendMessage(JSON.stringify(data));
   }
 
+  const onReleaseOrder = (id: string) => {
+    if (!user?.email) {
+      toast.error("Please login first");
+      return;
+    }
+    const data = { email: user?.email, type: "releaseOrder", id: id };
+    sendMessage(JSON.stringify(data));
+  }
+
   return (
     <div className="relative flex min-h-screen w-full flex-col items-start justify-start overflow-hidden font-proxima [background:linear-gradient(rgba(230,_232,_232,_0.4),_rgba(230,_232,_232,_0.4)),_#fcfdfd]">
       <Navbar />
@@ -161,8 +170,8 @@ const TradingPage = (props: Props) => {
           </div>
           <MyHoldings />
           <div className="grid w-full max-w-full shrink-0 grid-cols-1 flex-row flex-wrap items-center justify-start gap-4 md:grid-cols-2">
-            <BuyOrders email={user?.email} buyOrders={buyOrders} />
-            <SellOrders email={user?.email} sellOrders={sellOrders} />
+            <BuyOrders email={user?.email} buyOrders={buyOrders} onReleaseOrder={onReleaseOrder} />
+            <SellOrders email={user?.email} sellOrders={sellOrders} onReleaseOrder={onReleaseOrder} />
           </div>
 
           <BuySellTradingSection onBuyLCT={onBuyLCT} onSellLCT={onSellLCT} />
