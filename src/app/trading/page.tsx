@@ -2,6 +2,7 @@
 
 import Navbar from "@/components/common/Navbar";
 import React, { useEffect, useState, useCallback } from "react";
+import { useSession } from "next-auth/react";
 import TradingChartSection from "./TradingChartSection";
 import MyHoldings from "./MyHoldings";
 import Statistics from "./Statistics";
@@ -27,6 +28,9 @@ interface Message {
 type Props = {};
 
 const TradingPage = (props: Props) => {
+
+  const { data: session } = useSession();
+  const user = session?.user;
 
   const [clientId, setClientId] = useState<string>('');
   const [wsService, setWsService] = useState<WebSocketService | null>(null);
@@ -72,19 +76,27 @@ const TradingPage = (props: Props) => {
         message: message,
         timestamp: Date.now()
       };
-      
+
       wsService.send(messageData);
-      
+
     }
   }, [wsService, clientId]);
 
   const onBuyLCT = (price: number, amount: number) => {
-    const data = { type: "buyOrder", price: price, amount: amount };
+    if (!user?.email) {
+      toast.error("Please login first");
+      return;
+    }
+    const data = { email: user?.email, type: "buyOrder", price: price, amount: amount };
     sendMessage(JSON.stringify(data));
   }
 
   const onSellLCT = (price: number, amount: number) => {
-    const data = { type: "sellOrder", price: price, amount: amount };
+    if (!user?.email) {
+      toast.error("Please login first");
+      return;
+    }
+    const data = { email: user?.email, type: "sellOrder", price: price, amount: amount };
     sendMessage(JSON.stringify(data));
   }
 
