@@ -64,8 +64,8 @@ const TradingPage = (props: Props) => {
           if (!data.result) {
             toast.error(data.message);
           } else {
-            setBuyOrders(data.data.buyOrders || []);
-            setSellOrders(data.data.sellOrders || []);
+            setBuyOrders(JSON.parse(data.data.buyOrders) || []);
+            setSellOrders(JSON.parse(data.data.sellOrders) || []);
           }
           break;
         case 'disconnection':

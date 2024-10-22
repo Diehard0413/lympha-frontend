@@ -26,11 +26,11 @@ const SellOrders = (props: Props) => {
           </div>
           <b className="relative flex-1 text-lg tracking-tight">Sell Orders</b>
         </div>
-        <button className="flex cursor-pointer flex-row items-center justify-center whitespace-nowrap rounded-full bg-state-error px-6 py-1.5 uppercase shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] transition-all duration-300 ease-in-out hover:bg-darkcyan-100">
+        {/* <button className="flex cursor-pointer flex-row items-center justify-center whitespace-nowrap rounded-full bg-state-error px-6 py-1.5 uppercase shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] transition-all duration-300 ease-in-out hover:bg-darkcyan-100">
           <b className="relative min-w-24 text-left text-sm tracking-tight text-neutral-white">
             New Sell Order
           </b>
-        </button>
+        </button> */}
       </div>
 
       <div className="box-border flex max-w-full flex-row items-end justify-between gap-5 self-stretch px-2 pt-4 text-sm">
