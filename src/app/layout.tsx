@@ -9,6 +9,7 @@ import SingingProvider from '../context/signing'
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import UserInfoProvider from "@/context/userinfo";
 
 export const metadata: Metadata = {
   title: "Lympha - Invest in the future",
@@ -49,24 +50,26 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(proxima.variable, "text-neutral-black-5")}>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
         <SingingProvider>
           <HashConnectProvider>
-            <AuthWrapper>
-              {/* <LoadingPage /> */}
-              {children}
-            </AuthWrapper>
+            <UserInfoProvider>
+              <AuthWrapper>
+                {/* <LoadingPage /> */}
+                {children}
+              </AuthWrapper>
+            </UserInfoProvider>
           </HashConnectProvider>
         </SingingProvider>
       </body>

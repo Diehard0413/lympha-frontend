@@ -16,12 +16,12 @@ const TradingChartSection = (props: Props) => {
               <div className="flex flex-row items-start justify-start">
                 <div className="flex flex-col items-start justify-start">
                   <div className="relative inline-block text-3xl font-semibold leading-10">
-                    794,674
+                    ---
                   </div>
                 </div>
               </div>
               <b className="mq450:text-base mq450:leading-[19px] relative inline-block min-w-[55px] text-xl leading-[120%] text-state-success">
-                +2.4%
+                +---%
               </b>
             </div>
             <div className="relative self-stretch text-sm leading-[20px] tracking-[-0.02em] text-neutral-black-5">

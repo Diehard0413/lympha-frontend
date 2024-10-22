@@ -9,10 +9,11 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { IoArrowForward } from "react-icons/io5";
 import { MdContentCopy } from "react-icons/md";
-import { deposit, withdraw, transfer, execute, getUser, initUserWallet } from "@/actions/project";
+import { deposit, withdraw, transfer, execute, initUserWallet } from "@/actions/project";
 import { useHashConnectContext } from "@/context/hashconnect";
 
 import { toast } from "react-toastify";
+import { useUserInfoContext } from "@/context/userinfo";
 
 type Props = {
   activeSidebarOption: string | null;
@@ -32,8 +33,7 @@ const MyWalletSidebar = (props: Props) => {
   const session = useSession();
   const user = session.data?.user;
   const { state, topic, pairingData, hcData, connectToExtension } = useHashConnectContext();
-
-  const [userData, setUserData] = useState<any>({});
+  const { userData, setUserData } = useUserInfoContext();
 
   const [isCreatingWallet, setIsCreatingWallet] = useState<boolean>(false);
 
@@ -149,19 +149,6 @@ const MyWalletSidebar = (props: Props) => {
     }
     setIsCreatingWallet(false);
   }
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      if (user?.email && props.activeSidebarOption == "my_wallet") {
-        const response = await getUser(user.email);
-        const userData = response.data;
-        console.log(userData);
-        setUserData(userData);
-      }
-    }
-
-    fetchUser();
-  }, [props.activeSidebarOption]);
 
   return (
     // <div className="w-full flex flex-col gap-y-5">

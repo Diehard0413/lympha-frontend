@@ -20,7 +20,7 @@ const Statistics = (props: Props) => {
                 24H
               </div>
               <div className="relative inline-block w-[42px] shrink-0 text-right uppercase leading-[17px]">
-                +2.4%
+                +---%
               </div>
             </div>
             <div className="flex flex-row items-center justify-between gap-[20px] self-stretch">
@@ -28,7 +28,7 @@ const Statistics = (props: Props) => {
                 24H High
               </div>
               <div className="relative inline-block w-[57px] min-w-[57px] shrink-0 whitespace-nowrap text-right uppercase leading-[17px]">
-                $66,000
+                $---
               </div>
             </div>
             <div className="flex flex-row items-center justify-between gap-[20px] self-stretch">
@@ -36,7 +36,7 @@ const Statistics = (props: Props) => {
                 24H Low
               </div>
               <div className="relative inline-block w-[94px] min-w-[94px] shrink-0 whitespace-nowrap text-right uppercase leading-[17px]">
-                $62,350.0003
+                $---
               </div>
             </div>
             <div className="flex flex-row items-center justify-between gap-[20px] self-stretch">
@@ -44,7 +44,7 @@ const Statistics = (props: Props) => {
                 24H Volume
               </div>
               <div className="relative inline-block w-[68px] shrink-0 text-right uppercase leading-[17px]">
-                0.0392
+                $---
               </div>
             </div>
           </div>
