@@ -16,14 +16,10 @@ const TradingTabs = (props: Props) => {
     },
     {
       id: "3",
-      title: "Send",
-    },
-    {
-      id: "4",
       title: "Transfer",
     },
     {
-      id: "5",
+      id: "4",
       title: "Transaction History",
     },
   ];
@@ -35,7 +31,7 @@ const TradingTabs = (props: Props) => {
       {tabs.map((tab) => (
         <button
           key={tab.id}
-          onClick={() => setActiveTab(tab.id)}
+          onClick={() => { setActiveTab(tab.id); }}
           className={cn(
             "flex w-max shrink-0 cursor-pointer flex-row items-center justify-center rounded-full border-[2px] border-solid border-darkslategray bg-lympha-disabled px-3 py-1.5 shadow-[0px_2px_8px_rgba(0,_0,_0,_0.16)] transition-all duration-300 ease-in-out hover:box-border hover:border-[2px] hover:border-solid hover:border-teal hover:bg-darkcyan-100 md:px-5 md:py-2",
             activeTab === tab.id

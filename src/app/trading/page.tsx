@@ -198,7 +198,7 @@ const TradingPage = (props: Props) => {
                   </div>
                 </div>
               </div>
-              <TradingTabs />
+              {/* <TradingTabs /> */}
             </div>
 
             {/* Trading Body */}
