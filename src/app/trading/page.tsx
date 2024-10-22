@@ -1,7 +1,7 @@
 "use client";
 
 import Navbar from "@/components/common/Navbar";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import TradingChartSection from "./TradingChartSection";
 import MyHoldings from "./MyHoldings";
 import Statistics from "./Statistics";
@@ -10,58 +10,73 @@ import SellOrders from "./SellOrders";
 import BuySellTradingSection from "./BuySellTradingSection";
 import SampleProjectTokens from "./SampleProjectTokens";
 import TradingTabs from "./TradingTabs";
+
+import { WebSocketService } from "@/services/WebSocketService";
 import configs from "@/configs";
 
 import { toast } from "react-toastify";
+
+interface Message {
+  type: string;
+  clientId: string;
+  senderId?: string;
+  message: string;
+  timestamp?: number;
+}
 
 type Props = {};
 
 const TradingPage = (props: Props) => {
 
-  const [socket, setSocket] = useState<WebSocket | null>(null);
+  const [clientId, setClientId] = useState<string>('');
+  const [wsService, setWsService] = useState<WebSocketService | null>(null);
+  const [connectionStatus, setConnectionStatus] = useState<'connected' | 'disconnected' | 'connecting'>('connecting');
 
   useEffect(() => {
-    let ws: WebSocket;
+    const service = new WebSocketService(
+      configs.SOCKET_URL
+    );
 
-    const connect = () => {
-      ws = new WebSocket(configs.SOCKET_URL);
-
-      ws.onopen = () => {
-        console.log('WebSocket connection established');
-      };
-
-      ws.onmessage = (event: MessageEvent) => {
-        console.log('WebSocket message received:', event.data);
-      };
-
-      ws.onerror = (error: Event) => {
-        console.log('WebSocket error:', error);
-      };
-
-      ws.onclose = (e: CloseEvent) => {
-        console.log('WebSocket connection closed');
-        if (!e.wasClean) {
-          setTimeout(connect, 5000); // Try to reconnect after 5 seconds
-        }
-      };
-
-      setSocket(ws);
+    const handleMessage = (data: Message) => {
+      switch (data.type) {
+        case 'connection':
+          setClientId(data.clientId || '');
+          setConnectionStatus('connected');
+          break;
+        case 'message':
+        case 'disconnection':
+          break;
+        case 'error':
+          console.error('WebSocket error:', data.message);
+          break;
+        case 'pong':
+          // Connection is alive
+          setConnectionStatus('connected');
+          break;
+      }
     };
 
-    connect();
+    service.addMessageHandler(handleMessage);
+    setWsService(service);
 
     return () => {
-      if (ws) {
-        ws.close();
-      }
+      service.removeMessageHandler(handleMessage);
+      service.disconnect();
     };
   }, []);
 
-  const sendMessage = (data: string) => {
-    if (socket && socket.readyState === WebSocket.OPEN) {
-      socket.send(data);
+  const sendMessage = useCallback((message: string) => {
+    if (wsService && message.trim()) {
+      const messageData = {
+        type: 'message',
+        message: message,
+        timestamp: Date.now()
+      };
+      
+      wsService.send(messageData);
+      
     }
-  };
+  }, [wsService, clientId]);
 
   const onBuyLCT = (price: number, amount: number) => {
     const data = { type: "buyOrder", price: price, amount: amount };
