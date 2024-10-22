@@ -55,6 +55,7 @@ const TradingPage = (props: Props) => {
     );
 
     const handleMessage = (data: Message) => {
+      console.log("handleMessage", data);
       switch (data.type) {
         case 'connection':
           setClientId(data.clientId || '');
