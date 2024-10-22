@@ -61,6 +61,7 @@ const TradingPage = (props: Props) => {
           setConnectionStatus('connected');
           break;
         case 'message':
+          console.log(data);
           if (!data.result) {
             toast.error(data.message);
           } else {
