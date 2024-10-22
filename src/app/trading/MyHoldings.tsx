@@ -28,7 +28,7 @@ const MyHoldings: FunctionComponent<MyHoldingsType> = ({ refresh, className = ""
     }
 
     fetchUser();
-  }, [refresh]);
+  }, [user, refresh]);
 
   return (
     <div
