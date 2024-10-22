@@ -17,6 +17,8 @@ import configs from "@/configs";
 
 import { toast } from "react-toastify";
 import InvestsPage from "../invest/page";
+import { getAllProjects } from "@/actions/project";
+import ProjectCard from "./ProjectCard";
 
 interface Message {
   type: string;
@@ -36,6 +38,24 @@ interface Order {
   amount: number;
 }
 
+type ProjectType = {
+  _id: string;
+  title: string;
+  email: string;
+  lctId: string;
+  lctTreasuryId: string;
+  lctTreasuryKey: string;
+  lctTotalSupply: number;
+  lctAmount: number;
+  letAmount: number;
+  method: string;
+  description: string;
+  minInvest: number;
+  tokensOffered: number;
+  approve: boolean;
+  openTrading: boolean;
+}
+
 type Props = {};
 
 const TradingPage = (props: Props) => {
@@ -51,6 +71,21 @@ const TradingPage = (props: Props) => {
   const [sellOrders, setSellOrders] = useState<Order[]>([]);
 
   const [refreshMyHolding, setRefreshMyHolding] = useState<boolean>(false);
+
+  const [unOpenedProjects, setUnOpenedProjects] = useState<ProjectType[]>([]);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      const response = await getAllProjects();
+      console.log(response.data);
+      const unOpenedProjects = response.data.filter((project: any) => !project.openTrading);
+      console.log(unOpenedProjects);
+      setUnOpenedProjects(unOpenedProjects);
+    }
+
+    fetchProjects();
+
+  }, [])
 
   useEffect(() => {
     const service = new WebSocketService(
@@ -181,7 +216,16 @@ const TradingPage = (props: Props) => {
           <BuySellTradingSection onBuyLCT={onBuyLCT} onSellLCT={onSellLCT} />
 
           {/* <SampleProjectTokens /> */}
-          <InvestsPage />
+
+          <div className="flex flex-col items-start justify-start self-stretch py-10">
+            <div className="flex flex-col items-start justify-start self-stretch">
+              <div className="grid grid-cols-1 flex-row items-start justify-start gap-4 self-stretch md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {unOpenedProjects.map((project) => (
+                  <ProjectCard key={project._id} project={project} page="invest" />
+                ))}
+              </div>
+            </div>
+          </div>
 
           <div className="box-border flex max-w-full shrink-0 flex-col items-start justify-between gap-3 self-stretch rounded-[20px] bg-lightgray p-5 text-lg text-gray-200 md:flex-row md:gap-5 md:text-xl">
             <div className="flex max-w-full flex-col items-start justify-start py-3">
