@@ -48,6 +48,8 @@ const TradingPage = (props: Props) => {
           setConnectionStatus('connected');
           break;
         case 'message':
+          console.log(data);
+          break;
         case 'disconnection':
           break;
         case 'error':
