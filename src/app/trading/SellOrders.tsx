@@ -48,7 +48,7 @@ const SellOrders = (props: Props) => {
             {props.sellOrders.map((order, index) => (
               <div
                 key={index}
-                className="grid flex-1 grid-cols-4 items-center gap-8 text-left font-normal"
+                className="grid grid-cols-4 items-center gap-8 text-left font-normal"
               >
                 <div className="text-left leading-5 tracking-tight">
                   {order.price}
