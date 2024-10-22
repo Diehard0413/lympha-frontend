@@ -49,6 +49,8 @@ const TradingPage = (props: Props) => {
   const [buyOrders, setBuyOrders] = useState<Order[]>([]);
   const [sellOrders, setSellOrders] = useState<Order[]>([]);
 
+  const [refreshMyHolding, setRefreshMyHolding] = useState<boolean>(false);
+
   useEffect(() => {
     const service = new WebSocketService(
       configs.SOCKET_URL
@@ -68,6 +70,7 @@ const TradingPage = (props: Props) => {
           } else {
             setBuyOrders(JSON.parse(data.data.buyOrders) || []);
             setSellOrders(JSON.parse(data.data.sellOrders) || []);
+            setRefreshMyHolding(!refreshMyHolding);
           }
           break;
         case 'disconnection':
@@ -168,7 +171,7 @@ const TradingPage = (props: Props) => {
               <Statistics />
             </div>
           </div>
-          <MyHoldings />
+          <MyHoldings refresh={refreshMyHolding} />
           <div className="grid w-full max-w-full shrink-0 grid-cols-1 flex-row flex-wrap items-center justify-start gap-4 md:grid-cols-2">
             <BuyOrders email={user?.email} buyOrders={buyOrders} onReleaseOrder={onReleaseOrder} />
             <SellOrders email={user?.email} sellOrders={sellOrders} onReleaseOrder={onReleaseOrder} />
